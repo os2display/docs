@@ -355,7 +355,7 @@ Next the application needs to be configured by adding the following content to c
 
 Before the application can be started the _apikeys.json_ and _mappings.json_ needs to exist and at least contain an empty JSON object.
 
-As the search node is not specially created for aroskanalen the mappings (configuration for elasticsearch) can be somewhat complex. To get you started the mapping below can be used as a template for the configuration. Normally go into the administration interface an add a new apikey goto the mappings in the interface and add a new empty mapping. Edit the mappings file an the _fields_, _tag_ and _dates_ section as in the template. This is the fast way to do it, if you edit the mappings after adding the config to the JSON file you can see how it should look in the administration interface.
+As the search node is not specially created for aroskanalen the mappings (configuration for elasticsearch) can be somewhat complex. To get you started the mapping below can be used as a template for the configuration. Normally go into the administration interface and add a new api key go to the mappings in the interface and add a new empty mapping. Edit the mappings file and add the _fields_, _tag_ and _dates_ section as in the template. This is the fast way to do it, if you edit the mappings after adding the config to the JSON file you can see how it should look in the administration interface.
 <pre>
 {
   "5d437a016271077510c640e450bde9c3": {
@@ -425,6 +425,8 @@ Supervisor run script for the search node.
 
 
 ### UI
+
+@TODO: Activate search indexes.
 
 @TODO: How to use the UI to add more configuration.
 
@@ -540,16 +542,21 @@ TEMPLATES
  @TODO: TROELS PLEASE WRITE ME!
 </pre> 
 
- 
+As with the node application the administration needs a nginx configuration to be accessible. 
+<pre>
+ ~$ nano -w /etc/nginx/sites-available/admin_[client name]_aroskanalen_dk
+</pre>
+
+You need to update the name, paths and ssl certificates. 
 <pre>
 server {
   listen 80;
 
-  server_name admin-dokk1.aroskanalen.dk;
+  server_name admin-[CLIENT NAME].aroskanalen.dk;
   rewrite ^ https://$server_name$request_uri? permanent;
 
-  access_log /home/www/dokk1_aroskanalen_dk/logs/backend_access.log;
-  error_log /home/www/dokk1_aroskanalen_dk/logs/backend_error.log;
+  access_log /home/www/[CLIENT NAME]_aroskanalen_dk/logs/backend_access.log;
+  error_log /home/www/[CLIENT NAME]_aroskanalen_dk/logs/backend_error.log;
 }
 
 
@@ -558,13 +565,13 @@ server {
 server {
   listen 443;
 
-  server_name admin-dokk1.aroskanalen.dk;
-  root /home/www/dokk1_aroskanalen_dk/admin/web;
+  server_name admin-[CLIENT NAME].aroskanalen.dk;
+  root /home/www/[CLIENT NAME]_aroskanalen_dk/admin/web;
 
   client_max_body_size 300m;
 
-  access_log /home/www/dokk1_aroskanalen_dk/logs/backend_access.log;
-  error_log /home/www/dokk1_aroskanalen_dk/logs/backend_error.log;
+  access_log /home/www/[CLIENT NAME]_aroskanalen_dk/logs/backend_access.log;
+  error_log /home/www/[CLIENT NAME]_aroskanalen_dk/logs/backend_error.log;
 
   location / {
     # try to serve file directly, fallback to rewrite
@@ -627,22 +634,39 @@ server {
 }
 </pre>
 
+Enable the configuration by adding a symbolic link for the installation and restart nginx to enable the configuration.
+<pre>
+ ~$ cd /etc/nginx/sites-enabled/
+ ~$ ln -s ../sites-available/admin_[client name]_aroskanalen_dk
+ ~$ service nginx restart
+</pre>
+
+Login to the site and create a new screen to test that it works, you will get search errors until theres is something in the search indexes.
+
 ## Screens
 
- * config.js
+@TODO: WRITE INTO TEXT.
 
+### Clone
+
+First clone the screen code.
 <pre>
-cat app/config.js 
+  ~$ git clone git@github.com:Indholdskanalen/screen.git /home/www/[client name]/screen
+  ~$ cd /home/www/[client name]/screen
+</pre>
+
+Edit the configuration file in _app/config.js_ and use the template below to fill out the configuration. __Note__ that this i not a JSON file but a JS file.
+<pre>
 window.config = {
   "resource": {
-    "server": "//screen-dokk1.aroskanalen.dk/",
+    "server": "//screen-[CLIENT NAME].aroskanalen.dk/",
     "uri": "proxy"
   },
   "ws": {
-    "server": "https://screen-dokk1.aroskanalen.dk/"
+    "server": "https://screen-[CLIENT NAME].aroskanalen.dk/"
   },
   "backend": {
-    "address": "https://admin-dokk1.aroskanalen.dk/"
+    "address": "https://admin-[CLIENT NAME].aroskanalen.dk/"
   },
   "apikey": "[API KEY]",
   "cookie": {
@@ -652,19 +676,21 @@ window.config = {
 };
 </pre> 
 
- * nginx
- 
+The screens client also needs to be configured to run i nginx.
 <pre>
-cat screen_dokk1_aroskanalen_dk 
+ ~$ nano -w /etc/nginx/sites-available/screen_[client name]_aroskanalen_dk
+</pre>
+
+<pre>
 server {
   listen 80;
 
-  server_name screen-dokk1.aroskanalen.dk;
+  server_name screen-[CLIENT NAME].aroskanalen.dk;
 
   rewrite ^ https://$server_name$request_uri? permanent;
 
-  access_log /home/www/dokk1_aroskanalen_dk/logs/screen_access.log;
-  error_log /home/www/dokk1_aroskanalen_dk/logs/screen_error.log;
+  access_log /home/www/[CLIENT NAME]_aroskanalen_dk/logs/screen_access.log;
+  error_log /home/www/[CLIENT NAME]_aroskanalen_dk/logs/screen_error.log;
 }
 
 # HTTPS server
@@ -672,8 +698,8 @@ server {
 server {
   listen 443;
 
-  server_name screen-dokk1.aroskanalen.dk;
-  root /home/www/dokk1_aroskanalen_dk/screen;
+  server_name screen-[CLIENT NAME].aroskanalen.dk;
+  root /home/www/[CLIENT NAME]_aroskanalen_dk/screen;
 
   access_log /home/www/dokk1_aroskanalen_dk/logs/screen_access.log;
   error_log /home/www/dokk1_aroskanalen_dk/logs/screen_error.log;
@@ -719,7 +745,14 @@ server {
 }
 </pre>
 
+Enable the configuration by adding a symbolic link for the installation and restart nginx to enable the configuration.
+<pre>
+ ~$ cd /etc/nginx/sites-enabled/
+ ~$ ln -s ../sites-available/screen_[client name]_aroskanalen_dk
+ ~$ service nginx restart
+</pre>
+
 # Troubleshot
 
- * nginx -t
+ * nginx -t can be used to test configuration file.
 
