@@ -19,7 +19,7 @@ __Steps__
 ### Middleware
  * Node modules upgrade
 
- __Steps__
+__Steps__
 
   * ./update.sh
   * Restart the supervisor service.
