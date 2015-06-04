@@ -22,7 +22,9 @@ __Steps__
 __Steps__
 
   * ./update.sh
+  * redis-cli -> FLUSHALL
   * Restart the supervisor service.
+  * Push content in admin app/console ik:push --force
 
 
 ### Search node
