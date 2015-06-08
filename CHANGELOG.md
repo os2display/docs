@@ -1,8 +1,7 @@
 #Indholdskanalen changelog
 
 #In development
-* ik-iframe template
-* sharing channels with sharingService
+
 
 #v3.1.0
 * Added new screen templates (two and three regions vertical)
