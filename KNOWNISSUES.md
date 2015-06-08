@@ -8,4 +8,4 @@ __Calendar data__
 make sure the data is correct, view it on the screen displaying it, or select resources again by pressing the "+" icon
 
 __Screens__
-* When changing a screens template, a reload of the browser (screen) is required to apply the changes
+* When changing the template of a screen, reloading the screen browser is required to apply the changes
