@@ -13,7 +13,6 @@
 * Removed logout.html and replaced it with keyboard shortcut CTRL + L
 * Added MSO template with header and footer regions (available in MSO installations)
 * Fixed an error in the 7 split wayfinding template (region had wrong id)
-* Added repeat functionality for channels
 
 
 #v3.0.0
