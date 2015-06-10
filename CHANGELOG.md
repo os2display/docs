@@ -15,7 +15,7 @@ __Admin__
 * Added MSO template with header and footer regions (available in MSO installations)
 * Fixed an error in the 7 split wayfinding template (region had wrong id)
 
-__Screen_
+__Screen__
 * Removed logout.html and replaced it with keyboard shortcut CTRL + L
 
 __Middleware__
