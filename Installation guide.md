@@ -574,6 +574,13 @@ parameters:
 
     koba_apikey: [KOBA API KEY]
     koba_path: 'http://koba.aarhus.dk'
+    
+    version: [RELEASE_VERSION]
+
+    itk_log_version: 1
+    itk_log_error_callback: /api/error
+    itk_log_log_to_console: false
+    itk_log_log_level: all
 </pre>
 
 The web-server needs access to different locations in the filesystem, so you need to change the owner of the folders to the nginx user.
@@ -763,7 +770,14 @@ window.config = {
   "cookie": {
     "secure": false
   },
-  "debug": true
+  "debug": true,
+  "version": "[RELEASE_VERSION]",
+  "itkLog": {
+    "version": "1",
+    "errorCallback": "https://admin-[client name].aroskanalen.dk/api/error",
+    "logToConsole": false,
+    "logLevel": "error"
+  }
 };
 </pre>
 

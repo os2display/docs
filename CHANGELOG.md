@@ -14,9 +14,13 @@ __Admin__
 * Added Dokk1 single calendar template (available in Dokk1 installations)
 * Added MSO template with header and footer regions (available in MSO installations)
 * Fixed an error in the 7 split wayfinding template (region had wrong id)
+* Added version parameter when getting files, to avoid caching issue with new releases
+* Added configuration of logging module to parameters. 
 
 __Screen__
 * Removed logout.html and replaced it with keyboard shortcut CTRL + L
+* Added version parameter when getting files, to avoid caching issue with new releases
+* Added configuration of logging module to parameters. 
 
 __Middleware__
 * Fixed screen overview with heartbeat and reload
@@ -37,11 +41,13 @@ __Middleware__
 
 
 #v1.0.0
+
 * Release 1
 * Video
 * Manual calendar
 
 #v0.0.3
+
 * Added video
 * Fixed text-input areas in slide creation
 * Fixed empty channel preview in channel overview
