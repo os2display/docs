@@ -8,6 +8,7 @@
 
 __Steps__
 
+ * Copy the list with templates from parameters.yml
  * composer install
  * app/console cache:clear
  * app/console doctrine:schema:update --force
