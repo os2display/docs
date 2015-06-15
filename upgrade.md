@@ -29,7 +29,7 @@ __Steps__
 </pre>
 
 ### Middleware
- * Node modules upgrade (update.sj)
+ * Node modules upgrade (update.sh)
 
 __Steps__
 
