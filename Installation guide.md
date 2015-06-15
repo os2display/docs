@@ -190,8 +190,6 @@ Next step is to configure the application by setting the secret (used to encode 
 nano -w /home/www/middleware/config.json
 </pre>
 
-@TODO Check why we need a full path to messages.log with new version of the log node library
-
 <pre>
 {
   "port": 3020,
@@ -518,17 +516,13 @@ cd /home/www/[client name]_aroskanalen_dk/admin
 composer install
 </pre>
 
-@TODO Refer to default symfony installation
-
-Fill out the questions that you can and use default values for the rest. We will come back to the values below. See the parameters example below to help filling out the values. If you are interested in Symfony you can see there default installation manual at http://symfony.com/doc/current/book/installation.html.
+Fill out the questions that you can and use default values for the rest. We will come back to the values below. See the parameters example below to help filling out the values. If you are interested in Symfony you can see their default installation manual at http://symfony.com/doc/current/book/installation.html.
 
 If you want to be able to upload videos to the system you need to have a zencoder account at http://zencoder.com/, which is an online video conversion service. When you upload an video to the system, it sends it to zencoder that re-encodes the video to the formats supported by browser. It's a payed service an is optional, if you don't want videos just write _NULL_ as value.
 
 The koba (Kalender Og Booking Applikation) is a project under Aarhus Kommmune that allows us to display Exchange location bookings on screens. But as this as somewhat a highly specialised service/API you may not have access to it. If not simply use _NULL_ as API key value.
 
-In relation to the sharing section of the configuration it's used to share content across different installations by using a shared API key and search index in the search node.
-
-@TODO explaine the sharing setup.
+In relation to the sharing section of the configuration it's used to share content across different installations by using a shared API key and index in the search node. The index requires to have the same configuration as a normal index or the aroskanalen, but with a _"tag"_ set to _"shared"_.
 
 The final _app/config/parameters.yml_ file.
 <pre>
@@ -616,16 +610,15 @@ php app/console ik:templates:load
 In the administration menu there is a menu option to enable/disable imported templates.
 
 ### Cron
-The system uses a cron job to push content from the administration interface to the middleware. To setup this push command to run every minute.
+The system uses a cron job to push content from the administration interface to the middleware. To push content every minute edit crontab and add the line below, it will one push new content and updates.
 <pre>
 crontab -e
 </pre>
 
-Add this the the crontab.
+Add this to crontab.
 <pre>
 */1 * * * * /usr/bin/php /home/www/[client name]_aroskanalen_dk/admin/app/console ik:cron > /dev/null 2>&1
 </pre>
-
 
 ### Nginx configuration
 
@@ -728,7 +721,7 @@ sudo ln -s ../sites-available/admin_[client name]_aroskanalen_dk
 sudo service nginx restart
 </pre>
 
-Login to the site and create a new screen, channel and slide to test that it works, you will get a search error until there's is something in the search indexes for each of the content types.
+Login to the site and create a new screen, channel and slide to test that it works, you will get a search error until there is something in the search indexes for each of the content types. Also try to upload media, such as an image to test file permissions.
 
 
 
@@ -739,7 +732,7 @@ Login to the site and create a new screen, channel and slide to test that it wor
 
 ## Screens
 
-@TODO: WRITE INTO TEXT.
+Screens are the part of the system used to display the content on, well screens. It communicates via web-socket with the middleware and fetches images and templates form its backend.
 
 ### Clone
 
@@ -781,7 +774,7 @@ window.config = {
 };
 </pre>
 
-The screen client also needs to be configured to run in nginx.
+The screen application also needs to be configured to run in nginx.
 <pre>
 sudo nano -w /etc/nginx/sites-available/screen_[client name]_aroskanalen_dk
 </pre>
@@ -837,8 +830,8 @@ server {
   }
 
   ssl on;
-  ssl_certificate /etc/ssl/certs2014/aroskanalen_dk.crt;
-  ssl_certificate_key /etc/ssl/certs2014/aroskanalen_dk.key;
+  ssl_certificate /etc/ssl/certs2014/[SSL CERT].crt;
+  ssl_certificate_key /etc/ssl/certs2014/[SSL KEY].key;
 
   ssl_session_cache shared:SSL:10m;
   ssl_session_timeout 5m;
@@ -865,3 +858,4 @@ sudo service nginx restart
  
  __Note__ that the supervisor have to be stop first our the communication port is already in use (an gives an error).
  * _php app/console ik:push --force_ can be used to force push content from the administration interface to the middleware.
+ * You can logout of a screen by pressing __ctrl+l__ at any time.
