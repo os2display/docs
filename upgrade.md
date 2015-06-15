@@ -15,6 +15,18 @@ __Steps__
  * app/console cache:clear
  * Login to the site as adminstartor and select the templates that should be available for the site.
 
+### Screen
+
+* Update app/config.js needs to have the new log lines added
+<pre>
+  "version": "[RELEASE_VERSION]",
+  "itkLog": {
+    "version": "1",
+    "errorCallback": "https://admin-[client name].aroskanalen.dk/api/error",
+    "logToConsole": false,
+    "logLevel": "error"
+  }
+</pre>
 
 ### Middleware
  * Node modules upgrade
