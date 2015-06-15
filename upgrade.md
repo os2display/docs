@@ -14,6 +14,16 @@ __Steps__
  * app/console ik:templates:load
  * app/console cache:clear
  * Login to the site as adminstartor and select the templates that should be available for the site.
+ * Update parameters.yml with the following lines
+
+  <pre>
+  version: [RELEASE_VERSION]
+
+  itk_log_version: 1
+  itk_log_error_callback: /api/error
+  itk_log_log_to_console: false
+  itk_log_log_level: all
+  </pre>
 
 ### Screen
 
