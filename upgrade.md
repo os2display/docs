@@ -22,7 +22,7 @@ __Steps__
 __Steps__
 
   * ./update.sh
-  * redis-cli -> FLUSHALL
+  * redis-cli -> select [DB] -> FLUSHALL
   * Restart the supervisor service.
   * Push content in admin app/console ik:push --force
 
