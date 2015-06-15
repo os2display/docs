@@ -10,7 +10,7 @@ __Steps__
 
  * composer install
  * app/console cache:clear
- * app/console doctrine:schema:update
+ * app/console doctrine:schema:update --force
  * app/console ik:templates:load
  * app/console cache:clear
  * Login to the site as adminstartor and select the templates that should be available for the site.
