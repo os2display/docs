@@ -407,8 +407,8 @@ sudo nano -w /home/www/search_node/config.json
 Before the application can be started the _apikeys.json_ and _mappings.json_ needs to exist and at least contain an empty JSON object (_{}_).
 
 <pre>
-cat '{}' > /home/www/search_node/apikeys.json
-cat '{}' > /home/www/search_node/mappings.json
+echo '{}' > /home/www/search_node/apikeys.json
+echo '{}' > /home/www/search_node/mappings.json
 </pre>
 
 The search node needs to be started at boot time which requires a Supervisor run script. Supervisor will also ensure that the node application is restarted, if an error happens and it stops unexpectedly.
