@@ -2,10 +2,12 @@
 
 #In development
 
+* Added alias to calendar templates
 
 #v3.1.0
 
 __Admin__
+
 * Added new screen templates (two and three regions vertical)
 * Added configuration for activating screen and slide templates
 * Added check if trying to activate a screen that is already activated
@@ -18,11 +20,13 @@ __Admin__
 * Added configuration of logging module to parameters. 
 
 __Screen__
+
 * Removed logout.html and replaced it with keyboard shortcut CTRL + L
 * Added version parameter when getting files, to avoid caching issue with new releases
 * Added configuration of logging module to parameters. 
 
 __Middleware__
+
 * Fixed screen overview with heartbeat and reload
 * Fixed channel overview
 
@@ -30,12 +34,14 @@ __Middleware__
 #v3.0.0
 
 __Admin__
+
 * Added dynamic calendar (Exchange data)
 * 5 split screen template
 * Dokk1 wayfinding templates
 * Updated screen interface
 
 __Middleware__
+
 * Added screen overview with heartbeat and reload
 * Added channel overview
 
