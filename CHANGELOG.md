@@ -2,11 +2,11 @@
 
 #In development
 
-__ Screen __
+__Screen__
 
 * Keyboard logout changed to ctrl+i
 
-__ Admin __
+__Admin__
 
 * Added alias to koba calendar templates
 
