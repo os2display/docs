@@ -859,3 +859,4 @@ sudo service nginx restart
  __Note__ that the supervisor have to be stop first our the communication port is already in use (an gives an error).
  * _php app/console ik:push --force_ can be used to force push content from the administration interface to the middleware.
  * You can logout of a screen by pressing __ctrl+l__ at any time.
+ * If indexes are defined, but the index list is empty, you may have to restart the "elasticsearch" and "redis-server services" 
