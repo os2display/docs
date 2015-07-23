@@ -620,6 +620,16 @@ Add this to crontab.
 */1 * * * * /usr/bin/php /home/www/[client name]_aroskanalen_dk/admin/app/console ik:cron > /dev/null 2>&1
 </pre>
 
+For production sites add `--env=prod`:
+<pre>
+*/1 * * * * /usr/bin/php /home/www/[client name]_aroskanalen_dk/admin/app/console --env=prod ik:cron > /dev/null 2>&1
+</pre>
+
+Note: Adding `--env=prod` may result in permissions issues, but you can fix this by settings up the crontab for the right user, e.g. www-data:
+<pre>
+sudo crontab -u www-data -e
+</pre>
+
 ### Nginx configuration
 
 As with the node applications the administration interface needs a nginx configuration to be accessible from the network.
