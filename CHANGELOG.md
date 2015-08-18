@@ -2,13 +2,16 @@
 
 #In development
 
-
 #v3.2.0
 
 __Admin__
 
-* Added alias to calendar templates
+* Added alias to KOBA calendar templates
 * Fixed bug with search factory event handlers being registered more than once.
+
+__Screen__
+
+* Keyboard logout changed to ctrl+i
 
 #v3.1.0
 
@@ -23,13 +26,13 @@ __Admin__
 * Added MSO template with header and footer regions (available in MSO installations)
 * Fixed an error in the 7 split wayfinding template (region had wrong id)
 * Added version parameter when getting files, to avoid caching issue with new releases
-* Added configuration of logging module to parameters. 
+* Added configuration of logging module to parameters.
 
 __Screen__
 
 * Removed logout.html and replaced it with keyboard shortcut CTRL + L
 * Added version parameter when getting files, to avoid caching issue with new releases
-* Added configuration of logging module to parameters. 
+* Added configuration of logging module to parameters.
 
 __Middleware__
 

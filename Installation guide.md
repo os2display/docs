@@ -620,6 +620,16 @@ Add this to crontab.
 */1 * * * * /usr/bin/php /home/www/[client name]_aroskanalen_dk/admin/app/console ik:cron > /dev/null 2>&1
 </pre>
 
+For production sites add `--env=prod`:
+<pre>
+*/1 * * * * /usr/bin/php /home/www/[client name]_aroskanalen_dk/admin/app/console --env=prod ik:cron > /dev/null 2>&1
+</pre>
+
+Note: Adding `--env=prod` may result in permissions issues, but you can fix this by settings up the crontab for the right user, e.g. www-data:
+<pre>
+sudo crontab -u www-data -e
+</pre>
+
 ### Nginx configuration
 
 As with the node applications the administration interface needs a nginx configuration to be accessible from the network.
@@ -859,3 +869,4 @@ sudo service nginx restart
  __Note__ that the supervisor have to be stop first our the communication port is already in use (an gives an error).
  * _php app/console ik:push --force_ can be used to force push content from the administration interface to the middleware.
  * You can logout of a screen by pressing __ctrl+l__ at any time.
+ * If indexes are defined, but the index list is empty, you may have to restart the "elasticsearch" and "redis-server services" 
