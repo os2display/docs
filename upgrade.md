@@ -1,5 +1,9 @@
 # Upgrade log.
 
+## 3.1.0 => 3.2.0
+
+* No steps needed apart from pulling repositories and changing release versions in configs.
+
 ## 3.1.0
 
 ### Admin
