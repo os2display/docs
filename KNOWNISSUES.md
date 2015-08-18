@@ -1,4 +1,4 @@
-#Indholdskanalen known issues
+#Aroskanalen known issues
 
 
 #v3.1.0
