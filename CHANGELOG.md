@@ -1,8 +1,14 @@
-#Indholdskanalen changelog
+#Aroskanalen changelog
 
 #In development
 
+
+#v3.2.0
+
+__Admin__
+
 * Added alias to calendar templates
+* Fixed bug with search factory event handlers being registered more than once.
 
 #v3.1.0
 
