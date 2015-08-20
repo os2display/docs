@@ -90,7 +90,7 @@ Start by updating the _middleware_ and _search node_ applications. They are loca
 <pre>
 git checkout master
 git pull origin master
-git check v[VERSION]
+git checkout v[VERSION]
 </pre>
 
 You should be able to start up again.
@@ -104,7 +104,7 @@ Next checkout the administration interfaces and screens, which are located in _/
 <pre>
 git checkout master
 git pull origin master
-git check v[VERSION]
+git checkout v[VERSION]
 </pre>
 
 
