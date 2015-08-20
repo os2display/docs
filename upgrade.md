@@ -1,5 +1,9 @@
 # Upgrade log.
 
+## 3.2.0 => 3.2.1
+
+* No steps needed apart from pulling repositories and changing release versions in configs.
+
 ## 3.1.0 => 3.2.0
 
 * No steps needed apart from pulling repositories and changing release versions in configs.
@@ -18,7 +22,7 @@ __Steps__
  * app/console doctrine:schema:update --force
  * app/console ik:templates:load
  * app/console cache:clear
- * Login to the site as adminstartor and select the templates that should be available for the site.
+ * Login to the site as administrator and select the templates that should be available for the site.
  * Update parameters.yml with the following lines
 
   <pre>

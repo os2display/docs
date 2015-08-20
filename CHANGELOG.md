@@ -2,12 +2,20 @@
 
 #In development
 
+
+#v3.2.1 (hotfix)
+
+__Admin__
+
+* Fixed bug where content was added between newly created slides
+* Fixed bug where screen template was not loaded correctly when creating a screen
+
 #v3.2.0
 
 __Admin__
 
 * Added alias to KOBA calendar templates
-* Fixed bug with search factory event handlers being registered more than once.
+* Fixed bug with search factory event handlers being registered more than once
 
 __Screen__
 
@@ -26,13 +34,13 @@ __Admin__
 * Added MSO template with header and footer regions (available in MSO installations)
 * Fixed an error in the 7 split wayfinding template (region had wrong id)
 * Added version parameter when getting files, to avoid caching issue with new releases
-* Added configuration of logging module to parameters.
+* Added configuration of logging module to parameters
 
 __Screen__
 
 * Removed logout.html and replaced it with keyboard shortcut CTRL + L
 * Added version parameter when getting files, to avoid caching issue with new releases
-* Added configuration of logging module to parameters.
+* Added configuration of logging module to parameters
 
 __Middleware__
 
