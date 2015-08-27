@@ -2,6 +2,9 @@
 
 #In development
 
+__Screen__
+
+* Added dates to script and css imports
 
 #v3.2.1 (hotfix)
 
