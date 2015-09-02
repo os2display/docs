@@ -1,5 +1,9 @@
 # Upgrade log.
 
+## => In development
+
+ * app/console ik:templates:load (To get the latest version of the templates to the screens).
+
 ## 3.2.0 => 3.2.1
 
 __Steps__
