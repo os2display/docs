@@ -10,6 +10,7 @@ __Screen__
 __Admin__
 
 * Added rss slide templates (aarhus/rss-aarhus & default/rss-default)
+* Fixed how overview items are aligned
 
 #In development feature branches
 
