@@ -5,12 +5,17 @@
 __Screen__
 
 * Added dates to script and css imports
-* feature/rss-slide: adds rss slide templates (aarhus/rss-aarhus & default/rss-default)
+* Added rss slide templates (aarhus/rss-aarhus & default/rss-default)
+
+__Admin__
+
+* Added rss slide templates (aarhus/rss-aarhus & default/rss-default)
+
+#In development feature branches
 
 __Admin__
 
 * feature/ldap-login: implements ldap login (not merged with development branch). NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
-* feature/rss-slide: adds rss slide templates (aarhus/rss-aarhus & default/rss-default)
 
 #v3.2.1 (hotfix)
 
