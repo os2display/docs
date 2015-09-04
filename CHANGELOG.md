@@ -20,6 +20,10 @@ __Admin__
 
 * feature/ldap-login: implements ldap login (not merged with development branch). NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
+__Screen__
+
+* feature/fallback-image: added a fallback image to the screen
+
 #v3.2.1 (hotfix)
 
 __Admin__
