@@ -11,6 +11,8 @@ __Admin__
 
 * Added rss slide templates (aarhus/rss-aarhus & default/rss-default)
 * Fixed how overview items are aligned
+* Added reload button to screens, only available to admins
+* Changed is_admin to be ROLE_ADMIN and ROLE_SUPER_ADMIN, instead of only ROLE_SUPER_ADMIN
 
 #In development feature branches
 
