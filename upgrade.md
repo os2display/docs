@@ -1,8 +1,28 @@
 # Upgrade log.
 
-## => In development
+## => 3.3.0
+
+* Change release versions in configs (admin/app/config/parameters.yml and screen/app/config.js).
+
+__Steps__
+
+### Admin
 
  * app/console ik:templates:load (To get the latest version of the templates to the screens).
+
+### Screen
+
+ * Add parameter to screen/app/config.js:
+
+ <pre>
+  "fallback_image": null
+ </pre>
+
+ * If need for other fallback_image, add a fallback image to screen/assets/images/fallback_override.png and set the parameter above to:
+
+ <pre>
+   "fallback_image": "assets/images/fallback_override.png"
+ </pre>
 
 ## 3.2.0 => 3.2.1
 
