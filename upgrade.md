@@ -1,12 +1,41 @@
 # Upgrade log.
 
+## 3.2.1 => 3.3.0
+
+__Steps__
+
+* Change release versions in configs (admin/app/config/parameters.yml and screen/app/config.js).
+
+### Admin
+
+ * app/console ik:templates:load (To get the latest version of the templates to the screens).
+
+### Screen
+
+ * Add parameter to screen/app/config.js:
+
+ <pre>
+  "fallback_image": null
+ </pre>
+
+ * If need for other fallback_image, add a fallback image to screen/assets/images/fallback_override.png and set the parameter above to:
+
+ <pre>
+   "fallback_image": "assets/images/fallback_override.png"
+ </pre>
+
 ## 3.2.0 => 3.2.1
 
-* No steps needed apart from pulling repositories and changing release versions in configs.
+__Steps__
+
+ * Change release versions in configs (admin/app/config/parameters.yml and screen/app/config.js).
 
 ## 3.1.0 => 3.2.0
 
-* No steps needed apart from pulling repositories and changing release versions in configs.
+__Steps__
+
+ * Change version in configs (admin/app/config/parameters.yml and screen/app/config.js).
+ * app/console ik:templates:load (To get the latest version of the templates to the screens).
 
 ## 3.1.0
 
@@ -26,12 +55,12 @@ __Steps__
  * Update parameters.yml with the following lines
 
   <pre>
-  version: [RELEASE_VERSION]
-
-  itk_log_version: 1
-  itk_log_error_callback: /api/error
-  itk_log_log_to_console: false
-  itk_log_log_level: all
+    version: [RELEASE_VERSION]
+    
+    itk_log_version: 1
+    itk_log_error_callback: /api/error
+    itk_log_log_to_console: false
+    itk_log_log_level: all
   </pre>
 
 ### Screen

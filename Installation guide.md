@@ -780,7 +780,8 @@ window.config = {
     "errorCallback": "https://admin-[client name].aroskanalen.dk/api/error",
     "logToConsole": false,
     "logLevel": "error"
-  }
+  },
+  "fallback_image": null
 };
 </pre>
 

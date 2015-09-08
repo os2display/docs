@@ -2,6 +2,28 @@
 
 #In development
 
+#In development feature branches
+
+__Admin__
+
+* feature/ldap-login: implements ldap login (not merged with development branch). NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
+#v3.3.0
+
+__Screen__
+
+* Added dates to script and css imports
+* Added rss slide templates (aarhus/rss-aarhus & default/rss-default)
+* Added a fallback image to the screen
+* Changed page title to Aroskanalen
+
+__Admin__
+
+* Added rss slide templates (aarhus/rss-aarhus & default/rss-default)
+* Fixed how overview items are aligned
+* Added reload button to screens, only available to admins
+* Changed is_admin to be ROLE_ADMIN and ROLE_SUPER_ADMIN, instead of only ROLE_SUPER_ADMIN
+* Fixed positioning bug in dokk1_single_calendar template
 
 #v3.2.1 (hotfix)
 
