@@ -1,6 +1,6 @@
 # Upgrade log.
 
-## => 3.3.0
+3.2.1 => 3.3.0
 
 * Change release versions in configs (admin/app/config/parameters.yml and screen/app/config.js).
 
