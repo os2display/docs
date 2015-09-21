@@ -2,11 +2,38 @@
 
 #In development
 
+* Fixed pager to show a max of 10 results.
+
 #In development feature branches
 
-__Admin__
+__feature/gulp__
 
-* feature/ldap-login: implements ldap login (not merged with development branch). NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+_Admin_
+* Adds gulp tasks to compile js and sass
+* Changes how icons are used (Removed sprites)
+* Moved editor icons out of edit slide templates
+* Split the rendering of sass for the templates from admin sass
+* Minor styling fixed
+* Only load all javascripts in dev environment, use compiled js for prod
+* Updated angular from 1.2.16 to 1.4.6
+* Moved slide js setup/run functions into the admin
+* NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
+* NB! Requires app/console ik:templates:load
+
+_Screen_
+
+* Added gulp tasks to compile js and sass
+* Moved slide js setup/run functions into the admin
+* Updated angular from 1.2.16 to 1.4.6
+* NB! Requires screen reload for changes to apply
+
+__feature/ldap-login__
+
+_Admin_
+
+* Implemented ldap login (not merged with development branch). 
+* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
 
 #v3.3.0
 
