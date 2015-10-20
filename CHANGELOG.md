@@ -8,6 +8,14 @@ __Admin__
 
 * feature/ldap-login: implements ldap login (not merged with development branch). NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
+__Search node__
+
+ * Updated to elasticsearch 1.7.1
+
+__Middelware__
+ 
+ * New logger (run ./update.sh and update config.json) 
+
 #v3.3.0
 
 __Screen__
