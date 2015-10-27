@@ -2,7 +2,8 @@
 
 #In development
 
-* Fixed pager to show a max of 10 results.
+* Fixed pager to show a max of 10 results
+* Fixed channel that could not be removed from a region of a screen
 
 #In development feature branches
 
