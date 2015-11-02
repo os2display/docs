@@ -1,6 +1,16 @@
 #Aroskanalen changelog
 
+
 #In development
+
+__Search node__
+
+Updated to elasticsearch 1.7.1
+NB! Requires server update of elasticsearch
+
+__Middleware__
+
+New logger (run ./update.sh and update config.json)
 
 
 #In development feature branches
