@@ -3,16 +3,6 @@
 
 #In development
 
-__Search node__
-
-Updated to elasticsearch 1.7.1
-NB! Requires server update of elasticsearch
-
-__Middleware__
-
-New logger (run ./update.sh and update config.json)
-
-
 #In development feature branches
 
 __feature/gulp__
@@ -51,6 +41,16 @@ __Admin__
 * Fixed pager to show a max of 10 results
 * Fixed channel that could not be removed from a region of a screen
 * Added MBU three split, MBU header, MBU footer templates
+
+__Search node__
+
+* Updated to elasticsearch 1.7.1
+* NB! Requires server update of elasticsearch
+* Update mappings with "raw": false for all fields
+
+__Middleware__
+
+* New logger (run ./update.sh and update config.json)
 
 #v3.3.0
 
