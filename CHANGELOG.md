@@ -1,21 +1,18 @@
-#Aroskanalen changelog
+#Aroskanalen CHANGELOG
 
 
 #In development
 
-#In development feature branches
-
-__feature/gulp__
-
 _Admin_
-* Adds gulp tasks to compile js and sass
-* Changes how icons are used (Removed sprites)
+* Added gulp tasks to compile js and sass
+* Changed how icons are used (Removed sprites)
 * Moved editor icons out of edit slide templates
 * Split the rendering of sass for the templates from admin sass
 * Minor styling fixed
 * Only load all javascripts in dev environment, use compiled js for prod
 * Updated angular from 1.2.16 to 1.4.6
 * Moved slide js setup/run functions into the admin
+* Added debounce to text searches, so when the text is entered the search is only completed when there has not been a new key press within 500 ms. This is to avoid race condition between searches.
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
 * NB! Requires app/console ik:templates:load
 
@@ -26,6 +23,9 @@ _Screen_
 * Updated angular from 1.2.16 to 1.4.6
 * NB! Requires screen reload for changes to apply
 
+
+#In development feature branches
+
 __feature/ldap-login__
 
 _Admin_
@@ -33,6 +33,19 @@ _Admin_
 * Implemented ldap login (not merged with development branch). 
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
+#v3.4.2
+
+* Reverted "Changed label in dokk1 template"
+
+#v3.4.1
+
+__Admin__
+
+* Added cache to user fetch.
+* Updated default search to use "mine" tab in UI.
+* Resolved issue with non-existing resources for calendar slides.
+* Fixed MBU templates issues.
+* Changed label in dokk1 template.
 
 #v3.4.0
 
@@ -113,7 +126,6 @@ __Middleware__
 * Fixed screen overview with heartbeat and reload
 * Fixed channel overview
 
-
 #v3.0.0
 
 __Admin__
@@ -127,7 +139,6 @@ __Middleware__
 
 * Added screen overview with heartbeat and reload
 * Added channel overview
-
 
 #v1.0.0
 
