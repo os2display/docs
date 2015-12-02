@@ -90,6 +90,24 @@ You can use the UI or edit the JSON files directly.
 
 __Note:__ To install the newest version (development version that's not aways stable), you should checkout the development branches in the all the cloned repositories instead of the latest version tag.
 
+## SSL Configuration
+
+Common SSL-configuration defined in includes/ssl_aroskanalen.conf:
+<pre>
+  ssl_certificate /etc/nginx/ssl/[SSL CERT].crt;
+  ssl_certificate_key /etc/nginx/ssl/[SSL KEY].key;
+
+  # This should be identicial for all vhosts (nginx < 1.9.6)
+  ssl_session_timeout 5m;
+  ssl_session_cache shared:SSL:10m;
+  
+  # See https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
+  ssl_prefer_server_ciphers On;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+</pre>
+
+
 ## Middleware
 
 ### Clone
@@ -144,9 +162,11 @@ server {
 # HTTPS server
 #
 server {
-  listen 443;
+  listen 443 ssl;
 
   server_name middleware-[server name].aroskanalen.dk;
+
+  include /etc/nginx/includes/ssl_aroskanalen.conf;
 
   access_log /var/log/nginx/middleware_access.log;
   error_log /var/log/nginx/middleware_error.log;
@@ -169,18 +189,6 @@ server {
 
     proxy_pass http://nodejs_middleware;
   }
-
-  ssl on;
-  ssl_certificate /etc/nginx/ssl/[SSL CERT].crt;
-  ssl_certificate_key /etc/nginx/ssl/[SSL KEY].key;
-
-  ssl_session_timeout 5m;
-  ssl_session_cache shared:SSL:10m;
-
-  # https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-  ssl_prefer_server_ciphers On;
-  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
 }
 </pre>
 
@@ -330,9 +338,11 @@ server {
 # HTTPS server
 #
 server {
-  listen 443;
+  listen 443 ssl;
 
   server_name search-[server name].aroskanalen.dk;
+
+  include /etc/nginx/includes/ssl_aroskanalen.conf;
 
   access_log /var/log/nginx/search_access.log;
   error_log /var/log/nginx/search_error.log;
@@ -355,18 +365,6 @@ server {
 
     proxy_pass http://nodejs_search;
   }
-
-  ssl on;
-  ssl_certificate /etc/nginx/ssl/[SSL CERT].crt;
-  ssl_certificate_key /etc/nginx/ssl/[SSL KEY].key;
-
-  ssl_session_timeout 5m;
-  ssl_session_cache shared:SSL:10m;
-
-  # https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-  ssl_prefer_server_ciphers On;
-  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
 }
 </pre>
 
@@ -652,9 +650,12 @@ server {
 # HTTPS server
 #
 server {
-  listen 443;
+  listen 443 ssl;
 
   server_name admin-[client name].aroskanalen.dk;
+
+  include /etc/nginx/includes/ssl_aroskanalen.conf;
+
   root /home/www/[client name]_aroskanalen_dk/admin/web;
 
   client_max_body_size 300m;
@@ -708,18 +709,6 @@ server {
 
     proxy_pass http://nodejs_search;
   }
-
-  ssl on;
-  ssl_certificate /etc/nginx/ssl/[SSL CERT].crt;
-  ssl_certificate_key /etc/nginx/ssl/[SSL KEY].key;
-
-  ssl_session_timeout 5m;
-  ssl_session_cache shared:SSL:10m;
-
-  # https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-  ssl_prefer_server_ciphers On;
-  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
 }
 </pre>
 
@@ -805,9 +794,12 @@ server {
 # HTTPS server
 #
 server {
-  listen 443;
+  listen 443 ssl;
 
   server_name screen-[client name].aroskanalen.dk;
+
+  include /etc/nginx/includes/ssl_aroskanalen.conf;
+
   root /home/www/[client name]_aroskanalen_dk/screen;
 
   access_log /home/www/[client name]_aroskanalen_dk/logs/screen_access.log;
@@ -839,18 +831,6 @@ server {
 
     proxy_pass http://nodejs_middleware;
   }
-
-  ssl on;
-  ssl_certificate /etc/ssl/certs2014/[SSL CERT].crt;
-  ssl_certificate_key /etc/ssl/certs2014/[SSL KEY].key;
-
-  ssl_session_cache shared:SSL:10m;
-  ssl_session_timeout 5m;
-
-  # https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-  ssl_prefer_server_ciphers On;
-  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
 }
 </pre>
 
