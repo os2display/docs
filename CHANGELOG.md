@@ -1,7 +1,7 @@
 #Aroskanalen CHANGELOG
 
 
-#In development
+#release/3.5.0
 
 _Admin_
 * Added gulp tasks to compile js and sass
@@ -13,6 +13,8 @@ _Admin_
 * Updated angular from 1.2.16 to 1.4.6
 * Moved slide js setup/run functions into the admin
 * Added debounce to text searches, so when the text is entered the search is only completed when there has not been a new key press within 500 ms. This is to avoid race condition between searches.
+* Moved RSS reader into backend
+* NB! Requires composer install
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
 * NB! Requires app/console ik:templates:load
 
