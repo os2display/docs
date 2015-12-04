@@ -26,6 +26,11 @@ _Screen_
 * Updated angular from 1.2.16 to 1.4.6
 * NB! Requires screen reload for changes to apply
 
+_Middleware
+* Fixed channel remove function
+* Add cron jobs to clean up screens from cache (14 days)
+* Add logic to remove screens that have never been connected.
+* NB! Requires update.sh to be executed.
 
 #In development feature branches
 
