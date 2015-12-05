@@ -29,6 +29,7 @@ _Screen_
 _Middleware_
 * Fixed channel remove function,
 * Fixed bug where to screen with same ID could be online at the same time.
+* Fixed connection event issue in socket.io (more than on connect event on re-connect).
 * Add cron jobs to clean up screens from cache (14 days).
 * Add logic to remove screens that have never been connected.
 * NB! Requires update.sh to be executed.
