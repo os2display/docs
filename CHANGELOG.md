@@ -16,6 +16,7 @@ _Admin_
 * Moved RSS reader into backend
 * Added Dokk1 Instagram template
 * Moved Instagram reader into backend
+* NB! Add instagram_client_id key to parameters.yml
 * NB! Requires composer install
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
 * NB! Requires app/console ik:templates:load
