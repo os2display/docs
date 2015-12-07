@@ -17,6 +17,7 @@ _Admin_
 * Added Dokk1 Instagram template
 * Moved Instagram reader into backend
 * NB! Add instagram_client_id key to parameters.yml
+* NB! Update version number in parameters.yml
 * NB! Requires composer install
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
 * NB! Requires app/console ik:templates:load
@@ -27,6 +28,7 @@ _Screen_
 * Moved slide js setup/run functions into the admin
 * Updated angular from 1.2.16 to 1.4.6
 * Changed mouse hiding to only apply when the mouse is inactive
+* NB! Update version number in app/config.js
 * NB! Requires screen reload for changes to apply
 
 _Middleware_
