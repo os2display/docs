@@ -1,7 +1,21 @@
 #Aroskanalen CHANGELOG
 
 
-#release/3.5.0
+#In development feature branches
+
+__feature/ldap-login__
+
+_Admin_
+
+* Implemented ldap login (not merged with development branch). 
+* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
+#v3.5.1
+
+_Admin_
+* Fixed screens/default/three-columns template
+
+#v3.5.0
 
 _Admin_
 * Added gulp tasks to compile js and sass
@@ -22,6 +36,7 @@ _Admin_
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
 * NB! Requires app/console ik:templates:load
 * NB! Clear cache
+* NB! app/console ik:push --force
 
 _Screen_
 
@@ -40,15 +55,6 @@ _Middleware_
 * Added logic to remove screens that have never been connected.
 * Fixed log out
 * NB! Requires update.sh to be executed.
-
-#In development feature branches
-
-__feature/ldap-login__
-
-_Admin_
-
-* Implemented ldap login (not merged with development branch). 
-* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
 #v3.4.2
 
