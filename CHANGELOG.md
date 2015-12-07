@@ -8,12 +8,13 @@ _Admin_
 * Changed how icons are used (Removed sprites)
 * Moved editor icons out of edit slide templates
 * Split the rendering of sass for the templates from admin sass
-* Minor styling fixed
+* Fixed minor styling issues
 * Only load all javascripts in dev environment, use compiled js for prod
 * Updated angular from 1.2.16 to 1.4.6
 * Moved slide js setup/run functions into the admin
 * Added debounce to text searches, so when the text is entered the search is only completed when there has not been a new key press within 500 ms. This is to avoid race condition between searches.
 * Moved RSS reader into backend
+* Added Dokk1 Instagram template
 * Moved Instagram reader into backend
 * NB! Requires composer install
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
@@ -24,14 +25,16 @@ _Screen_
 * Added gulp tasks to compile js and sass
 * Moved slide js setup/run functions into the admin
 * Updated angular from 1.2.16 to 1.4.6
+* Changed mouse hiding to only apply when the mouse is inactive
 * NB! Requires screen reload for changes to apply
 
 _Middleware_
 * Fixed channel remove function,
 * Fixed bug where to screen with same ID could be online at the same time.
 * Fixed connection event issue in socket.io (more than on connect event on re-connect).
-* Add cron jobs to clean up screens from cache (14 days).
-* Add logic to remove screens that have never been connected.
+* Added cron jobs to clean up screens from cache (14 days).
+* Added logic to remove screens that have never been connected.
+* Fixed log out
 * NB! Requires update.sh to be executed.
 
 #In development feature branches
