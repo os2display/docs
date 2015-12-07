@@ -21,6 +21,7 @@ _Admin_
 * NB! Requires composer install
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
 * NB! Requires app/console ik:templates:load
+* NB! Clear cache
 
 _Screen_
 
