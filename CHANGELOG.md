@@ -15,6 +15,9 @@ _Admin_
 _Admin_
 * Fixed screens/default/three-columns template
 
+_Middleware_
+* Fixed race condition between screens connecting at the same time
+
 #v3.5.0
 
 _Admin_
