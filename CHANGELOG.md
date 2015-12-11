@@ -1,5 +1,13 @@
 #Aroskanalen CHANGELOG
 
+#In development
+
+_Admin_
+* Added remove screen call to middleware on screen delete in administration
+
+_Middleware_
+* Added missing jwt to DELETE:api/screen/{id}
+
 
 #In development feature branches
 
