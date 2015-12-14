@@ -1,5 +1,13 @@
 #Aroskanalen CHANGELOG
 
+#In development
+
+_Admin_
+* Added remove screen call to middleware on screen delete in administration
+
+_Middleware_
+* Added missing jwt to DELETE:api/screen/{id}
+
 
 #In development feature branches
 
@@ -9,6 +17,11 @@ _Admin_
 
 * Implemented ldap login (not merged with development branch). 
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
+#v3.5.2
+
+_Admin_
+* Fixed instagram template not restarting
 
 #v3.5.1
 
