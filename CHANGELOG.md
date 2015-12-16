@@ -4,6 +4,8 @@
 
 _Admin_
 * Added remove screen call to middleware on screen delete in administration
+* Made search filter configurable
+* NB! requires adding   "search_filter_default" parameter to parameters.yml. Available options: "all", "mine"
 
 _Middleware_
 * Added missing jwt to DELETE:api/screen/{id}
