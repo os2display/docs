@@ -5,11 +5,14 @@
 _Admin_
 * Added remove screen call to middleware on screen delete in administration
 * Made search filter configurable
-* NB! requires adding   "search_filter_default" parameter to parameters.yml. Available options: "all", "mine"
+* NB! requires adding "search_filter_default" parameter to parameters.yml. Available options: "all", "mine"
 
 _Middleware_
 * Added missing jwt to DELETE:api/screen/{id}
+* Fixed screen "booted" in socket conneciton protection with privat UUID.
 
+_Screen_
+* Added UUID cookie to identify a given screen.
 
 #In development feature branches
 
@@ -17,7 +20,7 @@ __feature/ldap-login__
 
 _Admin_
 
-* Implemented ldap login (not merged with development branch). 
+* Implemented ldap login (not merged with development branch).
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
 #v3.5.2
