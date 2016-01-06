@@ -4,4 +4,4 @@ Installing on a server?
 Take a look at the [installation guide](Installation%20guide.md)
 
 Locally?
-Check out the [Vagrant setup](/vagrant)
+Check out the [Vagrant setup](../vagrant)
