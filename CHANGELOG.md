@@ -3,12 +3,14 @@
 #In development
 
 _Admin_
+* Added mso-four-sections screen template.
+* Added theme to date component for mso-four-sections template.
 * Added break-word to dokk1-instagram template.
 * Added check for undefined in instagramSlide.js
 * Fixed issues with manual calendar: Dates shown wrong and missing remove button in editor.
 
 _Middleware_
-* Changed expire from string to a number. Changed input type from text to number
+* Changed expire from string to a number in example.apikeys.json. Changed input type from text to number
 
 _Vagrant_
 * Changed expire from string to a number in apikeys.json.
@@ -16,6 +18,7 @@ _Vagrant_
 
 _Screen_
 * Fixed issue with scheduling of channels.
+* Added theme to date component for mso-four-sections template.
 
 #In development feature branches
 
