@@ -3,6 +3,32 @@
 #In development
 
 _Admin_
+* Added break-word to dokk1-instagram template.
+* Added check for undefined in instagramSlide.js
+* Fixed issues with manual calendar: Dates shown wrong and missing remove button in editor.
+
+_Middleware_
+* Changed expire from string to a number. Changed input type from text to number
+
+_Vagrant_
+* Changed expire from string to a number in apikeys.json.
+* Created middleware/logs directory
+
+_Screen_
+* Fixed issue with scheduling of channels.
+
+#In development feature branches
+
+__feature/ldap-login__
+
+_Admin_
+
+* Implemented ldap login (not merged with development branch).
+* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
+#v3.5.3
+
+_Admin_
 * Added remove screen call to middleware on screen delete in administration
 * Made search filter configurable
 * NB! requires adding "search_filter_default" parameter to parameters.yml. Available options: "all", "mine"
@@ -13,15 +39,6 @@ _Middleware_
 
 _Screen_
 * Added UUID cookie to identify a given screen.
-
-#In development feature branches
-
-__feature/ldap-login__
-
-_Admin_
-
-* Implemented ldap login (not merged with development branch).
-* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
 #v3.5.2
 
