@@ -2,24 +2,6 @@
 
 #In development
 
-_Admin_
-* Added mso-four-sections screen template.
-* Added theme to date component for mso-four-sections template.
-* Added break-word to dokk1-instagram template.
-* Added check for undefined in instagramSlide.js
-* Fixed issues with manual calendar: Dates shown wrong and missing remove button in editor.
-
-_Middleware_
-* Changed expire from string to a number in example.apikeys.json. Changed input type from text to number
-
-_Vagrant_
-* Changed expire from string to a number in apikeys.json.
-* Created middleware/logs directory
-
-_Screen_
-* Fixed issue with scheduling of channels.
-* Added theme to date component for mso-four-sections template.
-
 #In development feature branches
 
 __feature/ldap-login__
@@ -28,6 +10,32 @@ _Admin_
 
 * Implemented ldap login (not merged with development branch).
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
+#v3.5.4
+_Admin_
+* Added mso-four-sections screen template.
+* Added theme to date component for mso-four-sections template.
+* Added break-word to dokk1-instagram template.
+* Refactored instagramSlide.js to avoid undefined bug.
+* Fixed issues with manual calendar: Dates shown wrong and missing remove button in editor.
+* NB! Update version number in parameters.yml
+* NB! Requires app/console ik:templates:load
+* NB! Clear cache
+
+_Middleware_
+* Changed expire from string to a number in example.apikeys.json. 
+* Changed input type for expire input from text to number.
+
+_Vagrant_
+* Changed expire from string to a number in apikeys.json.
+* Created middleware/logs directory
+
+_Screen_
+* Fixed issue with scheduling of channels.
+* Added theme to date component for mso-four-sections template.
+* NB! Update version number in app/config.js
+* NB! Requires screen reload for changes to apply
+
 
 #v3.5.3
 
