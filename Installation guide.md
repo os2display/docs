@@ -1,5 +1,3 @@
-@TODO Rename Github organization Indholdskanalen -> Aroskanalen
-
 This is an installation guide to setup and configure the aroskanalen display system.
 
 # Requirements
