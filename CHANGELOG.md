@@ -11,6 +11,14 @@ _Admin_
 * Implemented ldap login (not merged with development branch).
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
+#release/3.5.5
+
+_Admin_
+* Added dokk1-coming-events template
+
+_Screen_
+* Added $filter to region
+
 #v3.5.4
 _Admin_
 * Added mso-four-sections screen template.
