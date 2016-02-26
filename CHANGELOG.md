@@ -18,6 +18,7 @@ _Admin_
 * Fixed bug where slide duration was not editable when slide_type was not set
 * Fixed slide duration = 0 issue
 * Added extra checks for thumbnail existence for video slides in administrations
+* Fixed issue with sorting in manual calendar
 * NB! Update version number in parameters.yml
 * NB! Requires app/console ik:templates:load
 * NB! Clear cache
