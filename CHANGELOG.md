@@ -15,11 +15,20 @@ _Admin_
 
 _Admin_
 * Added dokk1-coming-events template
+* Fixed bug where slide duration was not editable when slide_type was not set
+* Fixed slide duration = 0 issue
+* Added extra checks for thumbnail existence for video slides in administrations
+* NB! Update version number in parameters.yml
+* NB! Requires app/console ik:templates:load
+* NB! Clear cache
 
 _Screen_
 * Added $filter to region
+* NB! Update version number in app/config.js
+* NB! Requires screen reload for changes to apply
 
 #v3.5.4
+
 _Admin_
 * Added mso-four-sections screen template.
 * Added theme to date component for mso-four-sections template.
@@ -43,7 +52,6 @@ _Screen_
 * Added theme to date component for mso-four-sections template.
 * NB! Update version number in app/config.js
 * NB! Requires screen reload for changes to apply
-
 
 #v3.5.3
 
