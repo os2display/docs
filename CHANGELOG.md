@@ -11,7 +11,10 @@ _Admin_
 * Implemented ldap login (not merged with development branch).
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
-#release/3.5.5
+#v3.5.6 - 3.5.7
+ * Fixed zencoder file upload.
+
+#v3.5.5
 
 _Admin_
 * Added dokk1-coming-events template
