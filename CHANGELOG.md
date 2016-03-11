@@ -15,13 +15,9 @@ _Admin_
 
 * Added filter to coming events that hides events with title containing "(usynlig)"
 
-#v3.5.7
+#v3.5.6, v3.5.7
 
-* Use media id as metadata to zencoder
-
-#v3.5.6
-
-* Wait send video to zencoder until saved in the local filesystem
+* Fixed zencoder file upload.
 
 #v3.5.5
 
