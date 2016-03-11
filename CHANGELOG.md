@@ -11,7 +11,19 @@ _Admin_
 * Implemented ldap login (not merged with development branch).
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
-#release/3.5.5
+#v3.5.8
+
+* Added filter to coming events that hides events with title containing "(usynlig)"
+
+#v3.5.7
+
+* Use media id as metadata to zencoder
+
+#v3.5.6
+
+* Wait send video to zencoder until saved in the local filesystem
+
+#v3.5.5
 
 _Admin_
 * Added dokk1-coming-events template
@@ -21,6 +33,7 @@ _Admin_
 * Fixed issue with sorting in manual calendar
 * NB! Update version number in parameters.yml
 * NB! Requires app/console ik:templates:load
+* NB! Enable new template
 * NB! Clear cache
 
 _Screen_
