@@ -628,6 +628,30 @@ Note: Adding `--env=prod` may result in permissions issues, but you can fix this
 sudo crontab -u www-data -e
 </pre>
 
+### Zencoder
+To encode videos Job queue bundle is used that requires supervisor script be executed.
+
+<pre>
+nano -w /etc/supervisor/conf.d/job_queue.conf
+</pre>
+
+<pre>
+[program:jms_job_queue_runner]
+command=/usr/bin/php /home/www/backend/app/console jms-job-queue:run --verbose
+numprocs=1
+directory=/tmp
+autostart=true
+autorestart=true
+startsecs=5
+startretries=10
+user=www-data
+redirect_stderr=false
+stderr_logfile=/var/log/job-queue.err.log
+stdout_logfile=/var/log/job-queue.out.log
+stdout_capture_maxbytes=1MB
+stderr_capture_maxbytes=1MB
+</pre>
+
 ### Nginx configuration
 
 As with the node applications the administration interface needs a nginx configuration to be accessible from the network.
