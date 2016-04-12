@@ -11,6 +11,10 @@ _Admin_
 * Implemented ldap login (not merged with development branch).
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
 
+#v3.5.9
+
+* Re-write zencoder upload/download to use guzzle and job queues
+
 #v3.5.8
 
 * Added filter to coming events that hides events with title containing "(usynlig)"
