@@ -20,6 +20,7 @@
 * Added event based bodyService to control classes applied to the body element.
 * Added itk-three-split screen template.
 * Readied templates for move out of admin repository.
+* Updated search to work with newest version of search_node: https://github.com/search-node.
 
 #In development feature branches
 
