@@ -2,6 +2,25 @@
 
 #In development
 
+* Introduced Styleguide
+* Implemented new design. css/styles-new.css is the styles generated in the style guide. 
+  Eventually this will be the only styling for Aroskanalen. 
+  In the meantime styles-new exist together with the legacy styling in assets/build/styles.min.css.
+* Split the large angular app (ikApp) into smaller apps, communicating through a busService.
+  The plan is to move more and more functionalitet into the seperate apps and modules.
+* Added app/config/apps.yml and app/config/modules.yml to keep track of the angular modules and apps.
+* Added: messageApp displaying messages sent through the busService.
+* Added: menuApp consisting of three directives that each request and listen for menu items.
+* Added new feature: Timeline, showing the scheduling of channels and slides. Based on http://visjs.org/.
+* Added DoctrineMigrations
+* Removed Instagram support. Added migrations script 20160623082121 to remove Instagram slides and template from an installation.
+* Fixed issues with shared-channel where new content was not pushed to the sharing service.
+* Removed log out on 401.
+* Moved searchService into mainModule, and made it event based.
+* Added event based bodyService to control classes applied to the body element.
+* Added itk-three-split screen template.
+* Readied templates for move out of admin repository.
+
 #In development feature branches
 
 __feature/ldap-login__
@@ -10,6 +29,10 @@ _Admin_
 
 * Implemented ldap login (not merged with development branch).
 * NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
+__feature/wayfindingNewVersion__
+
+* prototype of new wayfinding screen template
 
 #v3.5.11
 
