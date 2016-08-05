@@ -7,7 +7,7 @@
   Eventually this will be the only styling for Aroskanalen. 
   In the meantime styles-new exist together with the legacy styling in assets/build/styles.min.css.
 * Split the large angular app (ikApp) into smaller apps, communicating through a busService.
-  The plan is to move more and more functionalitet into the seperate apps and modules.
+  The plan is to move more and more functionality into separate apps and modules.
 * Added app/config/apps.yml and app/config/modules.yml to keep track of the angular modules and apps.
 * Added: messageApp displaying messages sent through the busService.
 * Added: menuApp consisting of three directives that each request and listen for menu items.
@@ -21,6 +21,14 @@
 * Added itk-three-split screen template.
 * Readied templates for move out of admin repository.
 * Updated search to work with newest version of search_node: https://github.com/search-node.
+* Added option to iframe to disable automatic reload of iframe content.
+* Fixed issue where channel picker under screen creation display empty paging results.
+* Added filters wo Dokk1 calendar templates.
+
+
+* NB! Requires composer install
+* NB! Requires app/console doctrine:migrations:migrate
+* NB! Requires app/console ik:templates:load
 
 #In development feature branches
 
@@ -63,14 +71,9 @@ _Admin_
 * Fixed slide duration = 0 issue
 * Added extra checks for thumbnail existence for video slides in administrations
 * Fixed issue with sorting in manual calendar
-* NB! Update version number in parameters.yml
-* NB! Requires app/console ik:templates:load
-* NB! Enable new template
-* NB! Clear cache
 
 _Screen_
 * Added $filter to region
-* NB! Update version number in app/config.js
 * NB! Requires screen reload for changes to apply
 
 #v3.5.4
@@ -81,9 +84,6 @@ _Admin_
 * Added break-word to dokk1-instagram template.
 * Refactored instagramSlide.js to avoid undefined bug.
 * Fixed issues with manual calendar: Dates shown wrong and missing remove button in editor.
-* NB! Update version number in parameters.yml
-* NB! Requires app/console ik:templates:load
-* NB! Clear cache
 
 _Middleware_
 * Changed expire from string to a number in example.apikeys.json. 
@@ -96,7 +96,6 @@ _Vagrant_
 _Screen_
 * Fixed issue with scheduling of channels.
 * Added theme to date component for mso-four-sections template.
-* NB! Update version number in app/config.js
 * NB! Requires screen reload for changes to apply
 
 #v3.5.3
@@ -142,12 +141,8 @@ _Admin_
 * Added Dokk1 Instagram template
 * Moved Instagram reader into backend
 * NB! Add instagram_client_id key to parameters.yml
-* NB! Update version number in parameters.yml
 * NB! Requires composer install
 * NB! Requires app/console doctrine:schema:update --force since SlideTemplates has added some fields
-* NB! Requires app/console ik:templates:load
-* NB! Clear cache
-* NB! app/console ik:push --force
 
 _Screen_
 
@@ -155,7 +150,6 @@ _Screen_
 * Moved slide js setup/run functions into the admin
 * Updated angular from 1.2.16 to 1.4.6
 * Changed mouse hiding to only apply when the mouse is inactive
-* NB! Update version number in app/config.js
 * NB! Requires screen reload for changes to apply
 
 _Middleware_
@@ -192,8 +186,8 @@ __Admin__
 __Search node__
 
 * Updated to elasticsearch 1.7.1
-* NB! Requires server update of elasticsearch
 * Update mappings with "raw": false for all fields
+* NB! Requires server update of elasticsearch
 
 __Middleware__
 
