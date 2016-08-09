@@ -23,7 +23,8 @@
 * Updated search to work with newest version of search_node: https://github.com/search-node.
 * Added option to iframe to disable automatic reload of iframe content.
 * Fixed issue where channel picker under screen creation display empty paging results.
-* Added filters wo Dokk1 calendar templates.
+* Added filters to Dokk1 calendar templates.
+* Updated symfony and other bundles regarding security issues.
 
 
 * NB! Requires composer install
