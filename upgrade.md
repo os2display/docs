@@ -1,5 +1,25 @@
 # Upgrade log.
 
+## 3.5.11 => 4.0.0
+
+Templates not in default_templates should be added to the web/templates/ folder af pulling __admin__.
+
+<pre>
+composer install
+app/console doctrine:migrations:migrate
+app/console ik:templates:load
+</pre>
+
+Update the version tag in app/config/parameters.yml.
+
+<pre>
+app/console cache:clear --env=prod
+</pre>
+
+Upgrade search-node to latest version.
+
+
+
 ## 3.2.1 => 3.3.0
 
 __Steps__

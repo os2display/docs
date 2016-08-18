@@ -1,6 +1,6 @@
 #Aroskanalen CHANGELOG
 
-#In development
+#Release/v4.0.0
 
 * Introduced Styleguide
 * Implemented new design. css/styles-new.css is the styles generated in the style guide. 
@@ -25,11 +25,12 @@
 * Fixed issue where channel picker under screen creation display empty paging results.
 * Added filters to Dokk1 calendar templates.
 * Updated symfony and other bundles regarding security issues.
+* Changed ik:cron command to be event based.
+* Moved KobaIntegration into separate bundle.
+* Removed all templates not default from templates/.
+* Renamed web/templates/default => web/templates/default_templates
 
-
-* NB! Requires composer install
-* NB! Requires app/console doctrine:migrations:migrate
-* NB! Requires app/console ik:templates:load
+See [upgrade.md](upgrade.md) for upgrade instructions.
 
 #In development feature branches
 
