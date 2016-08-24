@@ -2,7 +2,43 @@
 
 ## 3.5.11 => 4.0.0
 
+<pre>
+git fetch
+git checkout v4.0.0
+</pre>
+
 Templates not in default_templates should be added to the web/templates/ folder af pulling __admin__.
+
+<pre>
+cd web/templates
+
+git clone https://github.com/aakb/itk_templates
+cd itk_templates
+git checkout v1.0.0
+cd ..
+
+git clone https://github.com/aakb/dokk1_templates
+cd dokk1_templates
+git checkout v1.0.0
+cd ..
+
+https://github.com/aroskanalen/mso_templates
+cd mso_templates
+git checkout v1.0.0
+cd ..
+
+https://github.com/aroskanalen/aarhus_templates
+cd aarhus_templates
+git checkout v1.0.0
+cd ..
+
+https://github.com/aroskanalen/mbu_templates
+cd mbu_templates
+git checkout v1.0.0
+cd ..
+
+cd ../..
+</pre>
 
 <pre>
 composer install
@@ -18,6 +54,10 @@ app/console cache:clear --env=prod
 
 Upgrade search-node to latest version.
 
+
+__Search node__
+
+* Should be updated to newest version.
 
 
 ## 3.2.1 => 3.3.0
