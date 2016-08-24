@@ -12,27 +12,27 @@ Templates not in default_templates should be added to the web/templates/ folder 
 <pre>
 cd web/templates
 
-git clone https://github.com/aakb/itk_templates
+git clone git@github.com:aakb/itk_templates.git
 cd itk_templates
 git checkout v1.0.0
 cd ..
 
-git clone https://github.com/aakb/dokk1_templates
+git clone git@github.com:aakb/dokk1_templates.git
 cd dokk1_templates
 git checkout v1.0.0
 cd ..
 
-https://github.com/aroskanalen/mso_templates
+git clone git@github.com:aroskanalen/mso_templates.git
 cd mso_templates
 git checkout v1.0.0
 cd ..
 
-https://github.com/aroskanalen/aarhus_templates
+git clone git@github.com:aroskanalen/aarhus_templates.git
 cd aarhus_templates
 git checkout v1.0.0
 cd ..
 
-https://github.com/aroskanalen/mbu_templates
+git clone git@github.com:aroskanalen/mbu_templates.git
 cd mbu_templates
 git checkout v1.0.0
 cd ..
