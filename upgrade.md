@@ -1,5 +1,65 @@
 # Upgrade log.
 
+## 3.5.11 => 4.0.0
+
+<pre>
+git fetch
+git checkout v4.0.0
+</pre>
+
+Templates not in default_templates should be added to the web/templates/ folder af pulling __admin__.
+
+<pre>
+cd web/templates
+
+git clone git@github.com:aakb/itk_templates.git
+cd itk_templates
+git checkout v1.0.0
+cd ..
+
+git clone git@github.com:aakb/dokk1_templates.git
+cd dokk1_templates
+git checkout v1.0.0
+cd ..
+
+git clone git@github.com:aroskanalen/mso_templates.git
+cd mso_templates
+git checkout v1.0.0
+cd ..
+
+git clone git@github.com:aroskanalen/aarhus_templates.git
+cd aarhus_templates
+git checkout v1.0.0
+cd ..
+
+git clone git@github.com:aroskanalen/mbu_templates.git
+cd mbu_templates
+git checkout v1.0.0
+cd ..
+
+cd ../..
+</pre>
+
+<pre>
+composer install
+app/console doctrine:migrations:migrate
+app/console ik:templates:load
+</pre>
+
+Update the version tag in app/config/parameters.yml.
+
+<pre>
+app/console cache:clear --env=prod
+</pre>
+
+Upgrade search-node to latest version.
+
+
+__Search node__
+
+* Should be updated to newest version.
+
+
 ## 3.2.1 => 3.3.0
 
 __Steps__
