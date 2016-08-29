@@ -7,7 +7,7 @@ git fetch
 git checkout v4.0.0
 </pre>
 
-Templates not in default_templates should be added to the web/templates/ folder af pulling __admin__.
+Templates not in default_templates should be added to the web/templates/ folder of __admin__.
 
 <pre>
 cd web/templates
