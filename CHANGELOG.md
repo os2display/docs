@@ -1,6 +1,23 @@
 #Aroskanalen CHANGELOG
 
-#Release/v4.0.0
+#In development feature branches
+
+__feature/ldap-login__
+
+_Admin_
+
+* Implemented ldap login (not merged with development branch).
+* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+
+__feature/wayfindingNewVersion__
+
+* prototype of new wayfinding screen template
+
+#v4.0.1
+
+* Fixed user creation problems (with Sonata bundles) after Symfony upgrade to 2.8
+
+#v4.0.0
 
 * Introduced Styleguide
 * Implemented new design. css/styles-new.css is the styles generated in the style guide. 
@@ -31,19 +48,6 @@
 * Renamed web/templates/default => web/templates/default_templates
 
 See [upgrade.md](upgrade.md) for upgrade instructions.
-
-#In development feature branches
-
-__feature/ldap-login__
-
-_Admin_
-
-* Implemented ldap login (not merged with development branch).
-* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
-
-__feature/wayfindingNewVersion__
-
-* prototype of new wayfinding screen template
 
 #v3.5.11
 
