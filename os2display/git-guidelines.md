@@ -1,15 +1,19 @@
 Git & Git-flow guidelines
 ==========
 
+__TODO__ jeskr: Remove the git-flow commands and use normal git commands. This will make it eaiser for other developers to understand what happens.
+
 This document is a guideline for using GIT with loop.
 
-These are *guidelines*, and if you think it's necessary to deviate feel free to do so, **but** please be sensible and only do this when necessary and make sure you don't break it for everyone else.
+These are *guidelines*, and if you think it's necessary to deviate feel free to do so, **but** please be
+sensible and only do this when necessary and make sure you don't break it for everyone else.
 
 * Be familiar with [Git](http://git-scm.com/)
 * and [A successful Git branching model (Gitflow)](http://nvie.com/posts/a-successful-git-branching-model/)
 * and [Gitflow workflow](https://www.atlassian.com/git/workflows#!workflow-gitflow)
 
-Below is only summarized, so be sure to familiarize yourself with the above mentioned. For a visual summary see this [Cheat Sheet](http://danielkummer.github.io/git-flow-cheatsheet/).
+Below is only summarized, so be sure to familiarize yourself with the above mentioned. For a
+visual summary see this [Cheat Sheet](http://danielkummer.github.io/git-flow-cheatsheet/).
 
 Content
 ----------
@@ -29,37 +33,45 @@ Content
 1. Gitflow Workflow Setup
 ----------
 
-We use the gitflow workflow for our projects. It's a workflow utilizing a strict branching model around our project release. If you are unfamiliar with gitflow please read [Gitflow workflow](https://www.atlassian.com/git/workflows#!workflow-gitflow) and [A successful Git branching model (Gitflow)](http://nvie.com/posts/a-successful-git-branching-model/)
+We use the gitflow workflow for our projects. It's a workflow utilizing a strict branching
+model around our project release. If you are unfamiliar with gitflow please read
+[Gitflow workflow](https://www.atlassian.com/git/workflows#!workflow-gitflow) and
+[A successful Git branching model (Gitflow)](http://nvie.com/posts/a-successful-git-branching-model/)
 
 ### Install extension
 
 For convenience please install the [git flow extensions](https://github.com/nvie/gitflow):
 
-<pre>$ brew install git-flow</pre>
+```Shell
+ brew install git-flow
+```
 
 If you don't use Mac / Homebrew please see the [installation instructions](https://github.com/nvie/gitflow/wiki/Installation)
 
 ### Init
 
 Use the following command to set up a repository for gitflow:
-  <pre>$ git flow init</pre>
 
-  You will be asked to define the specific setup. Please choose as follows:
+```Shell
+git flow init
+```
 
-  <pre>
-  Branch name for production releases: [master]
-  Branch name for "next release" development: [develop]
-  How to name your supporting branch prefixes?
-  Feature branches? [feature/]
-  Release branches? [release/]
-  Hotfix branches? [hotfix/]
-  Support branches? [support/]
-  Version tag prefix? [v]
-  </pre>
+You will be asked to define the specific setup. Please choose as follows:
+
+```Shell
+Branch name for production releases: [master]
+Branch name for "next release" development: [develop]
+How to name your supporting branch prefixes?
+Feature branches? [feature/]
+Release branches? [release/]
+Hotfix branches? [hotfix/]
+Support branches? [support/]
+Version tag prefix? [v]
+```
 
 ### Start work on project
 
-1.	Clone/create repository
+1. Clone/create repository
 2. Initialize repository for Git flow using above settings (Note: Git flow is an entirely local setting - it needs to be done each time you clone/create)
 
 ### Daily Workflow
@@ -114,29 +126,37 @@ New features should reside in its own branch, which can then be pushed to the ce
 
 Start a new feature using:
 
-<pre>$ git flow feature start [name]</pre>
+```Shell
+git flow feature start [name]
+```
 
 Ex:
 
-<pre>$ git flow feature start split-screen</pre>
+```Shell
+git flow feature start split-screen
+```
 
 Will create a branch called "feature/spli-screen
 
 this will create a new branch called feature/[name] based on develop branch and git-flow automatically switch to it. Now when you’re done, just finish it using:
 
-<pre>$ git flow feature finish [name]</pre>
+```Shell
+git flow feature finish [name]
+```
 
 It’ll merge feature/[name] back to develop and delete the feature branch.
 
 If others need to work on the same feature you need to publish (push to origin) your feature branch:
 
-<pre>$ git flow feature publish [name]</pre>
+```Shell
+git flow feature publish [name]
+```
 
 To work on a feature branch started by someone else you need to pull it:
 
-<pre>$ git flow feature pull [name]</pre>
-
-
+```Shell
+git flow feature pull [name]
+```
 
 <a name="release"></a>
 4. Release Branches
@@ -155,14 +175,14 @@ When enough features have been accumulated into the develop branch a release bra
 **Caution!** Finishing a release merges to master. Do not do this until the release is ready to deploy to prod!
 
 To list/start/finish release branches, use:
-<pre>
-$ git flow release
-$ git flow release start [name]
-$ git flow release finish [name]
-</pre>
+
+```Shell
+git flow release
+git flow release start [name]
+git flow release finish [name]
+```
 
 When you finish a release branch, it’ll merge your changes to master and back to develop, also git-flow will create a tag for this release.
-
 
 
 <a name="maintenance"></a>
@@ -171,20 +191,20 @@ When you finish a release branch, it’ll merge your changes to master and back 
 
 Maintenance or "hotfix" branches are used to quickly patch production releases. This is the only branch that can and should branch out directly of master. As soon as the fix is complete, it should be merged into both master and develop (or the current release branch), and master should be tagged with an updated version number.
 
-**Conventions:**
+__Conventions:__
 
 * branch off: master
 * merge into: develop and master
 * naming convention: hotfix/[issue#]
 
-**Commands:**
+__Commands:__
 
 To list/start/finish release branches, use:
-<pre>
-$ git flow hotfix
-$ git flow hotfix start [name]
-$ git flow hotfix finish [name]
-</pre>
+```Shell
+git flow hotfix
+git flow hotfix start [name]
+git flow hotfix finish [name]
+```
 
 When you finish a release branch, it’ll merge your changes to master and back to develop.
 
@@ -227,13 +247,12 @@ Good commit messages serve three important purposes:
 
 Structure your commit message like this:
 
-<pre>
-Summarize clearly in one line what the commit is about
 
-Describe the problem the commit solves or the use
-case for a new feature. Justify why you chose
-the particular solution.
-</pre>
+>Summarize clearly in one line what the commit is about
+</br></br>
+>Describe the problem the commit solves or the use
+>case for a new feature. Justify why you chose
+>the particular solution.
 
 ### Do
 

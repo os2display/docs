@@ -18,9 +18,9 @@ __os2display__ contains templates for screens and slides. These are used to crea
 
 Templates are located in the web/templates/ directory. __os2display__ per default has the templates located in _web/templates/default/_. Templates are loaded into the database with 
 
-<pre>
-$ app/console ik:templates:load
-</pre>
+```Shell
+app/console ik:templates:load
+```
 
 The web/templates/ folder contains 
 
@@ -68,11 +68,11 @@ The .json files are the most important files of the templates since they contain
 
 The .json files should follow the recipes below. See the .json files in the _web/templates/default_templates/_ folder for examples. 
 
-### .json for Slide templates
+### JSON configuration file for Slide templates
 
-The .json file should contain 
+The JSON file should contain 
 
-<pre>
+```JSON
 {
   "id": "[organization]-[template name]",
   "type": "screen",
@@ -88,14 +88,14 @@ The .json file should contain
     "[tool id]": "[relative path to tool]"
   }
 }
-</pre>
+``
 
 
-### .json for Screen templates
+### JSON configuration file for Screen templates
 
 The .json file should contain
 
-<pre>
+```JSON
 {
   "id": "[organization]-[template name]",
   "type": "slide",
@@ -132,4 +132,4 @@ The .json file should contain
     }
   ]
 }
-</pre>
+```
