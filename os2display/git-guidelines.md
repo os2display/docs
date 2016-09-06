@@ -18,7 +18,7 @@ visual summary see this [Cheat Sheet](http://danielkummer.github.io/git-flow-che
 Content
 ----------
 
-1. [Gitflow Workflow](#workflow)
+1. [Workflow](#workflow)
 2. [Branch Model](#branches)
 3. [Main Branches](#main)
 4. [Feature Branches](#feature)
@@ -28,51 +28,6 @@ Content
 8. [Commit messages](#commit)
 
 
-
-<a name="workflow"></a>
-1. Gitflow Workflow Setup
-----------
-
-We use the gitflow workflow for our projects. It's a workflow utilizing a strict branching
-model around our project release. If you are unfamiliar with gitflow please read
-[Gitflow workflow](https://www.atlassian.com/git/workflows#!workflow-gitflow) and
-[A successful Git branching model (Gitflow)](http://nvie.com/posts/a-successful-git-branching-model/)
-
-### Install extension
-
-For convenience please install the [git flow extensions](https://github.com/nvie/gitflow):
-
-```Shell
- brew install git-flow
-```
-
-If you don't use Mac / Homebrew please see the [installation instructions](https://github.com/nvie/gitflow/wiki/Installation)
-
-### Init
-
-Use the following command to set up a repository for gitflow:
-
-```Shell
-git flow init
-```
-
-You will be asked to define the specific setup. Please choose as follows:
-
-```Shell
-Branch name for production releases: [master]
-Branch name for "next release" development: [develop]
-How to name your supporting branch prefixes?
-Feature branches? [feature/]
-Release branches? [release/]
-Hotfix branches? [hotfix/]
-Support branches? [support/]
-Version tag prefix? [v]
-```
-
-### Start work on project
-
-1. Clone/create repository
-2. Initialize repository for Git flow using above settings (Note: Git flow is an entirely local setting - it needs to be done each time you clone/create)
 
 ### Daily Workflow
 
@@ -127,36 +82,41 @@ New features should reside in its own branch, which can then be pushed to the ce
 Start a new feature using:
 
 ```Shell
-git flow feature start [name]
+git checkout develop
+git checkout -b feature/[name]
 ```
 
 Ex:
 
 ```Shell
-git flow feature start split-screen
+git checkout -b feature/split-screen
 ```
 
-Will create a branch called "feature/spli-screen
+Will create a branch called "feature/split-screen"
 
-this will create a new branch called feature/[name] based on develop branch and git-flow automatically switch to it. Now when you’re done, just finish it using:
+this will create a new branch called feature/[name] based on develop branch
+Now when you’re done, merge the branch into the develop branch:
 
 ```Shell
-git flow feature finish [name]
+git checkout develop
+git merge --no-ff feature/[name]
 ```
 
-It’ll merge feature/[name] back to develop and delete the feature branch.
+It’ll merge feature/[name] back to develop.
 
-If others need to work on the same feature you need to publish (push to origin) your feature branch:
+To remove the feature branch locally:
 
 ```Shell
-git flow feature publish [name]
+git branch -d feature/[name]
 ```
 
-To work on a feature branch started by someone else you need to pull it:
+To remove the feature branch from origin:
 
 ```Shell
-git flow feature pull [name]
+git push origin :feature/[name]
 ```
+
+
 
 <a name="release"></a>
 4. Release Branches
@@ -172,17 +132,25 @@ When enough features have been accumulated into the develop branch a release bra
 
 **Commands:**
 
-**Caution!** Finishing a release merges to master. Do not do this until the release is ready to deploy to prod!
+**Caution!** Finishing a release merges to master. Do not do this until the release is ready to be deployed to production!
 
-To list/start/finish release branches, use:
+To start a release branches, use:
 
 ```Shell
-git flow release
-git flow release start [name]
-git flow release finish [name]
+git checkout develop
+git checkout -b release/[version]
 ```
 
-When you finish a release branch, it’ll merge your changes to master and back to develop, also git-flow will create a tag for this release.
+When the release branch is ready, merge it into master and develop, tag master and push to origin.
+
+```Shell
+git checkout master
+git merge --no-ff release/[version]
+git push
+git tag [version]
+git push origin [version]
+```
+
 
 
 <a name="maintenance"></a>
@@ -196,17 +164,6 @@ __Conventions:__
 * branch off: master
 * merge into: develop and master
 * naming convention: hotfix/[issue#]
-
-__Commands:__
-
-To list/start/finish release branches, use:
-```Shell
-git flow hotfix
-git flow hotfix start [name]
-git flow hotfix finish [name]
-```
-
-When you finish a release branch, it’ll merge your changes to master and back to develop.
 
 
 
