@@ -13,6 +13,10 @@ __feature/wayfindingNewVersion__
 
 * prototype of new wayfinding screen template
 
+#v4.0.2
+
+* Fixed issue with Feed service and js where the feed was displayed as empty.
+
 #v4.0.1
 
 * Fixed user creation problems (with Sonata bundles) after Symfony upgrade to 2.8
