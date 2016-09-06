@@ -1,24 +1,21 @@
-Contribution guidelines
-============
+#Contribution guidelines
 
 Thank you for your interest in contributing. It is greatly appreciated.
 
 
 
-Content
--------------
+##Content
 1. [Pull requests](#pull-requests)
 2. [Issues](#issues)
 
 
 
 <a name="pull-requests"></a>
-1. Pull requests
--------------
+##1. Pull requests
 
 Code contributions to this project follow this process and set of requirements:
 
-1. As a contributor you should create an issue on github (__@TODO: LINK__) describing the suggested change. This allows the business side of the project to evaluate your suggestion. If it is accepted for inclusion it will be marked for review.
+1. As a contributor you should create an issue on [github](https://github.com/os2display) describing the suggested change. This allows the business side of the project to evaluate your suggestion. If it is accepted for inclusion it will be marked for review.
 2. All communication on GitHub should be in English.
 3. The title of your pull request must refer to the issue number if applicable e.g. *[issue number]: [short summary of change]*.
 4. The description of your pull request should include a link to the issue.
@@ -34,7 +31,13 @@ If you think the changes should be accepted despite failed tests you should prov
 
 
 <a name="issues"></a>
-2. Issues
--------------
+##2. Issues
 
 Issues should be created in the appropriate repository on github.
+
+* __admin__: https://github.com/os2display/admin/issues
+* __screen__: https://github.com/os2display/screen/issues
+* __middleware__: https://github.com/os2display/middleware/issues
+* __vagrant__: https://github.com/os2display/vagrant/issues
+* __styleguide__: https://github.com/os2display/styleguide/issues
+* __docs__: https://github.com/os2display/docs/issues
