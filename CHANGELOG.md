@@ -199,6 +199,14 @@ __Middleware__
 
 * New logger (run ./update.sh and update config.json)
 
+__Search node__
+
+ * Updated to elasticsearch 1.7.1
+
+__Middelware__
+ 
+ * New logger (run ./update.sh and update config.json) 
+
 #v3.3.0
 
 __Screen__
