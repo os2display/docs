@@ -13,6 +13,10 @@ __feature/wayfindingNewVersion__
 
 * prototype of new wayfinding screen template
 
+#v4.0.3
+
+* Fixed priorities of cron.
+
 #v4.0.2
 
 * Fixed issue with Feed service and js where the feed was displayed as empty.
