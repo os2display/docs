@@ -142,7 +142,7 @@ __[@TODO: Include gulp-help gulp file]__
 
 ### Templates
 
-See the [templates-guidelines](templates-guidelines.md) document.
+See the [template-guidelines](template-guidelines.md) document.
 
 ### Vagrant
 
