@@ -1,5 +1,10 @@
 #Aroskanalen CHANGELOG
 
+#In development
+
+* Fixed priorities of cron.
+* Fixed issue with Feed service and js where the feed was displayed as empty.
+
 #In development feature branches
 
 __feature/ldap-login__
@@ -12,14 +17,6 @@ _Admin_
 __feature/wayfindingNewVersion__
 
 * prototype of new wayfinding screen template
-
-#v4.0.3
-
-* Fixed priorities of cron.
-
-#v4.0.2
-
-* Fixed issue with Feed service and js where the feed was displayed as empty.
 
 #v4.0.1
 
