@@ -2,8 +2,12 @@
 
 #In development
 
+_Admin_
 * Fixed priorities of cron.
 * Fixed issue with Feed service and js where the feed was displayed as empty.
+
+_vagrant_
+* Rename from aroskanalen / indholdskanalen.vm to os2display.vm.
 
 #In development feature branches
 
@@ -12,7 +16,7 @@ __feature/ldap-login__
 _Admin_
 
 * Implemented ldap login (not merged with development branch).
-* NB! Requires app/console doctrine:schema:update --force since the user field on Slide/Channel/Screen is changed from integer to string.
+* NB! This requires a migration, since Slide/Channel/Screen user field is changed from integer to string.
 
 __feature/wayfindingNewVersion__
 
