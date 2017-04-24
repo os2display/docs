@@ -22,6 +22,18 @@ __feature/wayfindingNewVersion__
 
 * prototype of new wayfinding screen template
 
+#v4.0.2
+
+* Fixed gulpscript with new template folder names.
+* Fixed screen description field being overridden by title.
+* Added option "interest_interval" to calendar slide options. This field will make the slide read X days into the future instead of only current day.
+* Added doctrine migrations script to add interest_interval=7 for dokk1-coming-events slides.
+* Fixed issue with too fast searches in timeline.
+* Fixed issue with "ghost channels", where a channel was removed, but still existed in the middleware, and therefore, also on screens.
+* Re-added 401 redirects to /login.
+* Fixed priorities of cron.
+* Fixed issue with Feed service and js where the feed was displayed as empty.
+
 #v4.0.1
 
 * Fixed user creation problems (with Sonata bundles) after Symfony upgrade to 2.8
