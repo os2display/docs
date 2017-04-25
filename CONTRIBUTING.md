@@ -1,17 +1,13 @@
-#Contribution guidelines
+# Contribution guidelines
 
 Thank you for your interest in contributing. It is greatly appreciated.
 
-
-
-##Content
+## Content
 1. [Pull requests](#pull-requests)
 2. [Issues](#issues)
 
-
-
 <a name="pull-requests"></a>
-##1. Pull requests
+## 1. Pull requests
 
 Code contributions to this project follow this process and set of requirements:
 
@@ -28,10 +24,8 @@ Code contributions to this project follow this process and set of requirements:
 If you think the changes should be accepted despite failed tests you should provide a comment in the pull request explaining why this change should be exempt from the code standards and process. If you have suggestions for changes to our code standards going forward please submit a pull request to the static analysis tool configuration .scrutinizer.yml, .jshintrc. Do not expect changes to be accepted before your current pull request is accepted.
 11. Core members will review your proposed change and provide questions, comments and suggestions for changes. Please follow up as quickly as possible. Changes will not be merged before passing through this review.
 
-
-
 <a name="issues"></a>
-##2. Issues
+## 2. Issues
 
 Issues should be created in the appropriate repository on github.
 
