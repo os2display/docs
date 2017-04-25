@@ -10,6 +10,8 @@ _admin_
 
 * Removed SonataUser bundle. (feature/OS2DISP-7_remove_sonata)
 * Updated symfony to 2.8.19. (feature/OS2DISP-7_remove_sonata)
+* Fixed doctrine migrations to be able to run from an empty database. (feature/OS2DISP-7_remove_sonata)
+* Remove files from web/bundles that should have been ignore. (feature/OS2DISP-7_remove_sonata)
 
 ### v4.0.2
 
