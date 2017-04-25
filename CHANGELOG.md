@@ -1,28 +1,13 @@
-#Aroskanalen CHANGELOG
+# Aroskanalen CHANGELOG
 
-#In development
+## In development
 
-_Admin_
-* Fixed priorities of cron.
-* Fixed issue with Feed service and js where the feed was displayed as empty.
+_admin_
 
-_vagrant_
-* Rename from aroskanalen / indholdskanalen.vm to os2display.vm.
+* Removed SonataUser bundle. (feature/OS2DISP-7_remove_sonata)
+* Updated symfony to 2.8.19. (feature/OS2DISP-7_remove_sonata)
 
-#In development feature branches
-
-__feature/ldap-login__
-
-_Admin_
-
-* Implemented ldap login (not merged with development branch).
-* NB! This requires a migration, since Slide/Channel/Screen user field is changed from integer to string.
-
-__feature/wayfindingNewVersion__
-
-* prototype of new wayfinding screen template
-
-#v4.0.2
+### v4.0.2
 
 * Fixed gulpscript with new template folder names.
 * Fixed screen description field being overridden by title.
@@ -34,11 +19,11 @@ __feature/wayfindingNewVersion__
 * Fixed priorities of cron.
 * Fixed issue with Feed service and js where the feed was displayed as empty.
 
-#v4.0.1
+### v4.0.1
 
 * Fixed user creation problems (with Sonata bundles) after Symfony upgrade to 2.8
 
-#v4.0.0
+### v4.0.0
 
 * Introduced Styleguide
 * Implemented new design. css/styles-new.css is the styles generated in the style guide. 
@@ -70,27 +55,27 @@ __feature/wayfindingNewVersion__
 
 See [upgrade.md](upgrade.md) for upgrade instructions.
 
-#v3.5.11
+### v3.5.11
 
 * Introduced empty option for background of dokk1 templates.
 
-#v3.5.10
+### v3.5.10
 
 * Re-write zencoder upload/download to use guzzle and job queues
 
-#v3.5.9
+### v3.5.9
 
 * Added event filtering to calendar templates.
 
-#v3.5.8
+### v3.5.8
 
 * Added filter to coming events that hides events with title containing "(usynlig)"
 
-#v3.5.6, v3.5.7
+### v3.5.6, v3.5.7
 
 * Fixed zencoder file upload.
 
-#v3.5.5
+### v3.5.5
 
 _Admin_
 * Added dokk1-coming-events template
@@ -103,7 +88,7 @@ _Screen_
 * Added $filter to region
 * NB! Requires screen reload for changes to apply
 
-#v3.5.4
+### v3.5.4
 
 _Admin_
 * Added mso-four-sections screen template.
@@ -125,7 +110,7 @@ _Screen_
 * Added theme to date component for mso-four-sections template.
 * NB! Requires screen reload for changes to apply
 
-#v3.5.3
+### v3.5.3
 
 _Admin_
 * Added remove screen call to middleware on screen delete in administration
@@ -139,12 +124,12 @@ _Middleware_
 _Screen_
 * Added UUID cookie to identify a given screen.
 
-#v3.5.2
+### v3.5.2
 
 _Admin_
 * Fixed instagram template not restarting
 
-#v3.5.1
+### v3.5.1
 
 _Admin_
 * Fixed screens/default/three-columns template
@@ -152,7 +137,7 @@ _Admin_
 _Middleware_
 * Fixed race condition between screens connecting at the same time
 
-#v3.5.0
+### v3.5.0
 
 _Admin_
 * Added gulp tasks to compile js and sass
@@ -188,11 +173,11 @@ _Middleware_
 * Fixed log out
 * NB! Requires update.sh to be executed.
 
-#v3.4.2
+### v3.4.2
 
 * Reverted "Changed label in dokk1 template"
 
-#v3.4.1
+### v3.4.1
 
 __Admin__
 
@@ -202,7 +187,7 @@ __Admin__
 * Fixed MBU templates issues.
 * Changed label in dokk1 template.
 
-#v3.4.0
+### v3.4.0
 
 __Admin__
 
@@ -228,7 +213,7 @@ __Middelware__
  
  * New logger (run ./update.sh and update config.json) 
 
-#v3.3.0
+### v3.3.0
 
 __Screen__
 
@@ -245,14 +230,14 @@ __Admin__
 * Changed is_admin to be ROLE_ADMIN and ROLE_SUPER_ADMIN, instead of only ROLE_SUPER_ADMIN
 * Fixed positioning bug in dokk1_single_calendar template
 
-#v3.2.1 (hotfix)
+### v3.2.1 (hotfix)
 
 __Admin__
 
 * Fixed bug where content was added between newly created slides
 * Fixed bug where screen template was not loaded correctly when creating a screen
 
-#v3.2.0
+### v3.2.0
 
 __Admin__
 
@@ -263,7 +248,7 @@ __Screen__
 
 * Keyboard logout changed to ctrl+i
 
-#v3.1.0
+### v3.1.0
 
 __Admin__
 
@@ -289,7 +274,7 @@ __Middleware__
 * Fixed screen overview with heartbeat and reload
 * Fixed channel overview
 
-#v3.0.0
+### v3.0.0
 
 __Admin__
 
@@ -303,13 +288,13 @@ __Middleware__
 * Added screen overview with heartbeat and reload
 * Added channel overview
 
-#v1.0.0
+### v1.0.0
 
 * Release 1
 * Video
 * Manual calendar
 
-#v0.0.3
+### v0.0.3
 
 * Added video
 * Fixed text-input areas in slide creation
