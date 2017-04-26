@@ -1,6 +1,6 @@
-!#/usr/bin/env bash
+#!/usr/bin/env bash
 
-####################################################################
+##################################################################
 # This script is used to install the stack required to run the
 # application.
 #
@@ -10,38 +10,18 @@
 ## Disable term blank
 setterm -blank 0
 
-## Script dir
-SELF=$(pwd)
-
-## Current user
-USER=$(whoami);
-
-## Find the home dir.
-cd ~/
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-
 ## Define colors.
 BOLD=$(tput bold)
 UNDERLINE=$(tput sgr 0 1)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 ##
 # Update the OS packages.
 ##
 function updateSystem {
-	echo "${GREEN}Adding dotdeb sources...${RESET}"
-
-	cat > /etc/apt/sources.list.d/dotdeb.list <<DELIM
-	deb http://packages.dotdeb.org jessie all
-	deb-src http://packages.dotdeb.org jessie all
-DELIM
-
-	wget http://www.dotdeb.org/dotdeb.gpg > /dev/null || exit 1
-	apt-key add dotdeb.gpg > /dev/null || exit 1
-	rm dotdeb.gpg
-
 	echo "${GREEN}Updating system packages...${RESET}"
   apt-get update > /dev/null || exit 1
   apt-get upgrade -y > /dev/null || exit 1
@@ -68,16 +48,16 @@ function intallMySQL {
 ##
 function installPHP {
 	echo "${GREEN}Installing PHP-5.x${RESET}"
-	apt-get install -y php7.0-fpm php7.0-cli php7.0-xdebug php7.0-mysql php7.0-curl php7.0-mcrypt php7.0-gd > /dev/null || exit 1
+	apt-get install -y php5-fpm php5-cli php5-xdebug php5-mysql php5-curl php5-mcrypt php5-gd > /dev/null || exit 1
 
-	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/7.0/fpm/php.ini
-	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/7.0/fpm/php.ini
+	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/fpm/php.ini
+	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/fpm/php.ini
 
-	sed -i '/upload_max_filesize = 2M/cupload_max_filesize = 256M' /etc/php/7.0/fpm/php.ini
-	sed -i '/post_max_size = 8M/cpost_max_size = 300M' /etc/php/7.0/fpm/php.ini
+	sed -i '/upload_max_filesize = 2M/cupload_max_filesize = 256M' /etc/php/fpm/php.ini
+	sed -i '/post_max_size = 8M/cpost_max_size = 300M' /etc/php/fpm/php.ini
 
 	# Set php memory limit to 256mb
-	sed -i '/memory_limit = 128M/c memory_limit = 256M' /etc/php/7.0/fpm/php.ini
+	sed -i '/memory_limit = 128M/c memory_limit = 256M' /etc/php/fpm/php.ini
 }
 
 ##
@@ -140,6 +120,16 @@ function installEleasticSearch {
 	/usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-icu/2.5.0 > /dev/null || exit 1
 }
 
+##
+# Install supervisor.
+#
+# Used to automatically run nodejs applications.
+##
+function installSuperVisor {
+	echo "${GREEN}Installing supervisor...${RESET}"
+	apt-get install supervisor
+}
+
 updateSystem;
 intallMySQL;
 installPHP;
@@ -148,3 +138,4 @@ installNginx;
 installNodeJs;
 installComposer;
 installEleasticSearch;
+installSuperVisor;
