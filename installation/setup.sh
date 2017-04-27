@@ -19,7 +19,8 @@ YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 # Versions
-SERACH_NODE_VERSION=v2.1.8
+SERACH_NODE_VERSION="v2.1.8"
+MIDDLEWARE_VERSION="v4.0.2"
 
 ##
 # Add SSL certificates.
@@ -29,7 +30,9 @@ function getSSLCertificate {
     read -p "Use fake SSL certificate (y/n)? " yn
     case $yn in
         [Yy]* )
-					mkdir /etc/ssl/nginx
+					if [ ! -d '/etc/ssl/nginx' ]; then
+						mkdir -p /etc/ssl/nginx
+					fi
 					cat > /etc/ssl/nginx/server.key <<DELIM
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAr/XEHIjUq9JiI2ciKjJ6a/bdf5/3FxrJXIYiw+rFO7GEy+ly
@@ -126,6 +129,11 @@ function setupSearchNode {
 	cd $INSTALL_PATH
 	git checkout ${SERACH_NODE_VERSION}
 
+	# Ensure logs folder exists.
+	if [ ! -d ${INSTALL_PATH}/logs ]; then
+		mkdir -p ${INSTALL_PATH}/logs
+	fi
+
 	# Install npm packages
 	echo "${GREEN}Installing search_node requirements...${RESET}"
 	${INSTALL_PATH}/install.sh > /dev/null 2>&1
@@ -199,9 +207,9 @@ DELIM
 	cd $INSTALL_PATH
 	cp example.config.json config.json
 
-	read -p "Name to identify the search index by (os2display-test): " NAME
+	read -p "Name to identify the search index by (os2display-index): " NAME
 	if [ -z $NAME ]; then
-		NAME="os2display-test"
+		NAME="os2display-index"
 	fi
 	INDEX=`echo $NAME | md5sum | cut -f1 -d" "`
 
@@ -280,10 +288,179 @@ function setupMiddleWare {
 	fi
 
 	# Clone middelware
+	while true; do
+		read -p "Where to place middleware (/home/www/middleware): " INSTALL_PATH
+		if [ -z $INSTALL_PATH ]; then
+			INSTALL_PATH="/home/www/middleware"
+		fi
+		if [ ! -d $INSTALL_PATH ]; then
+			mkdir -p $INSTALL_PATH
+			git clone https://github.com/itk-os2display/middleware.git ${INSTALL_PATH}/.
+			break
+		fi
+		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+	done
 
 	# Checkout version
+	cd $INSTALL_PATH
+	git checkout ${MIDDLEWARE_VERSION}
 
-	# Configure
+	# Ensure logs folder exists.
+	if [ ! -d ${INSTALL_PATH}/logs ]; then
+		mkdir -p ${INSTALL_PATH}/logs
+	fi
+
+	# Install npm packages
+	echo "${GREEN}Installing middleware requirements...${RESET}"
+	${INSTALL_PATH}/install.sh > /dev/null 2>&1
+
+	# Configure nginx
+	read -p "Middelware FQDN (middleware.example.com): " DOMAIN
+	if [ -z $DOMAIN ]; then
+		DOMAIN="middleware.example.com"
+	fi
+
+	cat > /etc/nginx/sites-available/middleware.conf <<DELIM
+upstream nodejs_middleware {
+  server 127.0.0.1:3020;
+}
+
+server {
+  listen 80;
+
+  server_name ${DOMAIN};
+  rewrite ^ https://\$server_name\$request_uri? permanent;
+
+
+  access_log /var/log/nginx/middleware_access.log;
+  error_log /var/log/nginx/middleware_error.log;
+}
+
+# HTTPS server
+#
+server {
+  listen 443;
+
+  server_name ${DOMAIN};
+
+  access_log /var/log/nginx/middleware_access.log;
+  error_log /var/log/nginx/middleware_error.log;
+
+  location / {
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header Host \$http_host;
+
+    proxy_buffering off;
+
+    proxy_pass http://nodejs_middleware/;
+    proxy_redirect off;
+  }
+
+  location /socket.io/ {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade \$http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_pass http://nodejs_middleware;
+  }
+
+  ssl on;
+  ssl_certificate ${CERT};
+  ssl_certificate_key ${CERTKEY};
+
+  ssl_session_timeout 5m;
+
+  # https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
+  ssl_prefer_server_ciphers On;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+}
+DELIM
+
+	# Configure middleware
+	read -p "Administrator username (admin): " ADMIN_USER
+	if [ -z $ADMIN_USER ]; then
+		ADMIN_USER="admin"
+	fi
+
+	echo -n "Administrator password (admin): "
+	read -s ADMIN_PASSWORD
+	echo " "
+	if [ -z $ADMIN_PASSWORD ]; then
+		ADMIN_PASSWORD="admin"
+	fi
+
+	echo -n "Secrect token used in communcation (MySuperSecret): "
+	read -s SECRECT_TOKEN
+	echo " "
+	if [ -z $SECRECT_TOKEN ]; then
+		SECRECT_TOKEN="MySuperSecret"
+	fi
+	cat > ${INSTALL_PATH}/config.json <<DELIM
+{
+  "port": 3020,
+  "secret": "${SECRECT_TOKEN}",
+  "logs": {
+    "info": "logs/info.log",
+    "error": "logs/error.log",
+    "debug": "logs/debug.log",
+    "socket": "logs/socket.log"
+  },
+  "admin": {
+    "username": "${ADMIN_USER}",
+    "password": "${ADMIN_PASSWORD}"
+  },
+  "cache": {
+    "port": "6379",
+    "host": "localhost",
+    "auth": null,
+    "db": 0
+  },
+  "apikeys": "apikeys.json"
+}
+DELIM
+
+# Config file for apikeys
+read -p "Name to identify the API key by (os2display-test): " APINAME
+if [ -z $APINAME ]; then
+	APINAME="os2display-test"
+fi
+APIKEY=`echo $APINAME | md5sum | cut -f1 -d" "`
+
+read -p "FQDN for the administration interface (admin.example.com): " ADMIN_DOMAIN
+if [ -z $ADMIN_DOMAIN ]; then
+	ADMIN_DOMAIN="admin.example.com"
+fi
+
+cat > ${INSTALL_PATH}/apikeys.json <<DELIM
+{
+  "${APIKEY}": {
+    "name": "${APINAME}",
+    "backend": "${ADMIN_DOMAIN}",
+    "expire": 300
+  }
+}
+DELIM
+
+	# Add supervisor startup script.
+	read -p "Who should the middleware be runned as ($(whoami)): " USER
+	if [ -z $USER ]; then
+		USER=$(whoami)
+	fi
+	cat > /etc/supervisor/conf.d/middleware.conf <<DELIM
+[program:middleware]
+command=node ${INSTALL_PATH}/app.js
+autostart=true
+autorestart=true
+environment=NODE_ENV=production
+stderr_logfile=/var/log/middleware.err.log
+stdout_logfile=/var/log/middleware.out.log
+user=${USER}
+DELIM
+
+	# Start search node and activate index.
+	service supervisor restart
 }
 
 function setupAdmin {
@@ -296,3 +473,4 @@ function setupScreen {
 
 getSSLCertificate;
 setupSearchNode;
+setupMiddleWare;

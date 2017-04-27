@@ -34,7 +34,7 @@ function intallMySQL {
 	echo "${GREEN}Configuring MySQL...${RESET}"
 	echo -n "MySQL root password: "
 	read -s PASSWORD
-	echo ""
+	echo " "
 
 	debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password ${PASSWORD}" > /dev/null || exit 1
 	debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password ${PASSWORD}" > /dev/null || exit 1
