@@ -18,6 +18,9 @@ GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
+# Versions
+SERACH_NODE_VERSION=v2.1.8
+
 ##
 # Add SSL certificates.
 ##
@@ -57,7 +60,7 @@ QiaYLGAU81Y0EJrmw1vin6jQY92+JSnou/ZgOKTqWEpvBV4pvOBacA==
 -----END RSA PRIVATE KEY-----
 DELIM
 
-					cat > /etc/ssl/nginx/server.cert <<DELIM
+				cat > /etc/ssl/nginx/server.cert <<DELIM
 -----BEGIN CERTIFICATE-----
 MIIDCzCCAfOgAwIBAgIJAOeMvrD8wE0fMA0GCSqGSIb3DQEBBQUAMBwxGjAYBgNV
 BAMMEWluZm9zdGFuZGVyLmxvY2FsMB4XDTE0MDMzMTEwMzYyNVoXDTI0MDMyODEw
@@ -90,7 +93,7 @@ DELIM
 					break
 					;;
 
-        * ) echo "${YELLOW}Please answer yes or no.${RESET}";;
+        * ) echo "${YELLOW}Please answer yes or no!${RESET}";;
     esac
 	done
 }
@@ -107,28 +110,32 @@ function setupSearchNode {
 
 	# Clone serch node
 	while true; do
-		read -p "Where to place search node (/home/www/search_node): " PATH
-		if [ -z $PATH ]; then
-			PATH="/home/www/search_node"
+		read -p "Where to place search node (/home/www/search_node): " INSTALL_PATH
+		if [ -z $INSTALL_PATH ]; then
+			INSTALL_PATH="/home/www/search_node"
 		fi
-		if [ ! -d $PATH ]; then
-			git clone https://github.com/search-node/search_node.git $PATH
+		if [ ! -d $INSTALL_PATH ]; then
+			mkdir -p $INSTALL_PATH
+			git clone https://github.com/search-node/search_node.git ${INSTALL_PATH}/.
 			break
-			;;
 		fi
 		echo "${RED}Please use another path, that don't exists allready!${RESET}"
 	done
 
 	# Checkout version
-	cd $PATH
-	git checkout v2.1.7
+	cd $INSTALL_PATH
+	git checkout ${SERACH_NODE_VERSION}
 
 	# Install npm packages
 	echo "${GREEN}Installing search_node requirements...${RESET}"
-	${PATH}/install.sh > /dev/null 2>&1
+	${INSTALL_PATH}/install.sh > /dev/null 2>&1
 
 	# Configure nginx
-	read -p "Search node FQDN (eg. search.exsample.com): " DOMAIN
+	read -p "Search node FQDN (search.example.com): " DOMAIN
+	if [ -z $DOMAIN ]; then
+		DOMAIN="search.exsample.com"
+	fi
+
 	cat > /etc/nginx/sites-available/search.conf <<DELIM
 upstream nodejs_search {
   server 127.0.0.1:3010;
@@ -189,13 +196,16 @@ DELIM
 
 	# Configure search node.
 	echo "${GREEN}Configure search node...${RESET}"
-	cd $PATH
+	cd $INSTALL_PATH
 	cp example.config.json config.json
 
-	read -p "Name to identify the search index by (eg. os2display-test): " NAME
+	read -p "Name to identify the search index by (os2display-test): " NAME
+	if [ -z $NAME ]; then
+		NAME="os2display-test"
+	fi
 	INDEX=`echo $NAME | md5sum | cut -f1 -d" "`
 
-	cat > ${PATH}/mappings.json <<DELIM
+	cat > ${INSTALL_PATH}/mappings.json <<DELIM
 {
   "${INDEX}": {
     "name": "${NAME}",
@@ -219,10 +229,13 @@ DELIM
 DELIM
 
 	# Config file for apikeys
-	read -p "Name to identify the API key by (eg. os2display-test): " APINAME
+	read -p "Name to identify the API key by (os2display-test): " APINAME
+	if [ -z $APINAME ]; then
+		APINAME="os2display-test"
+	fi
 	APIKEY=`echo $APINAME | md5sum | cut -f1 -d" "`
 
-	cat > ${PATH}/apikeys.json <<DELIM
+	cat > ${INSTALL_PATH}/apikeys.json <<DELIM
 {
   "${APIKEY}": {
     "name": "${APINAME}",
@@ -236,19 +249,23 @@ DELIM
 DELIM
 
 	# Add supervisor startup script.
+	read -p "Who should the search node be runned as ($(whoami)): " USER
+	if [ -z $USER ]; then
+		USER=$(whoami)
+	fi
 	cat > /etc/supervisor/conf.d/search_node.conf <<DELIM
 [program:search-node]
-command=node ${PATH}/app.js
+command=node ${INSTALL_PATH}/app.js
 autostart=true
 autorestart=true
 environment=NODE_ENV=production
 stderr_logfile=/var/log/search-node.err.log
 stdout_logfile=/var/log/search-node.out.log
-user=deploy
+user=${USER}
 DELIM
 
 	# Start search node and activate index.
-	services supervisor restart
+	service supervisor restart
 	## TODO: Activate index. Find out if the current version has this support.
 }
 
@@ -278,3 +295,4 @@ function setupScreen {
 }
 
 getSSLCertificate;
+setupSearchNode;

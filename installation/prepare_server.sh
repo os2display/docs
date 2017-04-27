@@ -127,7 +127,15 @@ function installEleasticSearch {
 ##
 function installSuperVisor {
 	echo "${GREEN}Installing supervisor...${RESET}"
-	apt-get install supervisor
+	apt-get install supervisor -y > /dev/null || exit 1
+}
+
+##
+# Install tools need and that is nice to have on the server.
+##
+function installUtils {
+	echo "${GREEN}Installing utils...${RESET}"
+	apt-get install git bash-completion sudo nmap mc imagemagick git-core lynx rcconf build-essential automake autoconf -y > /dev/null || exit 1
 }
 
 updateSystem;
@@ -139,3 +147,4 @@ installNodeJs;
 installComposer;
 installEleasticSearch;
 installSuperVisor;
+installUtils;
