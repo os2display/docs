@@ -21,7 +21,7 @@ RESET=$(tput sgr0)
 # Versions
 SERACH_NODE_VERSION="v2.1.8"
 MIDDLEWARE_VERSION="v4.0.2"
-ADMIN_VERSION="v4.0.2"
+ADMIN_VERSION="development"
 SCREEN_VERSION="v4.0.1"
 
 ##
@@ -500,7 +500,7 @@ function setupAdmin {
 	if [ -z $DOMAIN ]; then
 		DOMAIN="admin.example.com"
 	fi
-	FILENAME=${DOMAIN/./_}
+	FILENAME=${DOMAIN//./_}
 
 	# Configure nginx.
 cat > /etc/nginx/sites-available/${FILENAME}.conf <<DELIM
@@ -602,6 +602,7 @@ DELIM
 	fi
 	echo -n "Database password (root): "
 	read -s DB_PASSWORD
+	echo " "
 	if [ -z $DB_PASSWORD ]; then
 		DB_PASSWORD="root"
 	fi
@@ -683,14 +684,16 @@ parameters:
 
     templates_directory: ik-templates/
 
-    sharing_host: https://search.os2display.vm
+		sharing_enabled: false
+    sharing_host:
     sharing_path: /api
-    sharing_apikey: 88cfd4b277f3f8b6c7c15d7a84784067
+    sharing_apikey:
 
     search_host: ${SERACH_HOST}
     search_path: /api
     search_apikey: ${SERACH_APIKEY}
     search_index: ${SERACH_INDEX}
+    search_filter_default: all
 
     middleware_host: ${MIDDLEWARE_HOST}
     middleware_path: /api
@@ -734,6 +737,8 @@ DELIM
 	echo "${GREEN}Installing administration...${RESET}"
 	cd $INSTALL_PATH
 	composer install > /dev/null || exit 1
+	php app/console doctrine:database:create > /dev/null || exit 1
+	php app/console doctrine:migrations:migrate > /dev/null || exit 1
 	php app/console doctrine:schema:update --force > /dev/null || exit 1
 
 	# Setup super-user.
@@ -741,7 +746,9 @@ DELIM
 	if [ -z $SU_USER ]; then
 		SU_USER="admin"
 	fi
-	read -p "Super user password (admin): " SU_PASSWORD
+	echo -n "Super user password (admin): "
+	read -s SU_PASSWORD
+	echo " "
 	if [ -z $SU_PASSWORD ]; then
 		SU_PASSWORD="admin"
 	fi
@@ -791,7 +798,7 @@ function setupScreen {
 	if [ -z $DOMAIN ]; then
 		DOMAIN="screen.example.com"
 	fi
-	FILENAME=${DOMAIN/./_}
+	FILENAME=${DOMAIN//./_}
 
 	# Configure nginx.
 	cat > /etc/nginx/sites-available/${FILENAME}.conf <<DELIM
@@ -858,7 +865,6 @@ server {
 DELIM
 	ln -s /etc/nginx/sites-available/${FILENAME}.conf /etc/nginx/sites-enabled/${FILENAME}.conf
 
-
 	# Configuration for screen
 	read -p "Admin FQDN (admin.example.com): " ADMIN_DOMAIN
 	if [ -z $ADMIN_DOMAIN ]; then
@@ -905,8 +911,19 @@ function restartServices {
 }
 
 getSSLCertificate;
+
+echo "${YELLOW}Installing Search Node:${RESET}"
 setupSearchNode;
+restartServices;
+
+echo "${YELLOW}Installing Middleware:${RESET}"
 setupMiddleWare;
+restartServices;
+
+echo "${YELLOW}Installing Administration interface:${RESET}"
 setupAdmin;
+restartServices;
+
+echo "${YELLOW}Installing Screen:${RESET}"
 setupScreen;
 restartServices;
