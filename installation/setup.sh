@@ -479,7 +479,7 @@ DELIM
 function setupAdmin {
 	# Clone admin
 	while true; do
-		read -p "Where to place admin node (/home/www/example_com/admin): " INSTALL_PATH
+		read -p "Where to place administration interface (/home/www/example_com/admin): " INSTALL_PATH
 		if [ -z $INSTALL_PATH ]; then
 			INSTALL_PATH="/home/www/example_com/admin"
 		fi
@@ -764,10 +764,141 @@ DELIM
 	chown -R ${INSTALL_PATH} www-data
 }
 
+##
+# Install screen.
+##
 function setupScreen {
-	echo "tis";
+	# Clone screen.
+	while true; do
+		read -p "Where to place screen (/home/www/example_com/screen): " INSTALL_PATH
+		if [ -z $INSTALL_PATH ]; then
+			INSTALL_PATH="/home/www/example_com/screen"
+		fi
+		if [ ! -d $INSTALL_PATH ]; then
+			mkdir -p $INSTALL_PATH
+			git clone https://github.com/itk-os2display/screen.git ${INSTALL_PATH}/.
+			break
+		fi
+		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+	done
+
+	# Checkout version.
+	cd $INSTALL_PATH
+	git checkout ${SCREEN_VERSION}
+
+	# Configure nginx.
+	read -p "Admin FQDN (screen.example.com): " DOMAIN
+	if [ -z $DOMAIN ]; then
+		DOMAIN="screen.example.com"
+	fi
+	FILENAME=${DOMAIN/./_}
+
+	# Configure nginx.
+	cat > /etc/nginx/sites-available/${FILENAME}.conf <<DELIM
+server {
+  listen 80;
+
+  server_name ${DOMAIN};
+  root ${INSTALL_PATH}/web;
+
+  rewrite ^ https://\$server_name\$request_uri? permanent;
+
+  access_log /var/log/nginx/${FILENAME}_access.log;
+  error_log /var/log/nginx/${FILENAME}_error.log;
 }
 
+
+# HTTPS server
+#
+server {
+  listen 443;
+
+  server_name ${DOMAIN};
+  root ${INSTALL_PATH}/web;
+
+  client_max_body_size 300m;
+
+  access_log /var/log/nginx/${FILENAME}_access.log;
+  error_log /var/log/nginx/${FILENAME}_error.log;
+
+  location / {
+    try_files \$uri \$uri/ /index.html;
+  }
+
+  location /proxy/ {
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header Host \$http_host;
+
+    proxy_buffering off;
+
+    proxy_pass http://nodejs_middleware/;
+    proxy_redirect off;
+  }
+
+  location /socket.io/ {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade \$http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_pass http://nodejs_middleware;
+  }
+
+  ssl on;
+  ssl_certificate ${CERT};
+  ssl_certificate_key ${CERTKEY};
+
+  ssl_session_timeout 5m;
+
+  # https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
+  ssl_prefer_server_ciphers On;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+}
+DELIM
+	ln -s /etc/nginx/sites-available/${FILENAME}.conf /etc/nginx/sites-enabled/${FILENAME}.conf
+
+
+	# Configuration for screen
+	read -p "Admin FQDN (admin.example.com): " ADMIN_DOMAIN
+	if [ -z $ADMIN_DOMAIN ]; then
+		ADMIN_DOMAIN="admin.example.com"
+	fi
+
+	read -p "Middleware API key: " MIDDLEWARE_APIKEY
+
+	cat > ${INSTALL_PATH}/app/config.js <<DELIM
+window.config = {
+  "resource": {
+    "server": "//${DOMAIN}/",
+    "uri": 'proxy'
+  },
+  "ws": {
+    "server": "https://${DOMAIN}/"
+  },
+  "backend": {
+    "address": "https://${ADMIN_DOMAIN}/"
+  },
+  "apikey": "${MIDDLEWARE_APIKEY}",
+  "cookie": {
+    "secure": false
+  },
+  "debug": false,
+  "version": "dev",
+  "itkLog": {
+    "version": "1",
+    "errorCallback": null,
+    "logToConsole": false,
+    "logLevel": "all"
+  },
+  fallback_image: "assets/images/os2display-fallback.jpg"
+};
+DELIM
+}
+
+##
+# Restart services.
+##
 function restartServices {
 	service supervisor restart
 	service nginx restart
