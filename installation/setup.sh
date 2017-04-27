@@ -21,6 +21,8 @@ RESET=$(tput sgr0)
 # Versions
 SERACH_NODE_VERSION="v2.1.8"
 MIDDLEWARE_VERSION="v4.0.2"
+ADMIN_VERSION="v4.0.2"
+SCREEN_VERSION="v4.0.1"
 
 ##
 # Add SSL certificates.
@@ -201,6 +203,7 @@ server {
   ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
 }
 DELIM
+	ln -s /etc/nginx/sites-available/search.conf /etc/nginx/sites-enabled/search.conf
 
 	# Configure search node.
 	echo "${GREEN}Configure search node...${RESET}"
@@ -272,6 +275,9 @@ stdout_logfile=/var/log/search-node.out.log
 user=${USER}
 DELIM
 
+	# Change owner of search node to the selected user.
+	chown -R ${USER} ${INSTALL_PATH}
+
 	# Start search node and activate index.
 	service supervisor restart
 	## TODO: Activate index. Find out if the current version has this support.
@@ -310,11 +316,11 @@ function setupMiddleWare {
 		mkdir -p ${INSTALL_PATH}/logs
 	fi
 
-	# Install npm packages
+	# Install npm packages.
 	echo "${GREEN}Installing middleware requirements...${RESET}"
 	${INSTALL_PATH}/install.sh > /dev/null 2>&1
 
-	# Configure nginx
+	# Configure nginx.
 	read -p "Middelware FQDN (middleware.example.com): " DOMAIN
 	if [ -z $DOMAIN ]; then
 		DOMAIN="middleware.example.com"
@@ -377,8 +383,9 @@ server {
   ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
 }
 DELIM
+	ln -s /etc/nginx/sites-available/middleware.conf /etc/nginx/sites-enabled/middleware.conf
 
-	# Configure middleware
+	# Configure middleware.
 	read -p "Administrator username (admin): " ADMIN_USER
 	if [ -z $ADMIN_USER ]; then
 		ADMIN_USER="admin"
@@ -391,16 +398,16 @@ DELIM
 		ADMIN_PASSWORD="admin"
 	fi
 
-	echo -n "Secrect token used in communcation (MySuperSecret): "
-	read -s SECRECT_TOKEN
+	echo -n "Secret token used in communcation (MySuperSecret): "
+	read -s SECRET_TOKEN
 	echo " "
-	if [ -z $SECRECT_TOKEN ]; then
-		SECRECT_TOKEN="MySuperSecret"
+	if [ -z $SECRET_TOKEN ]; then
+		SECRET_TOKEN="MySuperSecret"
 	fi
 	cat > ${INSTALL_PATH}/config.json <<DELIM
 {
   "port": 3020,
-  "secret": "${SECRECT_TOKEN}",
+  "secret": "${SECRET_TOKEN}",
   "logs": {
     "info": "logs/info.log",
     "error": "logs/error.log",
@@ -421,7 +428,7 @@ DELIM
 }
 DELIM
 
-# Config file for apikeys
+# Config file for apikeys.
 read -p "Name to identify the API key by (os2display-test): " APINAME
 if [ -z $APINAME ]; then
 	APINAME="os2display-test"
@@ -459,18 +466,316 @@ stdout_logfile=/var/log/middleware.out.log
 user=${USER}
 DELIM
 
+	# Change owner of the middleware to the selected user.
+	chown -R ${USER} ${INSTALL_PATH}
+
 	# Start search node and activate index.
 	service supervisor restart
 }
 
+##
+# Setup and configure administration site.
+##
 function setupAdmin {
-	echo "tis";
+	# Clone admin
+	while true; do
+		read -p "Where to place admin node (/home/www/example_com/admin): " INSTALL_PATH
+		if [ -z $INSTALL_PATH ]; then
+			INSTALL_PATH="/home/www/example_com/admin"
+		fi
+		if [ ! -d $INSTALL_PATH ]; then
+			mkdir -p $INSTALL_PATH
+			git clone https://github.com/itk-os2display/admin.git ${INSTALL_PATH}/.
+			break
+		fi
+		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+	done
+
+	# Checkout version
+	cd $INSTALL_PATH
+	git checkout ${ADMIN_VERSION}
+
+	# Configure nginx.
+	read -p "Admin FQDN (admin.example.com): " DOMAIN
+	if [ -z $DOMAIN ]; then
+		DOMAIN="admin.example.com"
+	fi
+	FILENAME=${DOMAIN/./_}
+
+	# Configure nginx.
+cat > /etc/nginx/sites-available/${FILENAME}.conf <<DELIM
+server {
+  listen 80;
+
+  server_name ${DOMAIN};
+  root ${INSTALL_PATH}/web;
+
+  rewrite ^ https://\$server_name\$request_uri? permanent;
+
+  access_log /var/log/nginx/${FILENAME}_access.log;
+  error_log /var/log/nginx/${FILENAME}_error.log;
+}
+
+
+# HTTPS server
+#
+server {
+  listen 443;
+
+  server_name ${DOMAIN};
+  root ${INSTALL_PATH}/web;
+
+  client_max_body_size 300m;
+
+  access_log /var/log/nginx/${FILENAME}_access.log;
+  error_log /var/log/nginx/${FILENAME}_error.log;
+
+  location / {
+    # try to serve file directly, fallback to rewrite
+    try_files \$uri @rewriteapp;
+  }
+
+  location @rewriteapp {
+    # rewrite all to app.php
+    rewrite ^(.*)\$ /app_dev.php/\$1 last;
+  }
+
+  location ~ ^/(app|app_dev|config)\.php(/|\$) {
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_split_path_info ^(.+\.php)(/.*)\$;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+    fastcgi_param HTTPS off;
+  }
+
+  # deny access to .htaccess files, if Apache's document root
+  # concurs with nginx's one
+  location ~ /\.ht {
+    deny all;
+  }
+
+  location /templates/ {
+    add_header 'Access-Control-Allow-Origin' "*";
+  }
+
+  location /proxy/ {
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header Host \$http_host;
+
+    proxy_buffering off;
+
+    proxy_pass http://nodejs_search/;
+    proxy_redirect off;
+  }
+
+  location /socket.io/ {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade \$http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_pass http://nodejs_search;
+  }
+
+  ssl on;
+  ssl_certificate ${CERT};
+  ssl_certificate_key ${CERTKEY};
+
+  ssl_session_timeout 5m;
+
+  # https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
+  ssl_prefer_server_ciphers On;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+}
+DELIM
+	ln -s /etc/nginx/sites-available/${FILENAME}.conf /etc/nginx/sites-enabled/${FILENAME}.conf
+
+	# Database information.
+	read -p "Database (${FILENAME}): " DB
+	if [ -z $DOMAIN ]; then
+		DB=${FILENAME}
+	fi
+	read -p "Database username (root): " DB_USER
+	if [ -z $DB_USER ]; then
+		DB_USER="root"
+	fi
+	echo -n "Database password (root): "
+	read -s DB_PASSWORD
+	if [ -z $DB_PASSWORD ]; then
+		DB_PASSWORD="root"
+	fi
+
+	# Symfony secret toke.
+	echo -n "Secret token (ThisTokenIsNotSoSecretChangeIt): "
+	read -s SECRET_TOKEN
+	echo " "
+	if [ -z $SECRET_TOKEN ]; then
+		SECRET_TOKEN="ThisTokenIsNotSoSecretChangeIt"
+	fi
+
+	# Mail information.
+	read -p "Mail from address (webmaster@os2display.dk): " MAIL_ADDRESS
+	if [ -z $MAIL_ADDRESS ]; then
+		MAIL_ADDRESS="webmaster@os2display.dk"
+	fi
+	read -p "Mail from name (webmaster): " MAIL_NAME
+	if [ -z $MAIL_NAME ]; then
+		MAIL_NAME="webmaster"
+	fi
+
+	# Search information.
+	read -p "Search host (search.example.com): " SERACH_HOST
+	if [ -z $SERACH_HOST ]; then
+		SERACH_HOST="search.example.com"
+	fi
+	read -p "Search API key: " SERACH_APIKEY
+	read -p "Search index: " SERACH_INDEX
+
+	# Middleware information.
+	read -p "Middleware host (middleware.example.com): " MIDDLEWARE_HOST
+	if [ -z $MIDDLEWARE_HOST ]; then
+		MIDDLEWARE_HOST="middleware.example.com"
+	fi
+	read -p "Middleware API key: " MIDDLEWARE_APIKEY
+
+	# Koba information.
+	read -p "KOBA host: " KOBA_HOST
+	read -p "KOBA API key: " KOBA_APIKEY
+
+	# Zencoder api key
+	read -p "Zencoder API key: " ZENCODER_APIKEY
+
+	# Site title
+	read -p "Site title (OS2Display example): " SITE_TITLE
+	if [ -z $SITE_TITLE ]; then
+		SITE_TITLE="OS2Display example"
+	fi
+
+	# Build parameters for symfony.
+	cat > ${INSTALL_PATH}/app/config/parameters.yml <<DELIM
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: ${DB}
+    database_user: ${DB_USER}
+    database_password: ${DB_PASSWORD}
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+
+    locale: en
+    secret: ${SECRET_TOKEN}
+    debug_toolbar: false
+    debug_redirects: false
+
+    use_assetic_controller: true
+
+    absolute_path_to_server: 'https://${DOMAIN}'
+
+    zencoder_api: ${ZENCODER_APIKEY}
+
+    mailer_from_email: ${MAIL_ADDRESS}
+    mailer_from_name: ${MAIL_NAME}
+
+    templates_directory: ik-templates/
+
+    sharing_host: https://search.os2display.vm
+    sharing_path: /api
+    sharing_apikey: 88cfd4b277f3f8b6c7c15d7a84784067
+
+    search_host: ${SERACH_HOST}
+    search_path: /api
+    search_apikey: ${SERACH_APIKEY}
+    search_index: ${SERACH_INDEX}
+
+    middleware_host: ${MIDDLEWARE_HOST}
+    middleware_path: /api
+    middleware_apikey: ${MIDDLEWARE_APIKEY}
+
+    templates_slides_directory: templates/slides/
+    templates_slides_enabled:
+        - manual-calendar
+        - only-image
+        - only-video
+        - portrait-text-top
+        - text-bottom
+        - text-left
+        - text-right
+        - text-top
+        - ik-iframe
+        - header-top
+        - event-calendar
+        - wayfinding
+
+    templates_screens_directory: templates/screens/
+    templates_screens_enabled:
+        - full-screen
+        - five-sections
+        - full-screen-portrait
+
+    site_title: ${SITE_TITLE}
+
+    koba_apikey: ${KOBA_APIKEY}
+    koba_path: ${KOBA_HOST}
+
+    version: ${ADMIN_VERSION}
+
+    itk_log_version: 1
+    itk_log_error_callback: /api/error
+    itk_log_log_to_console: true
+    itk_log_log_level: all
+DELIM
+
+	# Install symfony.
+	echo "${GREEN}Installing administration...${RESET}"
+	cd $INSTALL_PATH
+	composer install > /dev/null || exit 1
+	php app/console doctrine:schema:update --force > /dev/null || exit 1
+
+	# Setup super-user.
+	read -p "Super user name (admin): " SU_USER
+	if [ -z $SU_USER ]; then
+		SU_USER="admin"
+	fi
+	read -p "Super user password (admin): " SU_PASSWORD
+	if [ -z $SU_PASSWORD ]; then
+		SU_PASSWORD="admin"
+	fi
+	read -p "Super user mail (admin@example.com): " SU_MAIL
+	if [ -z $SU_MAIL ]; then
+		SU_MAIL="admin@example.com"
+	fi
+
+	cd $INSTALL_PATH
+	echo "Setting up super-user: admin/admin"
+	php app/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
+
+	# Cron job.
+	cd ~
+	echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console ik:cron" >> mycron
+	crontab mycron
+	unlink mycron
+
+	# Change owner.
+	chown -R ${INSTALL_PATH} www-data
 }
 
 function setupScreen {
 	echo "tis";
 }
 
+function restartServices {
+	service supervisor restart
+	service nginx restart
+}
+
 getSSLCertificate;
 setupSearchNode;
 setupMiddleWare;
+setupAdmin;
+setupScreen;
+restartServices;
