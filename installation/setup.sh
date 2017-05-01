@@ -593,7 +593,7 @@ DELIM
 
   # Database information.
   read -p "Database (${FILENAME}): " DB
-  if [ -z $DOMAIN ]; then
+  if [ -z $DB ]; then
     DB=${FILENAME}
   fi
   read -p "Database username (root): " DB_USER
@@ -736,10 +736,11 @@ DELIM
   # Install symfony.
   echo "${GREEN}Installing administration...${RESET}"
   cd $INSTALL_PATH
+  echo "create database ${DB}" | mysql -u${DB_USER} -p${DB_PASSWORD} > /dev/null || exit 1
   composer install > /dev/null || exit 1
-  php app/console doctrine:database:create > /dev/null || exit 1
+
+  echo "${GREEN}Setup database...${RESET}"
   php app/console doctrine:migrations:migrate > /dev/null || exit 1
-  php app/console doctrine:schema:update --force > /dev/null || exit 1
 
   # Setup super-user.
   read -p "Super user name (admin): " SU_USER
@@ -768,7 +769,7 @@ DELIM
   unlink mycron
 
   # Change owner.
-  chown -R ${INSTALL_PATH} www-data
+  chown -R www-data ${INSTALL_PATH}
 }
 
 ##
