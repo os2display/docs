@@ -32,10 +32,10 @@ function getSSLCertificate {
     read -p "Use fake SSL certificate (y/n)? " yn
     case $yn in
       [Yy]* )
-if [ ! -d '/etc/ssl/nginx' ]; then
-  mkdir -p /etc/ssl/nginx
-fi
-cat > /etc/ssl/nginx/server.key <<DELIM
+        if [ ! -d '/etc/ssl/nginx' ]; then
+          mkdir -p /etc/ssl/nginx
+        fi
+        cat > /etc/ssl/nginx/server.key <<DELIM
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAr/XEHIjUq9JiI2ciKjJ6a/bdf5/3FxrJXIYiw+rFO7GEy+ly
 RfALVhMiZpZQOo4fYk0AvTb3ZtTmwRDvP3uIsE/xicK7p+F+78xXUzFDDJGoFtSg
@@ -65,7 +65,7 @@ QiaYLGAU81Y0EJrmw1vin6jQY92+JSnou/ZgOKTqWEpvBV4pvOBacA==
 -----END RSA PRIVATE KEY-----
 DELIM
 
-cat > /etc/ssl/nginx/server.cert <<DELIM
+        cat > /etc/ssl/nginx/server.cert <<DELIM
 -----BEGIN CERTIFICATE-----
 MIIDCzCCAfOgAwIBAgIJAOeMvrD8wE0fMA0GCSqGSIb3DQEBBQUAMBwxGjAYBgNV
 BAMMEWluZm9zdGFuZGVyLmxvY2FsMB4XDTE0MDMzMTEwMzYyNVoXDTI0MDMyODEw
@@ -87,26 +87,28 @@ FRMjoVlMmXmMnDeGuB4l
 -----END CERTIFICATE-----
 DELIM
 
-CERT=/etc/ssl/nginx/server.cert
-CERTKEY=/etc/ssl/nginx/server.key
-break
-;;
+        CERT=/etc/ssl/nginx/server.cert
+        CERTKEY=/etc/ssl/nginx/server.key
+        break
+        ;;
 
-[Nn]* )
-read -p "Location of the SSL certificate: " CERT
-read -p "Location of the SSL certificate key: " CERTKEY
-break
-;;
+    [Nn]* )
+        read -p "Location of the SSL certificate: " CERT
+        read -p "Location of the SSL certificate key: " CERTKEY
+        break
+        ;;
 
-* ) echo "${YELLOW}Please answer yes or no!${RESET}";;
-esac
-done
+    * ) echo "${YELLOW}Please answer yes or no!${RESET}";;
+    esac
+  done
 }
 
 ##
 # Install search node and configuration.
 ##
 function setupSearchNode {
+  echo "${YELLOW}Installing Search Node:${RESET}"
+
 	# Check if search node have been installed.
 	if [ -f '/etc/nginx/sites-available/search.conf' ]; then
 		echo "${YELLOW}Search node exists and will not be installed, so ${GREEN}skipping${YELLOW} this part.${RESET}"
@@ -287,6 +289,8 @@ DELIM
 # Setup and configure middleware.
 ##
 function setupMiddleWare {
+  echo "${YELLOW}Installing Middleware:${RESET}"
+
 	# Check if search node have been installed.
 	if [ -f '/etc/nginx/sites-available/middleware.conf' ]; then
 		echo "${YELLOW}Middelware exists and will not be installed, so ${GREEN}skipping${YELLOW} this part.${RESET}"
@@ -477,6 +481,8 @@ DELIM
 # Setup and configure administration site.
 ##
 function setupAdmin {
+  echo "${YELLOW}Installing Administration interface:${RESET}"
+
 	# Clone admin
 	while true; do
 		read -p "Where to place administration interface (/home/www/example_com/admin): " INSTALL_PATH
@@ -776,6 +782,8 @@ DELIM
 # Install screen.
 ##
 function setupScreen {
+  echo "${YELLOW}Installing Screen:${RESET}"
+
 	# Clone screen.
 	while true; do
 		read -p "Where to place screen (/home/www/example_com/screen): " INSTALL_PATH
@@ -912,18 +920,46 @@ function restartServices {
 
 getSSLCertificate;
 
-echo "${YELLOW}Installing Search Node:${RESET}"
-setupSearchNode;
-restartServices;
+while (true); do
+  echo "##########################################"
+  echo "##            ${YELLOW}Installation${RESET}              ##"
+  echo "##########################################"
+  echo "##                                      ##"
+  echo "##  1 - Complete system                 ##"
+  echo "##  2 - Search node (if not installed)  ##"
+  echo "##  3 - Middleware (if not installed)   ##"
+  echo "##  4 - New site (admin/screen)         ##"
+  echo "##  5 - Exit                            ##"
+  echo "##                                      ##"
+  echo "##########################################"
+  read -p "What should we install (1-5)? " SELECTED
+  case $SELECTED in
+    1)
+      setupSearchNode;
+      setupMiddleWare;
+      setupAdmin;
+      setupScreen;
+      restartServices;
+      ;;
 
-echo "${YELLOW}Installing Middleware:${RESET}"
-setupMiddleWare;
-restartServices;
+    2)
+      setupSearchNode;
+      restartServices;
+      ;;
 
-echo "${YELLOW}Installing Administration interface:${RESET}"
-setupAdmin;
-restartServices;
+    3)
+      setupMiddleWare;
+      restartServices;
+      ;;
 
-echo "${YELLOW}Installing Screen:${RESET}"
-setupScreen;
-restartServices;
+    4)
+      setupAdmin;
+      setupScreen;
+      restartServices;
+      ;;
+
+    5)
+      break;;
+
+  esac
+done
