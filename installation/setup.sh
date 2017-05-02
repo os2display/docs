@@ -769,10 +769,7 @@ DELIM
   php app/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
 
   # Cron job.
-  cd ~
-  echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console ik:cron" >> mycron
-  crontab mycron
-  unlink mycron
+  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console ik:cron") | crontab
 
   # Change owner.
   chown -R www-data ${INSTALL_PATH}
