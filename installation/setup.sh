@@ -224,17 +224,17 @@ DELIM
     "name": "${NAME}",
     "tag": "private",
     "fields": [
-    {
-      "field": "title",
-      "type": "string",
-      "language": "da",
-      "country": "DK",
-      "default_analyzer": "string_index",
-      "default_indexer": "analyzed",
-      "sort": true,
-      "indexable": true,
-      "raw": false
-    }
+      {
+        "field": "title",
+        "type": "string",
+        "language": "da",
+        "country": "DK",
+        "default_analyzer": "string_index",
+        "default_indexer": "analyzed",
+        "sort": true,
+        "indexable": true,
+        "raw": false
+      }
     ],
     "dates": [ "created_at", "updated_at" ]
   }
@@ -803,7 +803,7 @@ function setupScreen {
 	git checkout ${SCREEN_VERSION}
 
 	# Configure nginx.
-	read -p "Admin FQDN (screen.example.com): " DOMAIN
+	read -p "Screen FQDN (screen.example.com): " DOMAIN
 	if [ -z $DOMAIN ]; then
 		DOMAIN="screen.example.com"
 	fi
@@ -815,7 +815,7 @@ server {
   listen 80;
 
   server_name ${DOMAIN};
-  root ${INSTALL_PATH}/web;
+  root ${INSTALL_PATH};
 
   rewrite ^ https://\$server_name\$request_uri? permanent;
 
@@ -829,7 +829,7 @@ server {
   listen 443;
 
   server_name ${DOMAIN};
-  root ${INSTALL_PATH}/web;
+  root ${INSTALL_PATH}/;
 
   client_max_body_size 300m;
 
@@ -837,7 +837,7 @@ server {
   error_log /var/log/nginx/${FILENAME}_error.log;
 
   location / {
-    try_files \$uri \$uri/ /index.html;
+    try_files \$uri \$uri/index.html =404;
   }
 
   location /proxy/ {
