@@ -632,17 +632,17 @@ DELIM
   fi
 
   # Search information.
-  read -p "Search host (search.example.com): " SERACH_HOST
+  read -p "Search host (https://search.example.com): " SERACH_HOST
   if [ -z $SERACH_HOST ]; then
-    SERACH_HOST="search.example.com"
+    SERACH_HOST="https://search.example.com"
   fi
   read -p "Search API key: " SERACH_APIKEY
   read -p "Search index: " SERACH_INDEX
 
   # Middleware information.
-  read -p "Middleware host (middleware.example.com): " MIDDLEWARE_HOST
+  read -p "Middleware host (https://middleware.example.com): " MIDDLEWARE_HOST
   if [ -z $MIDDLEWARE_HOST ]; then
-    MIDDLEWARE_HOST="middleware.example.com"
+    MIDDLEWARE_HOST="https://middleware.example.com"
   fi
   read -p "Middleware API key: " MIDDLEWARE_APIKEY
 
@@ -740,13 +740,14 @@ parameters:
 DELIM
 
   # Install symfony.
+  SYMFONY_ENV=prod
   echo "${GREEN}Installing administration...${RESET}"
   cd $INSTALL_PATH
   echo "create database ${DB}" | mysql -u${DB_USER} -p${DB_PASSWORD} > /dev/null || exit 1
   composer install > /dev/null || exit 1
 
   echo "${GREEN}Setup database...${RESET}"
-  php app/console doctrine:migrations:migrate > /dev/null || exit 1
+  php app/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
 
   # Setup super-user.
   read -p "Super user name (admin): " SU_USER
@@ -772,7 +773,15 @@ DELIM
   (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console ik:cron") | crontab
 
   # Change owner.
-  chown -R www-data ${INSTALL_PATH}
+  read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
+  if [ -z $NORMAL_USER ]; then
+    NORMAL_USER=$(whoami)
+  fi
+  mkdir -p ${INSTALL_PATH}/web/uploads
+  mkdir -p ${INSTALL_PATH}/app/{cache,logs}
+  chown -R NORMAL_USER:NORMAL_USER ${INSTALL_PATH} || exit 1
+  chown -R www-data:NORMAL_USER ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
+  chmod -R g+w ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
 }
 
 ##
