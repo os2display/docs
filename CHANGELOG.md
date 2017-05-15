@@ -13,6 +13,7 @@ _admin_
 * Fixed doctrine migrations to be able to run from an empty database. (feature/OS2DISP-7_remove_sonata)
 * Remove files from web/bundles that should have been ignore. (feature/OS2DISP-7_remove_sonata)
 * Fixed form styling (feature/OS2DISP-81_control_panel_form_styling)
+* Added close functionality when clicking outside panel menu (feature/OS2DISP-82_panel_menu_close)
 
 ### v4.0.2
 
