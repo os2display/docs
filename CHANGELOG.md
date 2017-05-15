@@ -5,6 +5,7 @@
 _styleguide_
 
 * Added admin dashboard (feature/OS2DISP-31_admin_dashboard)
+* Fixed form styling (feature/OS2DISP-81_control_panel_form_styling)
 
 _admin_
 
