@@ -5,7 +5,6 @@
 _styleguide_
 
 * Added admin dashboard (feature/OS2DISP-31_admin_dashboard)
-* Fixed form styling (feature/OS2DISP-81_control_panel_form_styling)
 
 _admin_
 
@@ -13,6 +12,7 @@ _admin_
 * Updated symfony to 2.8.19. (feature/OS2DISP-7_remove_sonata)
 * Fixed doctrine migrations to be able to run from an empty database. (feature/OS2DISP-7_remove_sonata)
 * Remove files from web/bundles that should have been ignore. (feature/OS2DISP-7_remove_sonata)
+* Fixed form styling (feature/OS2DISP-81_control_panel_form_styling)
 
 ### v4.0.2
 
