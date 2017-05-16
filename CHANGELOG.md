@@ -2,10 +2,6 @@
 
 ## In development
 
-_styleguide_
-
-* Added admin dashboard (feature/OS2DISP-31_admin_dashboard)
-
 _admin_
 
 * Removed SonataUser bundle. (feature/OS2DISP-7_remove_sonata)
