@@ -779,8 +779,8 @@ DELIM
   fi
   mkdir -p ${INSTALL_PATH}/web/uploads
   mkdir -p ${INSTALL_PATH}/app/{cache,logs}
-  chown -R NORMAL_USER:NORMAL_USER ${INSTALL_PATH} || exit 1
-  chown -R www-data:NORMAL_USER ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
+  chown -R ${NORMAL_USER}:${NORMAL_USER} ${INSTALL_PATH} || exit 1
+  chown -R www-data:${NORMAL_USER} ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
   chmod -R g+w ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
 }
 
