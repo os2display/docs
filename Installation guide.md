@@ -5,9 +5,9 @@ The guide assumes that you have an installed linux based server with the followi
 
  * nginx 1.4.x
  * redis 2.8.x
- * php 5.5.x
- * node 0.10.x
- * elastic search 1.5.x
+ * php 5.6.x
+ * node 6.x
+ * elastic search 1.7.x
  * supervisor 3.x
  * Valid SSL certificates for you domain.
 
