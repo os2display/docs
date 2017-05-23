@@ -9,8 +9,8 @@ The guide assumes that you have an installed linux based server with the followi
  * node 0.10.x
  * elastic search 1.5.x
  * supervisor 3.x
- * Valid SSL certificates for you domain. 
- 
+ * Valid SSL certificates for you domain.
+
 The document also assumes that you are logged in as the user _deploy_, if this is not the case, you need to change this (e.g. the supervisor run script).
 
 ## The parts
@@ -47,7 +47,7 @@ Her is an explanation of the different key configuration variables.
   * [SEARCH INDEX KEY]
   * [MIDDLEWARE API KEY]
   * @TODO Document placeholders [...]
-  
+
 <pre>
 Things in boxes are commands that should be executed or configuration thats need in the files given.
 </pre>
@@ -98,7 +98,7 @@ Common SSL-configuration defined in includes/ssl_aroskanalen.conf:
   # This should be identicial for all vhosts (nginx < 1.9.6)
   ssl_session_timeout 5m;
   ssl_session_cache shared:SSL:10m;
-  
+
   # See https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
   ssl_prefer_server_ciphers On;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
@@ -218,7 +218,7 @@ nano -w /home/www/middleware/config.json
 }
 </pre>
 
-Before starting and testing the middleware application you need to create the _apikeys.json_ file with an empty JSON object or optionally added the demo key below. If you only add an empty (_{}_) JSON object you need to use the middleware UI through a web-browser to add API keys. It will help you generate random keys. 
+Before starting and testing the middleware application you need to create the _apikeys.json_ file with an empty JSON object or optionally added the demo key below. If you only add an empty (_{}_) JSON object you need to use the middleware UI through a web-browser to add API keys. It will help you generate random keys.
 
 __Note:__ Each installation of the administration interface (Symfony backend) and screens requires a new API key to ensure separation of data in the middleware. The middleware UI also provides a status page to reload and logout screen and see if the screens are connected to the middleware.
 
@@ -432,13 +432,13 @@ sudo service supervisor restart
 
 As mentioned the search node is not specially created for aroskanalen, so the mappings (configuration for elasticsearch) can be somewhat complex to setup in the UI. To get you started the mapping below can be used as a template for the configuration.
 
-As we need the UI to complete the setup correctly the node application needs to have write access to the files. 
+As we need the UI to complete the setup correctly the node application needs to have write access to the files.
 <pre>
 cd /home/www/search_node/
 chmod +w apikeys.json mappings.json
 </pre>
 
-Now use the UI (https://search-[server name].aroskanalen.dk) and add a new api key. Then go to the mappings tabs in the UI and add a new empty mapping. Next edit the mappings file and add the _fields_, _tag_ and _dates_ section as in the template. This way you will get a new API key and search index key for each installation. __Note_ that each installation of the _admin_ application requires a new API key and search index. 
+Now use the UI (https://search-[server name].aroskanalen.dk) and add a new api key. Then go to the mappings tabs in the UI and add a new empty mapping. Next edit the mappings file and add the _fields_, _tag_ and _dates_ section as in the template. This way you will get a new API key and search index key for each installation. __Note_ that each installation of the _admin_ application requires a new API key and search index.
 
 <pre>
 nano -w /home/www/search_node/mappings.json
@@ -564,7 +564,7 @@ parameters:
 
     koba_apikey: [KOBA API KEY]
     koba_path: 'http://koba.aarhus.dk'
-    
+
     version: [RELEASE_VERSION]
 
     itk_log_version: 1
@@ -867,9 +867,9 @@ sudo service nginx restart
 
  * _nginx -t_ can be used to test configuration file.
  * _ps -ef | grep node_ to see if the node applications are running (middleware and search node)
- * _node app.js_ can be used to run the middleware and search node manual to see if they throw an errors, which may give an hit to whats wronge. 
- 
+ * _node app.js_ can be used to run the middleware and search node manual to see if they throw an errors, which may give an hit to whats wronge.
+
  __Note__ that the supervisor have to be stop first our the communication port is already in use (an gives an error).
  * _php app/console ik:push --force_ can be used to force push content from the administration interface to the middleware.
  * You can logout of a screen by pressing __ctrl+l__ at any time.
- * If indexes are defined, but the index list is empty, you may have to restart the "elasticsearch" and "redis-server services" 
+ * If indexes are defined, but the index list is empty, you may have to restart the "elasticsearch" and "redis-server services"
