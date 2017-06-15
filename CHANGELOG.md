@@ -22,6 +22,8 @@
 * Re-added 401 redirects to /login.
 * Fixed priorities of cron.
 * Fixed issue with Feed service and js where the feed was displayed as empty.
+* Cleaned up vagrant.
+* Change fallback image to os2display.
 
 ## v4.0.1
 
