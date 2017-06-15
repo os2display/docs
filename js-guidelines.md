@@ -1,15 +1,12 @@
-Javacript guidelines
-==========
+# Javacript guidelines
 
-Content
-----------
+## Content
 
 1. [File structure](#file-structure)
 2. [Comments](#comments)
 
 <a name="file-structure"></a>
-1. File structure
-----------
+## 1. File structure
 
 ### Admin
 To extend the __admin__ create a new Angular module or app and place it in web/apps/.
@@ -17,8 +14,7 @@ To extend the __admin__ create a new Angular module or app and place it in web/a
 Enable the module or app by adding them to app/config/modules.yml or app/config/apps.yml. Each file that should be loaded should be added to these files.  
 
 <a name="comments"></a>
-2. Comments
-----------
+## 2. Comments
 
 Inline documentation for source files should follow the <a href="https://drupal.org/node/1354">Doxygen formatting conventions</a>.
 
