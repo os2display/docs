@@ -2,15 +2,17 @@
 
 ## In development
 
-_admin_
+### release/v4.1.0
 
-* Removed SonataUser bundle. (feature/OS2DISP-7_remove_sonata)
-* Updated symfony to 2.8.19. (feature/OS2DISP-7_remove_sonata)
-* Fixed doctrine migrations to be able to run from an empty database. (feature/OS2DISP-7_remove_sonata)
-* Remove files from web/bundles that should have been ignore. (feature/OS2DISP-7_remove_sonata)
-* Fixed form styling (feature/OS2DISP-81_control_panel_form_styling)
-* Added close functionality when clicking outside panel menu (feature/OS2DISP-82_panel_menu_close)
-* Changed "All/Mine" filter to be stored in localStorage
+* Added group based controls to all content.
+* Added user admin system.
+* Removed SonataUser bundle.
+* Updated symfony to 2.8.19.
+* Fixed doctrine migrations to be able to run from an empty database.
+* Remove files from web/bundles that should have been ignore.
+* Fixed form styling.
+* Added close functionality when clicking outside panel menu.
+* Changed "All/Mine" filter to be stored in localStorage.
 
 ### v4.0.2
 
