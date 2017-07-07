@@ -13,6 +13,8 @@
 * Fixed form styling.
 * Added close functionality when clicking outside panel menu.
 * Changed "All/Mine" filter to be stored in localStorage.
+* Fixed issue where groups could be unassigned by users that did not have permission.
+* Added unavailable groups to ui when selecting groups.
 
 ### v4.0.2
 
