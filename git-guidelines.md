@@ -1,5 +1,4 @@
-Git & Git-flow guidelines
-==========
+# Git & Git-flow guidelines
 
 __TODO__ jeskr: Remove the git-flow commands and use normal git commands. This will make it eaiser for other developers to understand what happens.
 
@@ -15,8 +14,7 @@ sensible and only do this when necessary and make sure you don't break it for ev
 Below is only summarized, so be sure to familiarize yourself with the above mentioned. For a
 visual summary see this [Cheat Sheet](http://danielkummer.github.io/git-flow-cheatsheet/).
 
-Content
-----------
+## Content
 
 1. [Workflow](#workflow)
 2. [Branch Model](#branches)
@@ -26,8 +24,6 @@ Content
 6. [Maintenance Branches](#maintenance)
 7. [Gitflow made visual](#visual)
 8. [Commit messages](#commit)
-
-
 
 ### Daily Workflow
 
@@ -39,13 +35,11 @@ Content
 _Never work directly in either master or develop_
 
 
-
 <a name="branches"></a>
-2. Branch Model
-----------
+## 2. Branch Model
 
 <a name="main"></a>
-1. Main Branches
+## 3. Main Branches
 
 
 We use to main branches to store our project history, these branches have an _infinite lifetime_.
@@ -66,8 +60,7 @@ Temporary branches should always be deleted after completion.
 
 
 <a name="feature"></a>
-3. Feature Branches
-----------
+### 4. Feature Branches
 
 New features should reside in its own branch, which can then be pushed to the central repository. Never branch off of master, feature branches use develop as their parent. When a feature is completed, it is merged back into develop. Feature branches should never interact directly with master.
 
@@ -119,8 +112,7 @@ git push origin :feature/[name]
 
 
 <a name="release"></a>
-4. Release Branches
-----------
+## 4. Release Branches
 
 When enough features have been accumulated into the develop branch a release branch is created. While this might seem redundant for smaller updates it ensures that we can always develop/test/launch/roolback with out issues.
 
@@ -154,8 +146,7 @@ git push origin [version]
 
 
 <a name="maintenance"></a>
-5. Maintenance Branches
-----------
+## 5. Maintenance Branches
 
 Maintenance or "hotfix" branches are used to quickly patch production releases. This is the only branch that can and should branch out directly of master. As soon as the fix is complete, it should be merged into both master and develop (or the current release branch), and master should be tagged with an updated version number.
 
@@ -168,17 +159,14 @@ __Conventions:__
 
 
 <a name="visual"></a>
-6. Visual view of Gitflow model
-----------
+## 6. Visual view of Gitflow model
 
 ![gitflow](assets/git-workflow-gitflow.png "Gitflow, image taken from atlassian.com")
 image courtesy of atlassian.com
 
 
-
 <a name="devsetup"></a>
-7. Mapping git flow to our dev setup
-----------
+## 7. Mapping git flow to our dev setup
 
 In a typical project the various branches will map to our development setup as follows:
 
@@ -193,8 +181,7 @@ In a typical project the various branches will map to our development setup as f
 
 
 <a name="commit"></a>
-8. Writing good commit messages
-----------
+## 8. Writing good commit messages
 
 Good commit messages serve three important purposes:
 
@@ -212,7 +199,6 @@ Structure your commit message like this:
 >the particular solution.
 
 ### Do
-
 
 * Write the summary line and description of what you have done in past tense, indicating that the event took place in the past. Write "fixed", "added", "changed", "updated" instead of "fix", "add", "chang", "update.
 * Line break the commit message (to make the commit message readable without having to scroll horizontally).

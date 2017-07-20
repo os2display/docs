@@ -1,18 +1,14 @@
-Template guidelines
-==========
+# Template guidelines
 
-Content
-----------
+## Content
 
 1. [Description](#description)
 2. [Custom templates](#custon-templates)
 2. [.json files](#json)
 
 
-
 <a name="description"></a>
-1. Description
-----------
+## 1. Description
 
 __os2display__ contains templates for screens and slides. These are used to create content for the screens.
 
@@ -30,8 +26,7 @@ The web/templates/ folder contains
 
 
 <a name="custom-templates"></a>
-2. Custom templates
-----------
+## 2. Custom templates
 
 A custom template should be added to an organization folder inside _web/templates/_, and each custom template name should be prefixed by the organization creating it to avoid name clashes.
 
@@ -61,8 +56,7 @@ All new folders added to web/templates/ are ignored in __admin__.
 
 
 <a name="json"></a>
-3. .json files
-----------
+## 3. .json files
 
 The .json files are the most important files of the templates since they contain all the metadata for the template. These are the files the ik:templates:load command looks for when adding templates to the system. 
 

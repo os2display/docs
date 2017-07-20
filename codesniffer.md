@@ -7,13 +7,13 @@ This guide will explain the steps needed to setup Code Sniffer with Drupal codin
 
 __IMPORTANT!__ You need brew to perform this task, http://brew.sh/
 
-1. Install code sniffer
+## 1. Install code sniffer
 
   ```Shell
   brew install php-code-sniffer
   ```
   
-2. Download [Drupal Coder Module](https://drupal.org/project/coder)
+## 2. Download [Drupal Coder Module](https://drupal.org/project/coder)
 
   Make sure you are in your home dir
 
@@ -27,7 +27,7 @@ __IMPORTANT!__ You need brew to perform this task, http://brew.sh/
 
   If you don't have wget install it using _brew install wget_
 
-3. Unpack Coder module. I place it in ~/.drupal-coder
+## 3. Unpack Coder module. I place it in ~/.drupal-coder
 
   ```Shell
   tar -xzf coder-8.x-2.8.tar.gz
@@ -35,7 +35,7 @@ __IMPORTANT!__ You need brew to perform this task, http://brew.sh/
   rm coder-8.x-2.8.tar.gz
   ```
 
-4. Create symlink to Drupals code standards.
+## 4. Create symlink to Drupals code standards.
 
   Brew installs Code Sniffer into _/usr/local/Cellar/php-code-sniffer/[VERSION]/_
   We want a symlink pointing at Drupals code standards in _/usr/local/Cellar/php-code-sniffer/[VERSION]/CodeSniffer/Standards/_ for example

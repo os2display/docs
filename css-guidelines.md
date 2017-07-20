@@ -1,9 +1,6 @@
-CSS guidelines (SCSS)
-==========
-
+# CSS guidelines (SCSS)
 
 These are *guidelines*, and if you think it's necessary to deviate feel free to do so, **but** please [be sensible](http://csswizardry.com/2010/08/semantics-and-sensibility/) and do this only because it's necessary.
-
 
 * Be familiar with [SCSS](http://sass-lang.com/)
 * Read [this](http://www.jakobloekkemadsen.com/2013/07/css-abstractions-done-right/)
@@ -14,8 +11,7 @@ These are *guidelines*, and if you think it's necessary to deviate feel free to 
 * [DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 * Use [single-direction margin declarations](http://csswizardry.com/2012/06/single-direction-margin-declarations/)
 
-Content
-----------
+## Content
 
 1. [Comments](#comments)
 2. [File structure](#file-structure)
@@ -26,8 +22,7 @@ Content
 7. [Exceptions and deviations](#exceptions-and-deviations)
 
 <a name="comments"></a>
-1. Comments
-----------
+## 1. Comments
 
 * Place inline comments on a new line above the subject
 
@@ -54,8 +49,7 @@ Content
 ```
 
 <a name="file-structure"></a>
-2. File structure
-----------
+## 2. File structure
 
 - Files that contains multiple words are separated with dashes e.g. <code>_my-module.scss</code>
 
@@ -83,8 +77,7 @@ sass/
 ```
 
 <a name="naming-states"></a>
-3. Naming and states
-----------
+## 3. Naming and states
 
 ### Naming
 
@@ -110,10 +103,10 @@ Naming are based (very) loosely on BEM. Module elements is separated with two da
 }
 ```
 
-###Structue
+### Structue
 Structure the sass modules as logical patterns.
 
-####Folders
+#### Folders
    
    - Base: default base styles. Should be included in every project to set som reasonable defaults sitewide.
    - Base-module: folder holding the default/fallback styles for all components in the project (and across projects).
@@ -123,9 +116,6 @@ Structure the sass modules as logical patterns.
    - Modules: Site specific styles extending patterns and adding custom code. Each module should have a logical and isolated usage.
    - Pattern: Components should hold mostly if not only silent classes (%list, %list--item, %list--link etc.)
    - Theme: For site specific default variables, mixins and global silent classes
-
-
-
 
 ### States
 If states are needed prefix it with <code>.is-</code>, <code>.has-</code> etc., also check out the [javascript guidelines](js-guidelines.md).
@@ -148,8 +138,7 @@ If states are needed prefix it with <code>.is-</code>, <code>.has-</code> etc., 
 ```
 
 <a name="declaration-order"></a>
-4. Declaration order
-----------
+## 4. Declaration order
 
 * One selector per line
 * Add a single space after the colon of the declaration
@@ -191,8 +180,7 @@ If states are needed prefix it with <code>.is-</code>, <code>.has-</code> etc., 
 ```
 
 <a name="media-queries"></a>
-5. Media queries
-----------
+## 5. Media queries
 
 * Add media query <code>@includes</code> after other <code>@includes</code> and <code>@extends</code>
 
@@ -215,16 +203,14 @@ If states are needed prefix it with <code>.is-</code>, <code>.has-</code> etc., 
 ```
 
 <a name="javascript"></a>
-6. Javascript
-----------
+## 6. Javascript
 
 * Don't use <code>.js-</code> for styling
 
 [See javascript guidelines](js-guidelines.md)
 
 <a name="exceptions-and-deviations"></a>
-7. Exceptions and deviations
-----------
+## 7. Exceptions and deviations
 
 * You can nest two levels when using pseudo classes
 * You can nest two levels when using media queries mixins

@@ -1,5 +1,4 @@
-Code standards
-==========
+# Code standards
 
 This document is a guideline for writing good standardized and readable code when working with os2display.
 
@@ -14,15 +13,14 @@ The guidelines should help achieve:
 
 Contributions to the core project will be reviewed by members of the core team. These guidelines should inform contributors about what to expect in such a review. If a review comment cannot be traced back to one of these guidelines it indicates that the guidelines should be updated to ensure transparency.
 
-### Be familiar with
+## Be familiar with
 
 * [Drupal Coding Standards](https://drupal.org/coding-standards)
 * and [PHP codesniffer](http://pear.php.net/manual/en/package.php.php-codesniffer.php)
 
 __TODO:__ There must be som AngularJS and Symfony links needed here to?
 
-Content
-----------
+## Content
 
 1. [Coding Standards](#coding_standards)
 2. [Naming](#naming)
@@ -31,8 +29,7 @@ Content
 
 
 <a name="coding_standards"></a>
-1. Coding Standards
-----------
+## 1. Coding Standards
 
 ### PHP
 
@@ -111,7 +108,7 @@ New additions should be implemented in the __styleguide__.
 
 When the __styleguide__ css has been compiled (also with gulp) it should be copied to __admin__ in place of admin/web/css/styles-new.css.
 
-## Styleguide
+### Styleguide
 
 To build the sass:
 
@@ -151,8 +148,7 @@ Development should be conducted in the vagrant environment __[vagrant link]__ to
 
 
 <a name="naming"></a>
-2. Naming
-----------
+## 2. Naming
 
 ### General
 
@@ -169,8 +165,7 @@ Repositories should be named after the bundle contained within.
 
 
 <a name="platform_support"></a>
-3. Platform support
-----------
+## 3. Platform support
 
 Os2display is developed for newer browsers (Chrome, Firefox, IE > 9). 
 

@@ -27,6 +27,8 @@
 * Re-added 401 redirects to /login.
 * Fixed priorities of cron.
 * Fixed issue with Feed service and js where the feed was displayed as empty.
+* Cleaned up vagrant.
+* Change fallback image to os2display.
 
 ### v4.0.1
 
@@ -120,7 +122,6 @@ _Screen_
 * NB! Requires screen reload for changes to apply
 
 ### v3.5.3
-
 _Admin_
 * Added remove screen call to middleware on screen delete in administration
 * Made search filter configurable
@@ -134,7 +135,6 @@ _Screen_
 * Added UUID cookie to identify a given screen.
 
 ### v3.5.2
-
 _Admin_
 * Fixed instagram template not restarting
 
@@ -147,7 +147,6 @@ _Middleware_
 * Fixed race condition between screens connecting at the same time
 
 ### v3.5.0
-
 _Admin_
 * Added gulp tasks to compile js and sass
 * Changed how icons are used (Removed sprites)

@@ -1,5 +1,4 @@
-TODO / Feature requests
-==========
+# TODO / Feature requests
 
 * Renaming from Indholdskanalen/Aroskanalen to os2display.
 * Include a test suite.
@@ -33,9 +32,7 @@ TODO / Feature requests
 * Supply a new version of video support that does not rely on ZenCoder.
 
 
-
-Proposed new structure for os2display admin
-===========
+# Proposed new structure for os2display admin
 
 To make os2display modular so different installations can offer different features, the following structure is proposed.
 
