@@ -15,6 +15,9 @@
 * Changed "All/Mine" filter to be stored in localStorage.
 * Fixed issue where groups could be unassigned by users that did not have permission.
 * Added unavailable groups to ui when selecting groups.
+* Fixed filter bug with media.
+* Fixed bug where screen template could not be changed.
+* Added group search to channel picker widget in screen create.
 
 ### v4.0.2
 
