@@ -12,6 +12,7 @@
   reflect the new structure. The template scanner will go through all files in
   `web/bundles/` and look for public/templates/ folders.
 * See admin/UPGRADELOG.md for instructions to upgrade.
+* Made "Continue" button sticky for slide and channel creation.
 
 ### v4.1.0
 
