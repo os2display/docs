@@ -18,6 +18,7 @@
 * Fixed filter bug with media.
 * Fixed bug where screen template could not be changed.
 * Added group search to channel picker widget in screen create.
+* Middleware: Fixed fav-icon error in node 6.x.
 
 ## v4.1.0
 
