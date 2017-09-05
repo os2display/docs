@@ -2,7 +2,7 @@
 
 ## In development
 
-### v4.2.0
+## v4.2.0
 
 * Added group based controls to all content.
 * Added user admin system.
