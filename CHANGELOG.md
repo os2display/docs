@@ -11,7 +11,7 @@
   This results in a need to go through all templates paths and make sure they
   reflect the new structure. The template scanner will go through all files in
   `web/bundles/` and look for public/templates/ folders.
-* See admin/CHANGElOG.md for instructions to upgrade.
+* See admin/UPGRADELOG.md for instructions to upgrade.
 
 ### v4.1.0
 
