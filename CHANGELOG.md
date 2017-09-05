@@ -2,7 +2,7 @@
 
 ## In development
 
-### release/v4.1.0
+### v4.2.0
 
 * Added group based controls to all content.
 * Added user admin system.
@@ -15,9 +15,21 @@
 * Changed "All/Mine" filter to be stored in localStorage.
 * Fixed issue where groups could be unassigned by users that did not have permission.
 * Added unavailable groups to ui when selecting groups.
+* Fixed filter bug with media.
+* Fixed bug where screen template could not be changed.
+* Added group search to channel picker widget in screen create.
 
-### v4.0.2
+## v4.1.0
 
+* Fixed issue with video sources not loaded.
+* Fixed missing logo for slideshow slides.
+* Added slideshow slide_type.
+* Added slideshow template to default_templates.
+* Added drag and drop functionality.
+* Increased number of media that can be uploaded at the same time.
+* Added info about slides/channels that have are not scheduled to be show "now"
+* Added stripes over slides that are not scheduled to be shown in "create channel".
+* Added sorting buttons to slide order in "create channel".
 * Fixed gulpscript with new template folder names.
 * Fixed screen description field being overridden by title.
 * Added option "interest_interval" to calendar slide options. This field will make the slide read X days into the future instead of only current day.
@@ -27,8 +39,6 @@
 * Re-added 401 redirects to /login.
 * Fixed priorities of cron.
 * Fixed issue with Feed service and js where the feed was displayed as empty.
-* Cleaned up vagrant.
-* Change fallback image to os2display.
 
 ### v4.0.1
 
