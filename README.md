@@ -10,8 +10,6 @@
 6. [Todos](#todo)
 7. [Links](#links)
 
-
-
 <a name="description"></a>
 ## 1. Description
 
@@ -27,14 +25,10 @@ It consists of the following parts:
 * __styleguide__: a display of the available UI elements in __admin__.
 * __vagrant__: a vagrant development setup. See [https://www.vagrantup.com/](https://www.vagrantup.com/).
 
-
-
 <a name="license"></a>
 ## 2. License
 
 See [License](LICENSE.txt).
-
-
 
 <a name="status"></a>
 ## 3. Status
@@ -47,14 +41,10 @@ On the styling front the __styleguide__ has been introduced. The goal is to have
 
 At the moment we have a lot of legacy sass in the web/sass/ folder of the __admin__. 
 
-
-
 <a name="templates"></a>
 ## 4. Templates
 
 It is possible to extend os2display with new templates. These should be placed in the _web/templates/[organization]/_ folder. See [template-guidelines.md](template-guidelines.md) for details concerning templates.
-
-
 
 <a name="guidelines"></a>
 ## 5. Guidelines
@@ -68,12 +58,10 @@ Guidelines for developing for os2display
 * [Javascript guidelines](js-guidelines.md)
 * [Template guidelines](template-guidelines.md)
 
-
 <a name="todo"></a>
 ## 6. TODOs
 
 See [todo.md](todo.md) for a list of todos and feature requests.
-
 
 <a name="links"></a>
 ## 7. Links
