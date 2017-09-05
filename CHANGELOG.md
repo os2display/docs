@@ -2,7 +2,18 @@
 
 ## In development
 
-### release/v4.1.0
+### feature/custom-tools
+
+* Rewrite of slide tools integration in admin interface. Now the tools are
+  directives that can be injected in the administration.
+* Cleanup of `web/` folder. Now all files have been moved to bundles in `src/`.
+  The files are now installed from the bundles' `Resources/public/` folder.
+  This results in a need to go through all templates paths and make sure they
+  reflect the new structure. The template scanner will go through all files in
+  `web/bundles/` and look for public/templates/ folders.
+* See admin/CHANGElOG.md for instructions to upgrade.
+
+### v4.1.0
 
 * Added group based controls to all content.
 * Added user admin system.
