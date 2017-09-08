@@ -11,7 +11,13 @@
   This results in a need to go through all templates paths and make sure they
   reflect the new structure. The template scanner will go through all files in
   `web/bundles/` and look for public/templates/ folders.
-* See admin/CHANGElOG.md for instructions to upgrade.
+* See admin/UPGRADELOG.md for instructions to upgrade.
+* Made "Continue" button sticky for slide and channel creation.
+
+### v4.2.0
+
+* Added command to create shared group for all content and users.
+* Bumped up tag to align with github.com/os2display.
 
 ### v4.1.0
 
