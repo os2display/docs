@@ -2,7 +2,13 @@
 
 ## In development
 
-### v4.2.0
+### v4.2.1
+
+* Fixed performance issue with Eager fetch strategy for Groups leading to
+  high loads.
+* Added command to create shared group for all content and users.
+
+## v4.2.0
 
 * Added group based controls to all content.
 * Added user admin system.
@@ -18,6 +24,7 @@
 * Fixed filter bug with media.
 * Fixed bug where screen template could not be changed.
 * Added group search to channel picker widget in screen create.
+* Middleware: Fixed fav-icon error in node 6.x.
 
 ## v4.1.0
 
