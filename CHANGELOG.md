@@ -14,6 +14,11 @@
 * See admin/UPGRADELOG.md for instructions to upgrade.
 * Made "Continue" button sticky for slide and channel creation.
 
+### v4.2.1
+
+* Fixed performance issue with Eager fetch strategy for Groups leading to
+  high loads.
+
 ### v4.2.0
 
 * Added command to create shared group for all content and users.
