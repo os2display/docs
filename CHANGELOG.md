@@ -2,6 +2,12 @@
 
 ## In development
 
+### v4.2.1
+
+* Fixed performance issue with Eager fetch strategy for Groups leading to
+  high loads.
+* Added command to create shared group for all content and users.
+
 ## v4.2.0
 
 * Added group based controls to all content.
