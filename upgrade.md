@@ -1,5 +1,27 @@
 # Upgrade log.
 
+## v4.1 => v4.2.0
+
+As part of v4.2.0 the migrations have been cleaned up. This was done to make it possible to build os2display/admin from a clean db. To upgrade from v4.1.0 => v4.2.0 do the following. This will cleanup the migrations table and set the correct migration point before migration to the newest version.
+
+```
+git fetch
+git checkout v4.2.0
+composer install
+php app/console doctrine:query:sql "TRUNCATE TABLE migration_versions"
+php app/console doctrine:migrations:version --add 20160622153459 --no-interaction
+php app/console doctrine:migrations:version --add 20160629145821 --no-interaction
+php app/console doctrine:migrations:migrate
+nano app/config/parameters.yml:
+ - locale: da
+ - version: v4.2.0
+php app/console cache:clear --env=prod
+php app/console ik:templates:load
+php app/console ik:reindex
+```
+
+The reindex is necessary because the groups field has to be indexed to be searchable.
+
 ## 3.5.11 => 4.0.0
 
 <pre>
