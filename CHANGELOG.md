@@ -14,6 +14,12 @@
 * See admin/UPGRADELOG.md for instructions to upgrade.
 * Made "Continue" button sticky for slide and channel creation.
 
+### v4.2.2
+
+* Fixed performance issues with groups for larger installations.
+* Added no results text to overviews.
+* Fixed timeline user filter.
+
 ### v4.2.1
 
 * Fixed performance issue with Eager fetch strategy for Groups leading to
