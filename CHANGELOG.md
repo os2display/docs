@@ -14,6 +14,12 @@
 * See admin/UPGRADELOG.md for instructions to upgrade.
 * Made "Continue" button sticky for slide and channel creation.
 
+### v4.2.3
+
+* Fixed performance issues with serialization.
+* Fixed timeline issues.
+* Added "No results" text to searches.
+
 ### v4.2.2
 
 * Fixed performance issues with groups for larger installations.
