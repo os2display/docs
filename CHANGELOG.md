@@ -14,6 +14,13 @@
 * See admin/UPGRADELOG.md for instructions to upgrade.
 * Made "Continue" button sticky for slide and channel creation.
 
+### hotfix/support-1201-4
+
+* Fixed issue with media overview where the correct media type was not set.
+* Fixed issue where groups box overflowed for media overview.
+* Fixed issue where search_node crashed because delete was pushed without id (PreDelete vs. PostDelete doctrine event).
+* Fixed issue where pager was stuck on non-existing page, after new result was loaded with less content.
+
 ### v4.2.3
 
 * Fixed performance issues with serialization.
