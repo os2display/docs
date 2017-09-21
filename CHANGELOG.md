@@ -14,7 +14,7 @@
 * See admin/UPGRADELOG.md for instructions to upgrade.
 * Made "Continue" button sticky for slide and channel creation.
 
-### hotfix/support-1201-4
+### v4.2.4
 
 * Fixed issue with media overview where the correct media type was not set.
 * Fixed issue where groups box overflowed for media overview.
