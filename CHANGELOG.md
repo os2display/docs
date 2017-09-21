@@ -2,8 +2,15 @@
 
 ## In development
 
-### v4.2.1
-
+* Fixed issue with media overview where the correct media type was not set.
+* Fixed issue where groups box overflowed for media overview.
+* Fixed issue where search_node crashed because delete was pushed without id (PreDelete vs. PostDelete doctrine event).
+* Fixed issue where pager was stuck on non-existing page, after new result was loaded with less content.
+* Fixed performance issues with serialization.
+* Fixed timeline performance issues.
+* Fixed performance issues with groups for larger installations.
+* Added no results text to overviews.
+* Fixed timeline user filter.
 * Fixed performance issue with Eager fetch strategy for Groups leading to
   high loads.
 * Added command to create shared group for all content and users.
