@@ -13,6 +13,9 @@
 * Fixed performance issues with groups for larger installations.
 * Added no results text to overviews.
 * Fixed timeline user filter.
+
+### v4.2.1
+
 * Fixed performance issue with Eager fetch strategy for Groups leading to
   high loads.
 * Added command to create shared group for all content and users.
