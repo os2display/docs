@@ -2,6 +2,8 @@
 
 ## In development
 
+### v4.2.2
+
 * Fixed issue with media overview where the correct media type was not set.
 * Fixed issue where groups box overflowed for media overview.
 * Fixed issue where search_node crashed because delete was pushed without id (PreDelete vs. PostDelete doctrine event).
@@ -15,7 +17,7 @@
   high loads.
 * Added command to create shared group for all content and users.
 
-## v4.2.0
+### v4.2.0
 
 * Added group based controls to all content.
 * Added user admin system.
@@ -33,7 +35,7 @@
 * Added group search to channel picker widget in screen create.
 * Middleware: Fixed fav-icon error in node 6.x.
 
-## v4.1.0
+### v4.1.0
 
 * Fixed issue with video sources not loaded.
 * Fixed missing logo for slideshow slides.
