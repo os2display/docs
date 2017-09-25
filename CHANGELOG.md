@@ -24,6 +24,8 @@
 * Made "Continue" button sticky for slide and channel creation.
 * The styleguide has been moved to os2display/admin-bundle.
 * Removed max for number of users in /admin/users list.
+* Requires PHP 5.6 now.
+* Upgraded Symfony.
 
 ### v4.2.4
 
