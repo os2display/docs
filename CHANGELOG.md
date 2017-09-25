@@ -2,24 +2,39 @@
 
 ## In development
 
-### feature/custom-tools
+### release/5.0.0
 
+* All bundles in src/ have been move to seperate bundles. These will be imported
+  with composer now:
+
+  - os2display/core-bundle: Contains entities, API and services.
+  - os2display/admin-bundle: Contains the administration.
+  - os2display/default-template-bundle: Contains default templates and tools.
+
+* As a result the os2display/admin (5.0.0) project contains no code, but only
+  configuration.
 * Rewrite of slide tools integration in admin interface. Now the tools are
   directives that can be injected in the administration.
-* Cleanup of `web/` folder. Now all files have been moved to bundles in `src/`.
+* Cleanup of `web/` folder. Now all files have been moved to bundles.
   The files are now installed from the bundles' `Resources/public/` folder.
   This results in a need to go through all templates paths and make sure they
-  reflect the new structure. The template scanner will go through all files in
-  `web/bundles/` and look for public/templates/ folders.
+  reflect the new structure. The template scanner will go through all
+  directories in `web/bundles/` and look for public/templates/ folders.
 * See admin/UPGRADELOG.md for instructions to upgrade.
 * Made "Continue" button sticky for slide and channel creation.
+* The styleguide has been moved to os2display/admin-bundle.
+* Removed max for number of users in /admin/users list.
+* Requires PHP 5.6 now.
+* Upgraded Symfony.
 
 ### v4.2.4
 
 * Fixed issue with media overview where the correct media type was not set.
 * Fixed issue where groups box overflowed for media overview.
-* Fixed issue where search_node crashed because delete was pushed without id (PreDelete vs. PostDelete doctrine event).
-* Fixed issue where pager was stuck on non-existing page, after new result was loaded with less content.
+* Fixed issue where search_node crashed because delete was pushed without id
+  (PreDelete vs. PostDelete doctrine event).
+* Fixed issue where pager was stuck on non-existing page, after new result was
+  loaded with less content.
 
 ### v4.2.3
 
