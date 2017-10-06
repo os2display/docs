@@ -20,9 +20,9 @@ RESET=$(tput sgr0)
 
 # Versions
 SERACH_NODE_VERSION="v2.1.8"
-MIDDLEWARE_VERSION="v4.0.2"
-ADMIN_VERSION="development"
-SCREEN_VERSION="v4.0.1"
+MIDDLEWARE_VERSION="v4.2.2"
+ADMIN_VERSION="v4.2.2"
+SCREEN_VERSION="v4.2.2"
 
 ##
 # Add SSL certificates.
@@ -317,7 +317,7 @@ function setupMiddleWare {
 		fi
 		if [ ! -d $INSTALL_PATH ]; then
 			mkdir -p $INSTALL_PATH
-			git clone https://github.com/itk-os2display/middleware.git ${INSTALL_PATH}/.
+			git clone https://github.com/os2display/middleware.git ${INSTALL_PATH}/.
 			break
 		fi
 		echo "${RED}Please use another path, that don't exists allready!${RESET}"
@@ -503,7 +503,7 @@ function setupAdmin {
 		fi
 		if [ ! -d $INSTALL_PATH ]; then
 			mkdir -p $INSTALL_PATH
-			git clone https://github.com/itk-os2display/admin.git ${INSTALL_PATH}/.
+			git clone https://github.com/os2display/admin.git ${INSTALL_PATH}/.
 			break
 		fi
 		echo "${RED}Please use another path, that don't exists allready!${RESET}"
@@ -810,7 +810,7 @@ function setupScreen {
 		fi
 		if [ ! -d $INSTALL_PATH ]; then
 			mkdir -p $INSTALL_PATH
-			git clone https://github.com/itk-os2display/screen.git ${INSTALL_PATH}/.
+			git clone https://github.com/os2display/screen.git ${INSTALL_PATH}/.
 			break
 		fi
 		echo "${RED}Please use another path, that don't exists allready!${RESET}"
