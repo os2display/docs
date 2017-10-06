@@ -27,6 +27,11 @@
 * Requires PHP 5.6 now.
 * Upgraded Symfony.
 
+### admin: hotfix/support-1256
+
+* Removed unnecessary call to get all slides during channel edit.
+* Fixed issue with deleting a group linked to content.
+
 ### v4.2.4
 
 * Fixed issue with media overview where the correct media type was not set.
