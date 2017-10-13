@@ -19,10 +19,10 @@ YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 # Versions
-SERACH_NODE_VERSION="v2.1.8"
-MIDDLEWARE_VERSION="v4.2.2"
-ADMIN_VERSION="v4.2.2"
-SCREEN_VERSION="v4.2.2"
+SEARCH_NODE_VERSION="v2.1.8"
+MIDDLEWARE_VERSION="5.0.0"
+ADMIN_VERSION="5.0.0"
+SCREEN_VERSION="5.0.0"
 
 ##
 # Add SSL certificates.
@@ -131,7 +131,7 @@ function setupSearchNode {
 
 	# Checkout version
 	cd $INSTALL_PATH
-	git checkout ${SERACH_NODE_VERSION}
+	git checkout ${SEARCH_NODE_VERSION}
 
 	# Ensure logs folder exists.
 	if [ ! -d ${INSTALL_PATH}/logs ]; then
@@ -644,12 +644,12 @@ DELIM
   fi
 
   # Search information.
-  read -p "Search host (https://search.example.com): " SERACH_HOST
-  if [ -z $SERACH_HOST ]; then
-    SERACH_HOST="https://search.example.com"
+  read -p "Search host (https://search.example.com): " SEARCH_HOST
+  if [ -z $SEARCH_HOST ]; then
+    SEARCH_HOST="https://search.example.com"
   fi
-  read -p "Search API key: " SERACH_APIKEY
-  read -p "Search index: " SERACH_INDEX
+  read -p "Search API key: " SEARCH_APIKEY
+  read -p "Search index: " SEARCH_INDEX
 
   # Middleware information.
   read -p "Middleware host (https://middleware.example.com): " MIDDLEWARE_HOST
@@ -657,10 +657,6 @@ DELIM
     MIDDLEWARE_HOST="https://middleware.example.com"
   fi
   read -p "Middleware API key: " MIDDLEWARE_APIKEY
-
-  # Koba information.
-  read -p "KOBA host: " KOBA_HOST
-  read -p "KOBA API key: " KOBA_APIKEY
 
   # Zencoder api key
   read -p "Zencoder API key: " ZENCODER_APIKEY
@@ -707,10 +703,10 @@ parameters:
   sharing_path: /api
   sharing_apikey:
 
-  search_host: ${SERACH_HOST}
+  search_host: ${SEARCH_HOST}
   search_path: /api
-  search_apikey: ${SERACH_APIKEY}
-  search_index: ${SERACH_INDEX}
+  search_apikey: ${SEARCH_APIKEY}
+  search_index: ${SEARCH_INDEX}
   search_filter_default: all
 
   middleware_host: ${MIDDLEWARE_HOST}
@@ -739,9 +735,6 @@ parameters:
     - full-screen-portrait
 
   site_title: ${SITE_TITLE}
-
-  koba_apikey: ${KOBA_APIKEY}
-  koba_path: ${KOBA_HOST}
 
   version: ${ADMIN_VERSION}
 
