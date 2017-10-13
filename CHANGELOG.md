@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 5.0.1
+
+* Updated os2display/core-bundle to 1.0.9.
+* Updated os2display/admin-bundle to 1.0.9.
+
 ## 5.0.0
 
 All bundles in src/ have been move to seperate bundles. These will be imported
