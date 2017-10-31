@@ -2,7 +2,18 @@
 
 ## In development
 
-### release/5.0.0
+## 5.0.2
+
+* Fixed issue with screen tools. Added migration.
+* Added migration to fix issue with ik_grouping entity_type field pointing to old Entity naming.
+* Fixed issue with setup script with nginx location.
+
+## 5.0.1
+
+* Removed unnecessary call to get all slides during channel edit.
+* Fixed issue with deleting a group linked to content.
+
+## 5.0.0
 
 * All bundles in src/ have been move to seperate bundles. These will be imported
   with composer now:
@@ -27,12 +38,7 @@
 * Requires PHP 5.6 now.
 * Upgraded Symfony.
 
-### admin: hotfix/support-1256
-
-* Removed unnecessary call to get all slides during channel edit.
-* Fixed issue with deleting a group linked to content.
-
-### v4.2.4
+## v4.2.4
 
 * Fixed issue with media overview where the correct media type was not set.
 * Fixed issue where groups box overflowed for media overview.
@@ -41,29 +47,29 @@
 * Fixed issue where pager was stuck on non-existing page, after new result was
   loaded with less content.
 
-### v4.2.3
+## v4.2.3
 
 * Fixed performance issues with serialization.
 * Fixed timeline issues.
 * Added "No results" text to searches.
 
-### v4.2.2
+## v4.2.2
 
 * Fixed performance issues with groups for larger installations.
 * Added no results text to overviews.
 * Fixed timeline user filter.
 
-### v4.2.1
+## v4.2.1
 
 * Fixed performance issue with Eager fetch strategy for Groups leading to
   high loads.
 
-### v4.2.0
+## v4.2.0
 
 * Added command to create shared group for all content and users.
 * Bumped up tag to align with github.com/os2display.
 
-### v4.1.0
+## v4.1.0
 
 * Added group based controls to all content.
 * Added user admin system.
@@ -80,7 +86,7 @@
 * Fixed bug where screen template could not be changed.
 * Added group search to channel picker widget in screen create.
 
-### v4.0.2
+## v4.0.2
 
 * Fixed gulpscript with new template folder names.
 * Fixed screen description field being overridden by title.
@@ -94,11 +100,11 @@
 * Cleaned up vagrant.
 * Change fallback image to os2display.
 
-### v4.0.1
+## v4.0.1
 
 * Fixed user creation problems (with Sonata bundles) after Symfony upgrade to 2.8
 
-### v4.0.0
+## v4.0.0
 
 * Introduced Styleguide
 * Implemented new design. css/styles-new.css is the styles generated in the style guide. 
@@ -130,27 +136,27 @@
 
 See [upgrade.md](upgrade.md) for upgrade instructions.
 
-### v3.5.11
+## v3.5.11
 
 * Introduced empty option for background of dokk1 templates.
 
-### v3.5.10
+## v3.5.10
 
 * Re-write zencoder upload/download to use guzzle and job queues
 
-### v3.5.9
+## v3.5.9
 
 * Added event filtering to calendar templates.
 
-### v3.5.8
+## v3.5.8
 
 * Added filter to coming events that hides events with title containing "(usynlig)"
 
-### v3.5.6, v3.5.7
+## v3.5.6, v3.5.7
 
 * Fixed zencoder file upload.
 
-### v3.5.5
+## v3.5.5
 
 _Admin_
 * Added dokk1-coming-events template
@@ -163,7 +169,7 @@ _Screen_
 * Added $filter to region
 * NB! Requires screen reload for changes to apply
 
-### v3.5.4
+## v3.5.4
 
 _Admin_
 * Added mso-four-sections screen template.
@@ -185,7 +191,7 @@ _Screen_
 * Added theme to date component for mso-four-sections template.
 * NB! Requires screen reload for changes to apply
 
-### v3.5.3
+## v3.5.3
 _Admin_
 * Added remove screen call to middleware on screen delete in administration
 * Made search filter configurable
@@ -198,11 +204,11 @@ _Middleware_
 _Screen_
 * Added UUID cookie to identify a given screen.
 
-### v3.5.2
+## v3.5.2
 _Admin_
 * Fixed instagram template not restarting
 
-### v3.5.1
+## v3.5.1
 
 _Admin_
 * Fixed screens/default/three-columns template
@@ -210,7 +216,7 @@ _Admin_
 _Middleware_
 * Fixed race condition between screens connecting at the same time
 
-### v3.5.0
+## v3.5.0
 _Admin_
 * Added gulp tasks to compile js and sass
 * Changed how icons are used (Removed sprites)
@@ -245,11 +251,11 @@ _Middleware_
 * Fixed log out
 * NB! Requires update.sh to be executed.
 
-### v3.4.2
+## v3.4.2
 
 * Reverted "Changed label in dokk1 template"
 
-### v3.4.1
+## v3.4.1
 
 __Admin__
 
@@ -259,7 +265,7 @@ __Admin__
 * Fixed MBU templates issues.
 * Changed label in dokk1 template.
 
-### v3.4.0
+## v3.4.0
 
 __Admin__
 
@@ -285,7 +291,7 @@ __Middelware__
  
  * New logger (run ./update.sh and update config.json) 
 
-### v3.3.0
+## v3.3.0
 
 __Screen__
 
@@ -302,14 +308,14 @@ __Admin__
 * Changed is_admin to be ROLE_ADMIN and ROLE_SUPER_ADMIN, instead of only ROLE_SUPER_ADMIN
 * Fixed positioning bug in dokk1_single_calendar template
 
-### v3.2.1 (hotfix)
+## v3.2.1 (hotfix)
 
 __Admin__
 
 * Fixed bug where content was added between newly created slides
 * Fixed bug where screen template was not loaded correctly when creating a screen
 
-### v3.2.0
+## v3.2.0
 
 __Admin__
 
@@ -320,7 +326,7 @@ __Screen__
 
 * Keyboard logout changed to ctrl+i
 
-### v3.1.0
+## v3.1.0
 
 __Admin__
 
@@ -346,7 +352,7 @@ __Middleware__
 * Fixed screen overview with heartbeat and reload
 * Fixed channel overview
 
-### v3.0.0
+## v3.0.0
 
 __Admin__
 
@@ -360,13 +366,13 @@ __Middleware__
 * Added screen overview with heartbeat and reload
 * Added channel overview
 
-### v1.0.0
+## v1.0.0
 
 * Release 1
 * Video
 * Manual calendar
 
-### v0.0.3
+## v0.0.3
 
 * Added video
 * Fixed text-input areas in slide creation

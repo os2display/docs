@@ -572,7 +572,7 @@ server {
     deny all;
   }
 
-  location /templates/ {
+  location /bundles/ {
     add_header 'Access-Control-Allow-Origin' "*";
   }
 
