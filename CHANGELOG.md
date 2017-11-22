@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.0.2
+
+* Update admin-bundle, core-bundle and default-template-bundle.
+
 ## 5.0.1
 
 * Updated os2display/core-bundle to 1.0.9.
