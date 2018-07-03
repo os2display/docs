@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.1.0
+
+* Changed structure.
+
 ## 5.0.2
 
 * Update admin-bundle, core-bundle and default-template-bundle.

@@ -2,6 +2,8 @@
 
 ## 3. June 2018
 
+* Released admin 5.1.0: https://github.com/os2display/admin/releases/tag/5.1.0
+* Released core-bundle 1.1.0: https://github.com/os2display/core-bundle/releases/tag/1.1.0
 * Released admin-bundle 1.1.0: https://github.com/os2display/admin-bundle/releases/tag/1.1.0
 * Released core-bundle 1.0.11: https://github.com/os2display/core-bundle/releases/tag/1.0.11
 
