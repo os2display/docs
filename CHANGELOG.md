@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 5.0.2
+
+* Update admin-bundle, core-bundle and default-template-bundle.
+* Merged PR: https://github.com/os2display/docs/pull/9 fixing composer signature check.
+
 ## 5.0.1
 
 * Updated os2display/core-bundle to 1.0.9.
