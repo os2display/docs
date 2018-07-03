@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.1.1
+
+* Updated news.
+
 ## 5.1.0
 
 * Changed structure.

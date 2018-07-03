@@ -2,6 +2,8 @@
 
 ## 3. June 2018
 
+* Released middleware 5.0.2: https://github.com/os2display/middleware/releases/tag/5.0.2
+* Released screen 5.0.3: https://github.com/os2display/screen/releases/tag/5.0.3
 * Released admin 5.1.0: https://github.com/os2display/admin/releases/tag/5.1.0
 * Released core-bundle 1.1.0: https://github.com/os2display/core-bundle/releases/tag/1.1.0
 * Released admin-bundle 1.1.0: https://github.com/os2display/admin-bundle/releases/tag/1.1.0
