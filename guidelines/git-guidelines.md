@@ -1,6 +1,6 @@
 # Git & Git-flow guidelines
 
-__TODO__ jeskr: Remove the git-flow commands and use normal git commands. This will make it eaiser for other developers to understand what happens.
+__@TODO__ : Remove the git-flow commands and use normal git commands. This will make it eaiser for other developers to understand what happens.
 
 This document is a guideline for using GIT with loop.
 
