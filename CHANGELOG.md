@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.1.2
+
+* Revised template guidelines to fit new bundle structure.
+
 ## 5.1.1
 
 * Updated news.
