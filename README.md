@@ -6,8 +6,9 @@
 2. [Description](#description)
 3. [License](#license)
 4. [Templates](#templates)
-5. [Guidelines](#guidelines)
-6. [Links](#links)
+5. [Custom Bundles](#custom_bundles)
+6. [Guidelines](#guidelines)
+7. [Links](#links)
 
 <a name="news"></a>
 ## 1. News
@@ -38,8 +39,13 @@ See [License](LICENSE.txt).
 
 See [template-guidelines.md](guidelines/template-guidelines.md) for details concerning templates.
 
+<a name="custom"></a>
+## 4. Templates
+
+See [template-guidelines.md](guidelines/template-guidelines.md) for details concerning templates.
+
 <a name="guidelines"></a>
-## 5. Guidelines
+## 6. Guidelines
 
 Guidelines for developing for os2display
 
@@ -51,7 +57,7 @@ Guidelines for developing for os2display
 * [Template guidelines](guidelines/template-guidelines.md)
 
 <a name="links"></a>
-## 6. Links
+## 7. Links
 
 * See [CHANGELOG.md](CHANGELOG.md) for a list of changes to docs. Each part of the project has its own CHANGELOG.
 * See [installation guide](installation/Installation%20guide.md) for instructions on how to install os2display.
