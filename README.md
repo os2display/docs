@@ -5,8 +5,8 @@
 1. [News](#news)
 2. [Description](#description)
 3. [License](#license)
-4. [Templates](#templates)
-5. [Custom Bundles](#custom_bundles)
+4. [Custom Bundles](#custom_bundles)
+5. [Templates](#templates)
 6. [Guidelines](#guidelines)
 7. [Links](#links)
 
@@ -34,13 +34,13 @@ It consists of the following parts:
 
 See [License](LICENSE.txt).
 
+<a name="custom_bundles"></a>
+## 4. Custom Bundles
+
+See [custom-bundles-guidelines.md](guidelines/custom-bundles-guidelines.md) for instructions on making custom bundles.
+
 <a name="templates"></a>
-## 4. Templates
-
-See [template-guidelines.md](guidelines/template-guidelines.md) for details concerning templates.
-
-<a name="custom"></a>
-## 4. Templates
+## 5. Templates
 
 See [template-guidelines.md](guidelines/template-guidelines.md) for details concerning templates.
 

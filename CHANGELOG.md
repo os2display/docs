@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.1.3
+
+* Added instructions for custom bundles.
+
 ## 5.1.2
 
 * Revised template guidelines to fit new bundle structure.
