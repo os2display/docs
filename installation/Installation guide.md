@@ -479,6 +479,8 @@ nano -w /home/www/search_node/mappings.json
 }
 </pre>
 
+### Activating the search index
+
 When you have update the mappings file go back into the UI and select the indexes that you need by edit the API key and select it/them in the edit window. Before a given index can be used you need to activate it in the _indexes_ tab. So do that now.
 
 ### UI
