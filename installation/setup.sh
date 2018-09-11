@@ -3,8 +3,8 @@
 ###################################################
 # Configure new os2display site
 #
-# 1) Setup clone search node - if it don't exists
-# 2) Setup clone middleware - if it don't exists
+# 1) Setup clone search node - if it doesn't exist
+# 2) Setup clone middleware - if it doesn't exist
 # 3) Add screen UI
 # 4) Add administrative UI
 #
@@ -93,8 +93,8 @@ DELIM
         ;;
 
     [Nn]* )
-        read -p "Location of the SSL certificate: " CERT
-        read -p "Location of the SSL certificate key: " CERTKEY
+        read -p "Location of the SSL certificate (path with filename): " CERT
+        read -p "Location of the SSL certificate key (path with filename): " CERTKEY
         break
         ;;
 
@@ -145,7 +145,7 @@ function setupSearchNode {
 	# Configure nginx
 	read -p "Search node FQDN (search.example.com): " DOMAIN
 	if [ -z $DOMAIN ]; then
-		DOMAIN="search.exsample.com"
+		DOMAIN="search.example.com"
 	fi
 
 	cat > /etc/nginx/sites-available/search.conf <<DELIM
@@ -217,6 +217,8 @@ DELIM
     NAME="os2display-index"
   fi
   INDEX=`echo $NAME | md5sum | cut -f1 -d" "`
+
+  echo "Save the index key for later when setting up admin part. Index key is: ${INDEX}"
 
   cat > ${INSTALL_PATH}/mappings.json <<DELIM
 {
@@ -460,7 +462,7 @@ DELIM
  {
   "${APIKEY}": {
     "name": "${APINAME}",
-    "backend": "${ADMIN_DOMAIN}",
+    "backend": "https://${ADMIN_DOMAIN}/",
     "expire": 300
   }
 }
@@ -503,7 +505,7 @@ function setupAdmin {
 		fi
 		if [ ! -d $INSTALL_PATH ]; then
 			mkdir -p $INSTALL_PATH
-			git clone https://github.com/os2display/admin.git ${INSTALL_PATH}/.
+			git clone https://github.com/os2display/admin ${INSTALL_PATH}/.
 			break
 		fi
 		echo "${RED}Please use another path, that don't exists allready!${RESET}"
@@ -555,11 +557,11 @@ server {
 
   location @rewriteapp {
     # rewrite all to app.php
-    rewrite ^(.*)\$ /app_dev.php/\$1 last;
+    rewrite ^(.*)\$ /app.php/\$1 last;
   }
 
   location ~ ^/(app|app_dev|config)\.php(/|\$) {
-    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_pass unix:/run/php/php5.6-fpm.sock;
     fastcgi_split_path_info ^(.+\.php)(/.*)\$;
     include fastcgi_params;
     fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
@@ -649,7 +651,7 @@ DELIM
     SEARCH_HOST="https://search.example.com"
   fi
   read -p "Search API key: " SEARCH_APIKEY
-  read -p "Search index: " SEARCH_INDEX
+  read -p "Search index key - can be found in the web interface or in the console when you install the search_node. Be aware that the search index has to be activated manually in the web interface: " SEARCH_INDEX
 
   # Middleware information.
   read -p "Middleware host (https://middleware.example.com): " MIDDLEWARE_HOST
@@ -717,7 +719,7 @@ parameters:
   version: ${ADMIN_VERSION}
 
   itk_log_version: 1
-  itk_log_error_callback: /api/error
+  itk_log_error_callback:
   itk_log_log_to_console: true
   itk_log_log_level: all
 DELIM
@@ -727,6 +729,8 @@ DELIM
   echo "${GREEN}Installing administration...${RESET}"
   cd $INSTALL_PATH
   echo "create database ${DB}" | mysql -u${DB_USER} -p${DB_PASSWORD} > /dev/null || exit 1
+
+  echo "Composer installing admin, with --no-dev and -o."
   composer install --no-dev -o > /dev/null || exit 1
 
   echo "${GREEN}Setup database...${RESET}"
@@ -905,6 +909,9 @@ DELIM
 function restartServices {
 	service supervisor restart
 	service nginx restart
+
+	# Reminder to update hosts-file
+	echo "Please update /etc/hosts by mapping all new URLs to 127.0.0.1"
 }
 
 getSSLCertificate;
