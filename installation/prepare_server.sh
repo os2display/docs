@@ -48,16 +48,16 @@ function intallMySQL {
 ##
 function installPHP {
 	echo "${GREEN}Installing PHP-5.x${RESET}"
-	apt-get install -y php5.6-fpm php5.6-cli php5.6-xdebug php5.6-mysql php5.6-curl php5.6-mcrypt php5.6-gd > /dev/null || exit 1
+	apt-get install -y php5-fpm php5-cli php5-xdebug php5-mysql php5-curl php5-mcrypt php5-gd > /dev/null || exit 1
 
-	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/5.6/fpm/php.ini
-	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/5.6/fpm/php.ini
+	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php5/fpm/php.ini
+	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php5/fpm/php.ini
 
-	sed -i '/upload_max_filesize = 2M/cupload_max_filesize = 256M' /etc/php/5.6/fpm/php.ini
-	sed -i '/post_max_size = 8M/cpost_max_size = 300M' /etc/php/5.6/fpm/php.ini
+	sed -i '/upload_max_filesize = 2M/cupload_max_filesize = 256M' /etc/php5/fpm/php.ini
+	sed -i '/post_max_size = 8M/cpost_max_size = 300M' /etc/php5/fpm/php.ini
 
 	# Set php memory limit to 256mb
-	sed -i '/memory_limit = 128M/c memory_limit = 256M' /etc/php/5.6/fpm/php.ini
+	sed -i '/memory_limit = 128M/c memory_limit = 256M' /etc/php5/fpm/php.ini
 }
 
 ##

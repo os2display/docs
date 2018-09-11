@@ -115,7 +115,7 @@ function setupSearchNode {
 		return;
 	fi
 
-	# Clone serch node
+	# Clone search node
 	while true; do
 		read -p "Where to place search node (/home/www/search_node): " INSTALL_PATH
 		if [ -z $INSTALL_PATH ]; then
@@ -158,7 +158,6 @@ server {
 
   server_name ${DOMAIN};
   rewrite ^ https://\$server_name\$request_uri? permanent;
-
 
   access_log /var/log/nginx/search_access.log;
   error_log /var/log/nginx/search_error.log;
@@ -561,7 +560,7 @@ server {
   }
 
   location ~ ^/(app|app_dev|config)\.php(/|\$) {
-    fastcgi_pass unix:/run/php/php5.6-fpm.sock;
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
     fastcgi_split_path_info ^(.+\.php)(/.*)\$;
     include fastcgi_params;
     fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
@@ -651,7 +650,7 @@ DELIM
     SEARCH_HOST="https://search.example.com"
   fi
   read -p "Search API key: " SEARCH_APIKEY
-  read -p "Search index key - can be found in the web interface or in the console when you install the search_node. Be aware that the search index has to be activated manually in the web interface: " SEARCH_INDEX
+  read -p "Search index key: " SEARCH_INDEX
 
   # Middleware information.
   read -p "Middleware host (https://middleware.example.com): " MIDDLEWARE_HOST
@@ -736,6 +735,9 @@ DELIM
   echo "${GREEN}Setup database...${RESET}"
   php app/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
 
+  echo "${GREEN}Installing templates...${RESET}"
+  php app/console os2display:core:templates:load --env=prod > /dev/null || exit 1
+
   # Setup super-user.
   read -p "Super user name (admin): " SU_USER
   if [ -z $SU_USER ]; then
@@ -757,8 +759,9 @@ DELIM
   php app/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
 
   # Cron job.
-  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console ik:cron") | crontab
+  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console os2display:core:cron") | crontab
 
+  echo "Look into https://symfony.com/doc/2.8/setup/file_permissions.html for methods for setting file permission."
   # Change owner.
   read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
   if [ -z $NORMAL_USER ]; then
@@ -924,11 +927,12 @@ while (true); do
   echo "##  1 - Complete system                 ##"
   echo "##  2 - Search node (if not installed)  ##"
   echo "##  3 - Middleware (if not installed)   ##"
-  echo "##  4 - New site (admin/screen)         ##"
-  echo "##  5 - Exit                            ##"
+  echo "##  4 - Admin                           ##"
+  echo "##  5 - Screen                          ##"
+  echo "##  6 - Exit                            ##"
   echo "##                                      ##"
   echo "##########################################"
-  read -p "What should we install (1-5)? " SELECTED
+  read -p "What should we install (1-6)? " SELECTED
   case $SELECTED in
     1)
       setupSearchNode;
@@ -950,11 +954,15 @@ while (true); do
 
     4)
       setupAdmin;
-      setupScreen;
       restartServices;
       ;;
 
     5)
+      setupScreen;
+      restartServices;
+      ;;
+
+    6)
       break;;
 
   esac
