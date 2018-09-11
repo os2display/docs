@@ -20,9 +20,9 @@ RESET=$(tput sgr0)
 
 # Versions
 SEARCH_NODE_VERSION="v2.1.8"
-MIDDLEWARE_VERSION="5.0.1"
-ADMIN_VERSION="5.0.2"
-SCREEN_VERSION="5.0.2"
+MIDDLEWARE_VERSION="5.0.2"
+ADMIN_VERSION="5.1.1"
+SCREEN_VERSION="5.0.3"
 
 ##
 # Add SSL certificates.
@@ -572,7 +572,7 @@ server {
     deny all;
   }
 
-  location /templates/ {
+  location /bundles/ {
     add_header 'Access-Control-Allow-Origin' "*";
   }
 
@@ -676,13 +676,14 @@ parameters:
   database_name: ${DB}
   database_user: ${DB_USER}
   database_password: ${DB_PASSWORD}
+  database_server_version: 5.5
 
   mailer_transport: smtp
   mailer_host: 127.0.0.1
   mailer_user: null
   mailer_password: null
 
-  locale: en
+  locale: da
   secret: ${SECRET_TOKEN}
   debug_toolbar: false
   debug_redirects: false
@@ -695,8 +696,6 @@ parameters:
 
   mailer_from_email: ${MAIL_ADDRESS}
   mailer_from_name: ${MAIL_NAME}
-
-  templates_directory: ik-templates/
 
   sharing_enabled: false
   sharing_host:
@@ -713,27 +712,6 @@ parameters:
   middleware_path: /api
   middleware_apikey: ${MIDDLEWARE_APIKEY}
 
-  templates_slides_directory: templates/slides/
-  templates_slides_enabled:
-    - manual-calendar
-    - only-image
-    - only-video
-    - portrait-text-top
-    - text-bottom
-    - text-left
-    - text-right
-    - text-top
-    - ik-iframe
-    - header-top
-    - event-calendar
-    - wayfinding
-
-  templates_screens_directory: templates/screens/
-  templates_screens_enabled:
-    - full-screen
-    - five-sections
-    - full-screen-portrait
-
   site_title: ${SITE_TITLE}
 
   version: ${ADMIN_VERSION}
@@ -749,7 +727,7 @@ DELIM
   echo "${GREEN}Installing administration...${RESET}"
   cd $INSTALL_PATH
   echo "create database ${DB}" | mysql -u${DB_USER} -p${DB_PASSWORD} > /dev/null || exit 1
-  composer install > /dev/null || exit 1
+  composer install --no-dev -o > /dev/null || exit 1
 
   echo "${GREEN}Setup database...${RESET}"
   php app/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
