@@ -275,6 +275,9 @@ DELIM
 }
 DELIM
 
+  # Echo the Apikey and index for later in install process.
+  echo "Search index: ${INDEX} - Search apikey: ${APIKEY}"
+
   # Add supervisor startup script.
   read -p "Who should the search node be runned as ($(whoami)): " USER
   if [ -z $USER ]; then
@@ -468,6 +471,9 @@ DELIM
   }
 }
 DELIM
+
+    # Echo the Apikey and index for later in install process.
+    echo "Middleware apikey: ${APIKEY}"
 
 	# Add supervisor startup script.
 	read -p "Who should the middleware be runned as ($(whoami)): " USER
