@@ -218,8 +218,6 @@ DELIM
   fi
   INDEX=`echo $NAME | md5sum | cut -f1 -d" "`
 
-  echo "Save the index key for later when setting up admin part. Index key is: ${INDEX}"
-
   cat > ${INSTALL_PATH}/mappings.json <<DELIM
 {
   "${INDEX}": {
@@ -276,7 +274,10 @@ DELIM
 DELIM
 
   # Echo the Apikey and index for later in install process.
+  echo "################################"
+  echo "Save these values for later"
   echo "Search index: ${INDEX} - Search apikey: ${APIKEY}"
+  echo "################################"
 
   # Add supervisor startup script.
   read -p "Who should the search node be runned as ($(whoami)): " USER
@@ -473,7 +474,10 @@ DELIM
 DELIM
 
     # Echo the Apikey and index for later in install process.
+    echo "################################"
+    echo "Save this value for later"
     echo "Middleware apikey: ${APIKEY}"
+    echo "################################"
 
 	# Add supervisor startup script.
 	read -p "Who should the middleware be runned as ($(whoami)): " USER
