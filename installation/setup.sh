@@ -140,7 +140,7 @@ function setupSearchNode {
 
 	# Install npm packages
 	echo "${GREEN}Installing search_node requirements...${RESET}"
-	${INSTALL_PATH}/install.sh > /dev/null 2>&1
+	${INSTALL_PATH}/install.sh
 
 	# Configure nginx
 	read -p "Search node FQDN (search.example.com): " DOMAIN
@@ -265,7 +265,7 @@ DELIM
 {
   "${APIKEY}": {
     "name": "${APINAME}",
-    "expire": 300,
+    "expire": 3000,
     "indexes": [
     "${INDEX}"
     ],
@@ -306,11 +306,11 @@ function setupMiddleWare {
 
 	# Check if search node have been installed.
 	if [ -f '/etc/nginx/sites-available/middleware.conf' ]; then
-		echo "${YELLOW}Middelware exists and will not be installed, so ${GREEN}skipping${YELLOW} this part.${RESET}"
+		echo "${YELLOW}Middleware exists and will not be installed, so ${GREEN}skipping${YELLOW} this part.${RESET}"
 		return;
 	fi
 
-	# Clone middelware
+	# Clone middleware
 	while true; do
 		read -p "Where to place middleware (/home/www/middleware): " INSTALL_PATH
 		if [ -z $INSTALL_PATH ]; then
@@ -335,10 +335,10 @@ function setupMiddleWare {
 
 	# Install npm packages.
 	echo "${GREEN}Installing middleware requirements...${RESET}"
-	${INSTALL_PATH}/install.sh > /dev/null 2>&1
+	${INSTALL_PATH}/install.sh
 
 	# Configure nginx.
-	read -p "Middelware FQDN (middleware.example.com): " DOMAIN
+	read -p "Middleware FQDN (middleware.example.com): " DOMAIN
 	if [ -z $DOMAIN ]; then
 		DOMAIN="middleware.example.com"
 	fi
@@ -462,7 +462,7 @@ DELIM
   "${APIKEY}": {
     "name": "${APINAME}",
     "backend": "https://${ADMIN_DOMAIN}/",
-    "expire": 300
+    "expire": 3000
   }
 }
 DELIM
@@ -703,13 +703,13 @@ parameters:
   sharing_path: /api
   sharing_apikey:
 
-  search_host: ${SEARCH_HOST}
+  search_host: 'https://${SEARCH_HOST}'
   search_path: /api
   search_apikey: ${SEARCH_APIKEY}
   search_index: ${SEARCH_INDEX}
   search_filter_default: all
 
-  middleware_host: ${MIDDLEWARE_HOST}
+  middleware_host: 'https://${MIDDLEWARE_HOST}'
   middleware_path: /api
   middleware_apikey: ${MIDDLEWARE_APIKEY}
 
@@ -763,15 +763,15 @@ DELIM
 
   echo "Look into https://symfony.com/doc/2.8/setup/file_permissions.html for methods for setting file permission."
   # Change owner.
-  read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
-  if [ -z $NORMAL_USER ]; then
-    NORMAL_USER=$(whoami)
-  fi
-  mkdir -p ${INSTALL_PATH}/web/uploads
-  mkdir -p ${INSTALL_PATH}/app/{cache,logs}
-  chown -R ${NORMAL_USER}:${NORMAL_USER} ${INSTALL_PATH} || exit 1
-  chown -R www-data:${NORMAL_USER} ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
-  chmod -R g+w ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
+#  read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
+#  if [ -z $NORMAL_USER ]; then
+#    NORMAL_USER=$(whoami)
+#  fi
+#  mkdir -p ${INSTALL_PATH}/web/uploads
+#  mkdir -p ${INSTALL_PATH}/app/{cache,logs}
+#  chown -R ${NORMAL_USER}:${NORMAL_USER} ${INSTALL_PATH} || exit 1
+#  chown -R www-data:${NORMAL_USER} ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
+#  chmod -R g+w ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
 }
 
 ##
