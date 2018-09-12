@@ -140,7 +140,8 @@ function setupSearchNode {
 
 	# Install npm packages
 	echo "${GREEN}Installing search_node requirements...${RESET}"
-	${INSTALL_PATH}/install.sh
+# Commented out because of vagrant issues.
+#	${INSTALL_PATH}/install.sh > /dev/null 2>&1
 
 	# Configure nginx
 	read -p "Search node FQDN (search.example.com): " DOMAIN
@@ -335,7 +336,8 @@ function setupMiddleWare {
 
 	# Install npm packages.
 	echo "${GREEN}Installing middleware requirements...${RESET}"
-	${INSTALL_PATH}/install.sh
+# Commented out because of vagrant issues.
+#	${INSTALL_PATH}/install.sh > /dev/null 2>&1
 
 	# Configure nginx.
 	read -p "Middleware FQDN (middleware.example.com): " DOMAIN
@@ -703,13 +705,13 @@ parameters:
   sharing_path: /api
   sharing_apikey:
 
-  search_host: 'https://${SEARCH_HOST}'
+  search_host: ${SEARCH_HOST}
   search_path: /api
   search_apikey: ${SEARCH_APIKEY}
   search_index: ${SEARCH_INDEX}
   search_filter_default: all
 
-  middleware_host: 'https://${MIDDLEWARE_HOST}'
+  middleware_host: ${MIDDLEWARE_HOST}
   middleware_path: /api
   middleware_apikey: ${MIDDLEWARE_APIKEY}
 
@@ -763,6 +765,7 @@ DELIM
 
   echo "Look into https://symfony.com/doc/2.8/setup/file_permissions.html for methods for setting file permission."
   # Change owner.
+# Commented out because of vagrant issues.
 #  read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
 #  if [ -z $NORMAL_USER ]; then
 #    NORMAL_USER=$(whoami)
