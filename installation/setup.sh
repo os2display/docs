@@ -140,8 +140,7 @@ function setupSearchNode {
 
 	# Install npm packages
 	echo "${GREEN}Installing search_node requirements...${RESET}"
-# Commented out because of vagrant issues.
-#	${INSTALL_PATH}/install.sh > /dev/null 2>&1
+	${INSTALL_PATH}/install.sh > /dev/null 2>&1
 
 	# Configure nginx
 	read -p "Search node FQDN (search.example.com): " DOMAIN
@@ -340,8 +339,7 @@ function setupMiddleWare {
 
 	# Install npm packages.
 	echo "${GREEN}Installing middleware requirements...${RESET}"
-# Commented out because of vagrant issues.
-#	${INSTALL_PATH}/install.sh > /dev/null 2>&1
+	${INSTALL_PATH}/install.sh > /dev/null 2>&1
 
 	# Configure nginx.
 	read -p "Middleware FQDN (middleware.example.com): " DOMAIN
@@ -775,16 +773,15 @@ DELIM
 
   echo "Look into https://symfony.com/doc/2.8/setup/file_permissions.html for methods for setting file permission."
   # Change owner.
-# Commented out because of vagrant issues.
-#  read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
-#  if [ -z $NORMAL_USER ]; then
-#    NORMAL_USER=$(whoami)
-#  fi
-#  mkdir -p ${INSTALL_PATH}/web/uploads
-#  mkdir -p ${INSTALL_PATH}/app/{cache,logs}
-#  chown -R ${NORMAL_USER}:${NORMAL_USER} ${INSTALL_PATH} || exit 1
-#  chown -R www-data:${NORMAL_USER} ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
-#  chmod -R g+w ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
+  read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
+  if [ -z $NORMAL_USER ]; then
+    NORMAL_USER=$(whoami)
+  fi
+  mkdir -p ${INSTALL_PATH}/web/uploads
+  mkdir -p ${INSTALL_PATH}/app/{cache,logs}
+  chown -R ${NORMAL_USER}:${NORMAL_USER} ${INSTALL_PATH} || exit 1
+  chown -R www-data:${NORMAL_USER} ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
+  chmod -R g+w ${INSTALL_PATH}/web/uploads ${INSTALL_PATH}/app/{cache,logs} || exit 1
 }
 
 ##
