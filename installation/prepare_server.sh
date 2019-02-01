@@ -48,7 +48,7 @@ function intallMySQL {
 ##
 function installPHP {
 	echo "${GREEN}Installing PHP-5.x${RESET}"
-	apt-get install -y php5-fpm php5-cli php5-xdebug php5-mysql php5-curl php5-mcrypt php5-gd > /dev/null || exit 1
+	apt-get install -y php5-fpm php5-cli php5-xdebug php5-mysql php5-curl php5-mcrypt php5-gd php5-xml > /dev/null || exit 1
 
 	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php5/fpm/php.ini
 	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php5/fpm/php.ini
