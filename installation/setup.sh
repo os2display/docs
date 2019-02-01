@@ -3,8 +3,8 @@
 ###################################################
 # Configure new os2display site
 #
-# 1) Setup clone search node - if it don't exists
-# 2) Setup clone middleware - if it don't exists
+# 1) Setup clone search node - if it doesn't exist
+# 2) Setup clone middleware - if it doesn't exist
 # 3) Add screen UI
 # 4) Add administrative UI
 #
@@ -20,9 +20,9 @@ RESET=$(tput sgr0)
 
 # Versions
 SEARCH_NODE_VERSION="v2.1.8"
-MIDDLEWARE_VERSION="5.0.1"
-ADMIN_VERSION="5.0.2"
-SCREEN_VERSION="5.0.2"
+MIDDLEWARE_VERSION="5.0.2"
+ADMIN_VERSION="5.1.1"
+SCREEN_VERSION="5.0.3"
 
 ##
 # Add SSL certificates.
@@ -93,8 +93,8 @@ DELIM
         ;;
 
     [Nn]* )
-        read -p "Location of the SSL certificate: " CERT
-        read -p "Location of the SSL certificate key: " CERTKEY
+        read -p "Location of the SSL certificate (path with filename): " CERT
+        read -p "Location of the SSL certificate key (path with filename): " CERTKEY
         break
         ;;
 
@@ -115,7 +115,7 @@ function setupSearchNode {
 		return;
 	fi
 
-	# Clone serch node
+	# Clone search node
 	while true; do
 		read -p "Where to place search node (/home/www/search_node): " INSTALL_PATH
 		if [ -z $INSTALL_PATH ]; then
@@ -145,7 +145,7 @@ function setupSearchNode {
 	# Configure nginx
 	read -p "Search node FQDN (search.example.com): " DOMAIN
 	if [ -z $DOMAIN ]; then
-		DOMAIN="search.exsample.com"
+		DOMAIN="search.example.com"
 	fi
 
 	cat > /etc/nginx/sites-available/search.conf <<DELIM
@@ -158,7 +158,6 @@ server {
 
   server_name ${DOMAIN};
   rewrite ^ https://\$server_name\$request_uri? permanent;
-
 
   access_log /var/log/nginx/search_access.log;
   error_log /var/log/nginx/search_error.log;
@@ -264,7 +263,7 @@ DELIM
 {
   "${APIKEY}": {
     "name": "${APINAME}",
-    "expire": 300,
+    "expire": 3000,
     "indexes": [
     "${INDEX}"
     ],
@@ -272,6 +271,12 @@ DELIM
   }
 }
 DELIM
+
+  # Echo the Apikey and index for later in install process.
+  echo "################################"
+  echo "Save these values for later"
+  echo "Search index: ${INDEX} - Search apikey: ${APIKEY}"
+  echo "################################"
 
   # Add supervisor startup script.
   read -p "Who should the search node be runned as ($(whoami)): " USER
@@ -305,11 +310,11 @@ function setupMiddleWare {
 
 	# Check if search node have been installed.
 	if [ -f '/etc/nginx/sites-available/middleware.conf' ]; then
-		echo "${YELLOW}Middelware exists and will not be installed, so ${GREEN}skipping${YELLOW} this part.${RESET}"
+		echo "${YELLOW}Middleware exists and will not be installed, so ${GREEN}skipping${YELLOW} this part.${RESET}"
 		return;
 	fi
 
-	# Clone middelware
+	# Clone middleware
 	while true; do
 		read -p "Where to place middleware (/home/www/middleware): " INSTALL_PATH
 		if [ -z $INSTALL_PATH ]; then
@@ -337,7 +342,7 @@ function setupMiddleWare {
 	${INSTALL_PATH}/install.sh > /dev/null 2>&1
 
 	# Configure nginx.
-	read -p "Middelware FQDN (middleware.example.com): " DOMAIN
+	read -p "Middleware FQDN (middleware.example.com): " DOMAIN
 	if [ -z $DOMAIN ]; then
 		DOMAIN="middleware.example.com"
 	fi
@@ -460,11 +465,17 @@ DELIM
  {
   "${APIKEY}": {
     "name": "${APINAME}",
-    "backend": "${ADMIN_DOMAIN}",
-    "expire": 300
+    "backend": "https://${ADMIN_DOMAIN}/",
+    "expire": 3000
   }
 }
 DELIM
+
+    # Echo the Apikey and index for later in install process.
+    echo "################################"
+    echo "Save this value for later"
+    echo "Middleware apikey: ${APIKEY}"
+    echo "################################"
 
 	# Add supervisor startup script.
 	read -p "Who should the middleware be runned as ($(whoami)): " USER
@@ -503,7 +514,7 @@ function setupAdmin {
 		fi
 		if [ ! -d $INSTALL_PATH ]; then
 			mkdir -p $INSTALL_PATH
-			git clone https://github.com/os2display/admin.git ${INSTALL_PATH}/.
+			git clone https://github.com/os2display/admin ${INSTALL_PATH}/.
 			break
 		fi
 		echo "${RED}Please use another path, that don't exists allready!${RESET}"
@@ -555,7 +566,7 @@ server {
 
   location @rewriteapp {
     # rewrite all to app.php
-    rewrite ^(.*)\$ /app_dev.php/\$1 last;
+    rewrite ^(.*)\$ /app.php/\$1 last;
   }
 
   location ~ ^/(app|app_dev|config)\.php(/|\$) {
@@ -572,7 +583,7 @@ server {
     deny all;
   }
 
-  location /templates/ {
+  location /bundles/ {
     add_header 'Access-Control-Allow-Origin' "*";
   }
 
@@ -649,7 +660,7 @@ DELIM
     SEARCH_HOST="https://search.example.com"
   fi
   read -p "Search API key: " SEARCH_APIKEY
-  read -p "Search index: " SEARCH_INDEX
+  read -p "Search index key: " SEARCH_INDEX
 
   # Middleware information.
   read -p "Middleware host (https://middleware.example.com): " MIDDLEWARE_HOST
@@ -676,13 +687,14 @@ parameters:
   database_name: ${DB}
   database_user: ${DB_USER}
   database_password: ${DB_PASSWORD}
+  database_server_version: 5.5
 
   mailer_transport: smtp
   mailer_host: 127.0.0.1
   mailer_user: null
   mailer_password: null
 
-  locale: en
+  locale: da
   secret: ${SECRET_TOKEN}
   debug_toolbar: false
   debug_redirects: false
@@ -695,8 +707,6 @@ parameters:
 
   mailer_from_email: ${MAIL_ADDRESS}
   mailer_from_name: ${MAIL_NAME}
-
-  templates_directory: ik-templates/
 
   sharing_enabled: false
   sharing_host:
@@ -713,33 +723,12 @@ parameters:
   middleware_path: /api
   middleware_apikey: ${MIDDLEWARE_APIKEY}
 
-  templates_slides_directory: templates/slides/
-  templates_slides_enabled:
-    - manual-calendar
-    - only-image
-    - only-video
-    - portrait-text-top
-    - text-bottom
-    - text-left
-    - text-right
-    - text-top
-    - ik-iframe
-    - header-top
-    - event-calendar
-    - wayfinding
-
-  templates_screens_directory: templates/screens/
-  templates_screens_enabled:
-    - full-screen
-    - five-sections
-    - full-screen-portrait
-
   site_title: ${SITE_TITLE}
 
   version: ${ADMIN_VERSION}
 
   itk_log_version: 1
-  itk_log_error_callback: /api/error
+  itk_log_error_callback:
   itk_log_log_to_console: true
   itk_log_log_level: all
 DELIM
@@ -749,10 +738,15 @@ DELIM
   echo "${GREEN}Installing administration...${RESET}"
   cd $INSTALL_PATH
   echo "create database ${DB}" | mysql -u${DB_USER} -p${DB_PASSWORD} > /dev/null || exit 1
-  composer install > /dev/null || exit 1
+
+  echo "Composer installing admin, with --no-dev and -o."
+  composer install --no-dev -o > /dev/null || exit 1
 
   echo "${GREEN}Setup database...${RESET}"
   php app/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
+
+  echo "${GREEN}Installing templates...${RESET}"
+  php app/console os2display:core:templates:load --env=prod > /dev/null || exit 1
 
   # Setup super-user.
   read -p "Super user name (admin): " SU_USER
@@ -775,8 +769,9 @@ DELIM
   php app/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
 
   # Cron job.
-  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console ik:cron") | crontab
+  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console os2display:core:cron") | crontab
 
+  echo "Look into https://symfony.com/doc/2.8/setup/file_permissions.html for methods for setting file permission."
   # Change owner.
   read -p "Name of the normal OS user ($(whoami)): " NORMAL_USER
   if [ -z $NORMAL_USER ]; then
@@ -927,6 +922,9 @@ DELIM
 function restartServices {
 	service supervisor restart
 	service nginx restart
+
+	# Reminder to update hosts-file
+	echo "Please update /etc/hosts by mapping all new URLs to 127.0.0.1"
 }
 
 getSSLCertificate;
@@ -939,11 +937,12 @@ while (true); do
   echo "##  1 - Complete system                 ##"
   echo "##  2 - Search node (if not installed)  ##"
   echo "##  3 - Middleware (if not installed)   ##"
-  echo "##  4 - New site (admin/screen)         ##"
-  echo "##  5 - Exit                            ##"
+  echo "##  4 - Admin                           ##"
+  echo "##  5 - Screen                          ##"
+  echo "##  6 - Exit                            ##"
   echo "##                                      ##"
   echo "##########################################"
-  read -p "What should we install (1-5)? " SELECTED
+  read -p "What should we install (1-6)? " SELECTED
   case $SELECTED in
     1)
       setupSearchNode;
@@ -965,11 +964,15 @@ while (true); do
 
     4)
       setupAdmin;
-      setupScreen;
       restartServices;
       ;;
 
     5)
+      setupScreen;
+      restartServices;
+      ;;
+
+    6)
       break;;
 
   esac
