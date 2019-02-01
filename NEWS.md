@@ -3,6 +3,7 @@
 ## 1. February 2019
 
 * Docs: Updated install script.
+* Released admin 5.1.2: https://github.com/os2display/admin/releases/tag/5.1.2
 
 ## 23. August 2018
 
