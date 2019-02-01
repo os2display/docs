@@ -32,7 +32,7 @@ It consists of the following parts:
 <a name="license"></a>
 ## 3. License
 
-See [License](LICENSE.txt).
+See [License](LICENSE).
 
 <a name="custom_bundles"></a>
 ## 4. Custom Bundles
