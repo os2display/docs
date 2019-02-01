@@ -1,5 +1,10 @@
 # os2display News
 
+## 23. August 2018
+
+* Released admin 5.1.1: https://github.com/os2display/admin/releases/tag/5.1.1
+* Released admin-bundle: https://github.com/os2display/admin-bundle/releases/tag/1.1.1
+
 ## 3. June 2018
 
 * Released middleware 5.0.2: https://github.com/os2display/middleware/releases/tag/5.0.2
