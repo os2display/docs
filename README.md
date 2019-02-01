@@ -1,4 +1,4 @@
-# os2display
+# OS2display
 
 ## Table of contents
 
