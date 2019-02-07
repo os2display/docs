@@ -1,5 +1,9 @@
 # os2display News
 
+## 7. February 2019
+
+* Released campaign-bundle: https://github.com/os2display/campaign-bundle/releases/tag/1.3.0
+
 ## 1. February 2019
 
 * Docs: Updated install script.
