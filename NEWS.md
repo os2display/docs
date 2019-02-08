@@ -3,6 +3,7 @@
 ## 8. February 2019
 
 * Released screen 5.0.4: https://github.com/os2display/screen/releases/tag/5.0.4
+* Released core-bundle 1.2.0: https://github.com/os2display/core-bundle/releases/tag/1.2.0
 
 ## 7. February 2019
 
