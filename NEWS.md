@@ -3,6 +3,7 @@
 ## 18. February 2019
 
 * Released admin 5.2.0: https://github.com/os2display/admin/releases/tag/5.2.0
+* Released vagrant 6.0.1: https://github.com/os2display/vagrant/releases/tag/6.0.1
 
 ## 8. February 2019
 
