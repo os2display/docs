@@ -1,5 +1,9 @@
 # os2display News
 
+## 18. February 2019
+
+* Released admin 5.2.0: https://github.com/os2display/admin/releases/tag/5.2.0
+
 ## 8. February 2019
 
 * Released screen 5.0.4: https://github.com/os2display/screen/releases/tag/5.0.4
