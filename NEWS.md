@@ -1,5 +1,9 @@
 # os2display News
 
+## 19. February 2019
+
+* Released default-template-bundle 1.1.2: https://github.com/os2display/default-template-bundle/releases/tag/1.1.2
+
 ## 18. February 2019
 
 * Released admin 5.2.0: https://github.com/os2display/admin/releases/tag/5.2.0
