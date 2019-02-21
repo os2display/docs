@@ -7,6 +7,7 @@
 * Released media-bundle 2.0.0: https://github.com/os2display/media-bundle/releases/tag/2.0.0
 * Released campaign-bundle 2.0.0: https://github.com/os2display/campaign-bundle/releases/tag/2.0.0
 * Released core-bundle 2.0.0: https://github.com/os2display/core-bundle/releases/tag/2.0.0
+* Released vagrant 7.0.0: https://github.com/os2display/vagrant/releases/tag/7.0.0
 
 This release brings OS2display up to running Symfony 3.4 and PHP 7.2.
 
