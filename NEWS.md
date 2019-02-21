@@ -3,6 +3,7 @@
 ## 21. February 2019
 
 * Released admin-bundle 2.0.0: https://github.com/os2display/admin-bundle/releases/tag/2.0.0
+* Released media-bundle 2.0.0: https://github.com/os2display/media-bundle/releases/tag/2.0.0
 
 ## 19. February 2019
 
