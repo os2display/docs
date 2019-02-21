@@ -10,6 +10,7 @@
 * Released vagrant 7.0.0: https://github.com/os2display/vagrant/releases/tag/7.0.0
 
 This release brings OS2display up to running Symfony 3.4 and PHP 7.2.
+The installation scripts have NOT been updated yet: https://github.com/os2display/docs/tree/master/installation.
 
 ## 19. February 2019
 
