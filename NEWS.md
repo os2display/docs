@@ -8,6 +8,8 @@
 * Released campaign-bundle 2.0.0: https://github.com/os2display/campaign-bundle/releases/tag/2.0.0
 * Released core-bundle 2.0.0: https://github.com/os2display/core-bundle/releases/tag/2.0.0
 
+This release brings OS2display up to running Symfony 3.4 and PHP 7.2.
+
 ## 19. February 2019
 
 * Released default-template-bundle 1.1.2: https://github.com/os2display/default-template-bundle/releases/tag/1.1.2
