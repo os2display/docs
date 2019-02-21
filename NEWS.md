@@ -1,4 +1,4 @@
-# os2display News
+# OS2display News
 
 ## 21. February 2019
 
