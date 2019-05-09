@@ -1,5 +1,9 @@
 # OS2display News
 
+## 9. May 2019
+
+* Moved screen-bundle from itk-os2display organization to os2display. Version 1.0.4: https://github.com/os2display/screen-bundle/releases/tag/1.0.4
+
 ## 21. February 2019
 
 * Released admin 6.0.0: https://github.com/os2display/admin/releases/tag/6.0.0
