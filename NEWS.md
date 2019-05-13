@@ -3,6 +3,7 @@
 ## 13. May 2019
 
 * Moved youtube-bundle from itk-os2display organization to os2display. Version 2.0.0: https://github.com/os2display/youtube-bundle/releases/tag/2.0.0
+* Moved vimeo-bundle from itk-os2display organization to os2display. Version 2.0.0: https://github.com/os2display/vimeo-bundle/releases/tag/2.0.0
 
 ## 9. May 2019
 
