@@ -1,5 +1,9 @@
 # OS2display News
 
+## 13. May 2019
+
+* Moved youtube-bundle from itk-os2display organization to os2display. Version 2.0.0: https://github.com/os2display/youtube-bundle/releases/tag/2.0.0
+
 ## 9. May 2019
 
 * Moved screen-bundle from itk-os2display organization to os2display. Version 1.0.4: https://github.com/os2display/screen-bundle/releases/tag/1.0.4
