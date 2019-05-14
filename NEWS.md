@@ -2,7 +2,7 @@
 
 ## 14. May 2019
 
-* Moved exchange-bundle from itk-os2display organization to os2display. Version 2.0.0: https://github.com/os2display/exchange-bundle/releases/tag/2.0.0
+* Moved exchange-bundle from itk-os2display organization to os2display. Version 2.0.1: https://github.com/os2display/exchange-bundle/releases/tag/2.0.1
 
 ## 13. May 2019
 
