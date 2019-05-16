@@ -1,5 +1,9 @@
 # OS2display News
 
+## 16. May 2019
+
+* Added all bundles to packagist.org (https://packagist.org/?query=os2display) and enabled auto-update.
+
 ## 15. May 2019
 
 * Released youtube-bundle 2.0.1: https://github.com/os2display/youtube-bundle/releases/tag/2.0.1
