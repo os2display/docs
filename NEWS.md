@@ -3,6 +3,11 @@
 ## 20. May 2019
 
 * Released admin 6.1.0: https://github.com/os2display/admin/releases/tag/6.1.0
+
+This release adds screen-bundle to os2display (see https://github.com/os2display/screen-bundle). This introduces the [admin_path]/screen route that is an alternative to using screen: https://github.com/os2display/screen. This furthermore, adds preview of channels and screens inside the administration.
+
+NB! To make this bundle work additional nginx settings are required, that will expose the middleware to the admin installation. See https://github.com/os2display/vagrant/commit/2b5f35269f3b1a18ba245e8e894253c4faa743b3#diff-8d60e524ea68140466b5d4631fba2f01 for the required nginx config.
+
 * Released vagrant 7.1.0: https://github.com/os2display/vagrant/releases/tag/7.1.0
 * Released campaign-bundle 2.1.0: https://github.com/os2display/campaign-bundle/releases/tag/2.1.0
 * Released core-bundle 2.1.0: https://github.com/os2display/core-bundle/releases/tag/2.1.0
