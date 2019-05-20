@@ -2,6 +2,7 @@
 
 ## 20. May 2019
 
+* Released admin-bundle 2.1.0: https://github.com/os2display/admin-bundle/releases/tag/2.1.0
 * Released screen-bundle 1.0.6: https://github.com/os2display/screen-bundle/releases/tag/1.0.6
 
 ## 16. May 2019
