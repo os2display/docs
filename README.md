@@ -8,7 +8,8 @@
 4. [Custom Bundles](#custom_bundles)
 5. [Templates](#templates)
 6. [Guidelines](#guidelines)
-7. [Links](#links)
+7. [Optional extensions](#optionals)
+8. [Links](#links)
 
 <a name="news"></a>
 ## 1. News
@@ -56,8 +57,19 @@ Guidelines for developing for os2display
 * [Javascript guidelines](guidelines/js-guidelines.md)
 * [Template guidelines](guidelines/template-guidelines.md)
 
+<a name="optionals"></a>
+## 7. Optionals
+
+A number of extensions are available for OS2display: 
+
+* https://github.com/os2display/exchange-bundle
+* https://github.com/os2display/template-extension-bundle
+* https://github.com/os2display/horizon-template-bundle (requires https://github.com/os2display/template-extension-bundle)
+* https://github.com/os2display/vimeo-bundle
+* https://github.com/os2display/youtube-bundle
+
 <a name="links"></a>
-## 7. Links
+## 8. Links
 
 * See [CHANGELOG.md](CHANGELOG.md) for a list of changes to docs. Each part of the project has its own CHANGELOG.
 * See [installation guide](installation/Installation%20guide.md) for instructions on how to install os2display.
