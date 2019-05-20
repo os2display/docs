@@ -2,6 +2,8 @@
 
 ## 20. May 2019
 
+* Released admin 6.1.0: https://github.com/os2display/admin/releases/tag/6.1.0
+* Released vagrant 7.1.0: https://github.com/os2display/vagrant/releases/tag/7.1.0
 * Released campaign-bundle 2.1.0: https://github.com/os2display/campaign-bundle/releases/tag/2.1.0
 * Released core-bundle 2.1.0: https://github.com/os2display/core-bundle/releases/tag/2.1.0
 * Released admin-bundle 2.1.0: https://github.com/os2display/admin-bundle/releases/tag/2.1.0
