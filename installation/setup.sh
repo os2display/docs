@@ -21,8 +21,7 @@ RESET=$(tput sgr0)
 # Versions
 SEARCH_NODE_VERSION="v2.1.8"
 MIDDLEWARE_VERSION="5.0.2"
-ADMIN_VERSION="5.1.2"
-SCREEN_VERSION="5.0.3"
+ADMIN_VERSION="6.1.0"
 
 ##
 # Add SSL certificates.
@@ -598,6 +597,17 @@ server {
     proxy_redirect off;
   }
 
+  location /middleware/ {
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header Host \$http_host;
+
+    proxy_buffering off;
+
+    proxy_pass http://nodejs_middleware/;
+    proxy_redirect off;
+  }
+
   location /socket.io/ {
     proxy_http_version 1.1;
     proxy_set_header Upgrade \$http_upgrade;
@@ -931,25 +941,24 @@ function restartServices {
 getSSLCertificate;
 
 while (true); do
-  echo "##########################################"
-  echo "##            ${YELLOW}Installation${RESET}              ##"
-  echo "##########################################"
-  echo "##                                      ##"
-  echo "##  1 - Complete system                 ##"
-  echo "##  2 - Search node (if not installed)  ##"
-  echo "##  3 - Middleware (if not installed)   ##"
-  echo "##  4 - Admin                           ##"
-  echo "##  5 - Screen                          ##"
-  echo "##  6 - Exit                            ##"
-  echo "##                                      ##"
-  echo "##########################################"
+  echo "#################################################"
+  echo "##  ${YELLOW}Installation${RESET}                               ##"
+  echo "#################################################"
+  echo "##                                             ##"
+  echo "##  1 - Complete system                        ##"
+  echo "##  2 - Search node (if not installed)         ##"
+  echo "##  3 - Middleware (if not installed)          ##"
+  echo "##  4 - Admin                                  ##"
+  echo "##  5 - Screen (optional, not in complete)     ##"
+  echo "##  6 - Exit                                   ##"
+  echo "##                                             ##"
+  echo "#################################################"
   read -p "What should we install (1-6)? " SELECTED
   case $SELECTED in
     1)
       setupSearchNode;
       setupMiddleWare;
       setupAdmin;
-      setupScreen;
       restartServices;
       ;;
 

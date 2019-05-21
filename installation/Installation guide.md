@@ -1,6 +1,6 @@
 # Before you begin installation
 
-This guide is a supplement to the installation script (see [installation folder](https://github.com/os2display/docs/tree/development/installation), which is the newest resource for installing OS2Display. It has not been updated as recently as the installation scripts, so problems might occur if you follow this guide. Please make pull requests if you have any errors or issues with the guide, so it can be updated for the next user. 
+This guide is a supplement to the installation script (see [installation folder](https://github.com/os2display/docs/tree/master/installation), which is the newest resource for installing OS2Display. It has not been updated as recently as the installation scripts, so problems might occur if you follow this guide. Please make pull requests if you have any errors or issues with the guide, so it can be updated for the next user. 
 
 # Requirements
 The guide assumes that you have an installed linux based server with the following packages installed and at least the versions given.
