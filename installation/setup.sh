@@ -21,7 +21,7 @@ RESET=$(tput sgr0)
 # Versions
 SEARCH_NODE_VERSION="v2.1.8"
 MIDDLEWARE_VERSION="5.0.2"
-ADMIN_VERSION="5.1.1"
+ADMIN_VERSION="5.1.2"
 SCREEN_VERSION="5.0.3"
 
 ##
@@ -691,6 +691,7 @@ parameters:
 
   mailer_transport: smtp
   mailer_host: 127.0.0.1
+  mailer_port: 25
   mailer_user: null
   mailer_password: null
 
