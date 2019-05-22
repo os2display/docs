@@ -49,14 +49,12 @@ function intallMySQL {
 function installPHP {
 	echo "${GREEN}Installing PHP-7.x${RESET}"
 
-    apt-get install apt-transport-https lsb-release ca-certificates
+    apt-get install -y apt-transport-https lsb-release ca-certificates > /dev/null || exit 1
     wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
-    apt-get update
+    apt-get update > /dev/null || exit 1
 
-	apt-get install -y php7.2-fpm php7.2-cli php7.2-xdebug php7.2-mysql php7.2-curl php7.2-gd php7.2-xml > /dev/null || exit 1
-
-    # php7.2-mcrypt
+	apt-get install -y php7.2-fpm php7.2-cli php7.2-xdebug php7.2-mysql php7.2-curl php7.2-gd php7.2-xml php7.2-mbstring > /dev/null || exit 1
 
 	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/7.2/fpm/php.ini
 	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/7.2/fpm/php.ini

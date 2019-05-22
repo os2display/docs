@@ -7,9 +7,12 @@ Change to fit your own setup.
 ## Installation process
 
 <pre>
+  # Copy installation files
   mkdir htdocs
-
-  git clone https://github.com/os2display/docs.git htdocs/docs
+  mkdir htdocs/install
+  
+  cp ../prepare_server.sh htdocs/install
+  cp ../setup.sh htdocs/install
 
   vagrant up
   
@@ -17,7 +20,7 @@ Change to fit your own setup.
   
   sudo -i
   
-  cd /vagrant/htdocs/docs/installation
+  cd /vagrant/htdocs/install
   
   ./prepare_server.sh
   
@@ -62,11 +65,11 @@ Change to fit your own setup.
   # Mail from address (webmaster@os2display.dk): webmaster@admin.test-os2display.vm
   # Mail from name (webmaster):
   # Search host (https://search.example.com): 'https://search.test-os2display.vm'
-  # Search API key:
-  # Search index:
+  # Search API key: [Enter search api key]
+  # Search index: [Enter search index]
   # Middleware host (https://middleware.example.com): 'https://middleware.test-os2display.vm'
-  # Middleware API key:
-  # Zencoder API key:
+  # Middleware API key: [Enter middleware api key]
+  # Zencoder API key: [If you have a Zencoder API key, enter it]
   # Site title (OS2Display example): TestOS2Display
 
   # Super user name (admin): admin

@@ -754,10 +754,10 @@ DELIM
   composer install --no-dev -o > /dev/null || exit 1
 
   echo "${GREEN}Setup database...${RESET}"
-  php app/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
+  php bin/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
 
   echo "${GREEN}Installing templates...${RESET}"
-  php app/console os2display:core:templates:load --env=prod > /dev/null || exit 1
+  php bin/console os2display:core:templates:load --env=prod > /dev/null || exit 1
 
   # Setup super-user.
   read -p "Super user name (admin): " SU_USER
@@ -777,10 +777,10 @@ DELIM
 
   cd $INSTALL_PATH
   echo "Setting up super-user: admin/admin"
-  php app/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
+  php bin/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
 
   # Cron job.
-  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console os2display:core:cron") | crontab
+  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/bin/console os2display:core:cron") | crontab
 
   echo "Look into https://symfony.com/doc/2.8/setup/file_permissions.html for methods for setting file permission."
   # Change owner.
