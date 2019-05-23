@@ -125,7 +125,7 @@ function setupSearchNode {
 			git clone https://github.com/search-node/search_node.git ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version
@@ -278,7 +278,7 @@ DELIM
   echo "################################"
 
   # Add supervisor startup script.
-  read -p "Who should the search node be runned as ($(whoami)): " USER
+  read -p "Who should the search node be run as ($(whoami)): " USER
   if [ -z $USER ]; then
     USER=$(whoami)
   fi
@@ -324,7 +324,7 @@ function setupMiddleWare {
 			git clone https://github.com/os2display/middleware.git ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version
@@ -477,7 +477,7 @@ DELIM
     echo "################################"
 
 	# Add supervisor startup script.
-	read -p "Who should the middleware be runned as ($(whoami)): " USER
+	read -p "Who should the middleware be run as ($(whoami)): " USER
 	if [ -z $USER ]; then
 		USER=$(whoami)
 	fi
@@ -516,7 +516,7 @@ function setupAdmin {
 			git clone https://github.com/os2display/admin ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version
@@ -569,7 +569,7 @@ server {
   }
 
   location ~ ^/(app|app_dev|config)\.php(/|\$) {
-    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
     fastcgi_split_path_info ^(.+\.php)(/.*)\$;
     include fastcgi_params;
     fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
@@ -812,7 +812,7 @@ function setupScreen {
 			git clone https://github.com/os2display/screen.git ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version.

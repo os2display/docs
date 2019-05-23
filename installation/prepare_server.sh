@@ -89,7 +89,10 @@ function installNginx {
 function installNodeJs {
 	echo "${RESET}Installing NodeJs...${GREEN}"
 
-	wget https://deb.nodesource.com/setup_10.x -O /tmp/node_install.sh
+	wget https://deb.nodesource.com/setup_6.x -O /tmp/node_install.sh
+#   TODO: Upgrade to node 10
+#   Requires merge of PR: https://github.com/os2display/middleware/pull/6
+#	wget https://deb.nodesource.com/setup_10.x -O /tmp/node_install.sh
 	chmod 700 /tmp/node_install.sh
 	/tmp/node_install.sh
 	unlink /tmp/node_install.sh
