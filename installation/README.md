@@ -12,5 +12,3 @@ install and configure all the requirements for hosting os2display.
 The "setup.sh" script is used to configure an installation of os2display. It
 will install search node and middleware (if not allready installed). It will
 install a admin for a new domain every time it's run.
-
-See [example/README.md](example/README.md) for an example of running the scripts in an empty vagrant box (debian 8).
