@@ -47,17 +47,23 @@ function intallMySQL {
 # Install PHP
 ##
 function installPHP {
-	echo "${GREEN}Installing PHP-5.x${RESET}"
-	apt-get install -y php5-fpm php5-cli php5-xdebug php5-mysql php5-curl php5-mcrypt php5-gd php5-xml > /dev/null || exit 1
+    echo "${GREEN}Installing PHP-7.x${RESET}"
 
-	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php5/fpm/php.ini
-	sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php5/fpm/php.ini
+    apt-get install -y apt-transport-https lsb-release ca-certificates > /dev/null || exit 1
+    wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+    apt-get update > /dev/null || exit 1
 
-	sed -i '/upload_max_filesize = 2M/cupload_max_filesize = 256M' /etc/php5/fpm/php.ini
-	sed -i '/post_max_size = 8M/cpost_max_size = 300M' /etc/php5/fpm/php.ini
+    apt-get install -y php7.2-fpm php7.2-cli php7.2-xdebug php7.2-mysql php7.2-curl php7.2-gd php7.2-xml php7.2-mbstring > /dev/null || exit 1
 
-	# Set php memory limit to 256mb
-	sed -i '/memory_limit = 128M/c memory_limit = 256M' /etc/php5/fpm/php.ini
+    sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/7.2/fpm/php.ini
+    sed -i '/;date.timezone =/c date.timezone = Europe/Copenhagen' /etc/php/7.2/fpm/php.ini
+
+    sed -i '/upload_max_filesize = 2M/cupload_max_filesize = 256M' /etc/php/7.2/fpm/php.ini
+    sed -i '/post_max_size = 8M/cpost_max_size = 300M' /etc/php/7.2/fpm/php.ini
+
+    # Set php memory limit to 256mb
+    sed -i '/memory_limit = 128M/c memory_limit = 256M' /etc/php/7.2/fpm/php.ini
 }
 
 ##
@@ -81,15 +87,18 @@ function installNginx {
 # Install NodeJs.
 ##
 function installNodeJs {
-	echo "${RESET}Installing NodeJs...${GREEN}"
+    echo "${RESET}Installing NodeJs...${GREEN}"
 
-	wget https://deb.nodesource.com/setup_6.x -O /tmp/node_install.sh
-	chmod 700 /tmp/node_install.sh
-	/tmp/node_install.sh
-	unlink /tmp/node_install.sh
+    wget https://deb.nodesource.com/setup_6.x -O /tmp/node_install.sh
+#   TODO: Upgrade to node 10
+#   Requires merge of PR: https://github.com/os2display/middleware/pull/6
+#	wget https://deb.nodesource.com/setup_10.x -O /tmp/node_install.sh
+    chmod 700 /tmp/node_install.sh
+    /tmp/node_install.sh
+    unlink /tmp/node_install.sh
 
-	apt-get update > /dev/null || exit 1
-	apt-get install -y nodejs > /dev/null || exit 1
+    apt-get update > /dev/null || exit 1
+    apt-get install -y nodejs > /dev/null || exit 1
 }
 
 ##

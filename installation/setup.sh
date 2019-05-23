@@ -21,8 +21,8 @@ RESET=$(tput sgr0)
 # Versions
 SEARCH_NODE_VERSION="v2.1.8"
 MIDDLEWARE_VERSION="5.0.2"
-ADMIN_VERSION="5.1.2"
-SCREEN_VERSION="5.0.3"
+ADMIN_VERSION="6.1.0"
+SCREEN_VERSION="5.0.4"
 
 ##
 # Add SSL certificates.
@@ -126,7 +126,7 @@ function setupSearchNode {
 			git clone https://github.com/search-node/search_node.git ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version
@@ -279,7 +279,7 @@ DELIM
   echo "################################"
 
   # Add supervisor startup script.
-  read -p "Who should the search node be runned as ($(whoami)): " USER
+  read -p "Who should the search node be run as ($(whoami)): " USER
   if [ -z $USER ]; then
     USER=$(whoami)
   fi
@@ -325,7 +325,7 @@ function setupMiddleWare {
 			git clone https://github.com/os2display/middleware.git ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version
@@ -478,7 +478,7 @@ DELIM
     echo "################################"
 
 	# Add supervisor startup script.
-	read -p "Who should the middleware be runned as ($(whoami)): " USER
+	read -p "Who should the middleware be run as ($(whoami)): " USER
 	if [ -z $USER ]; then
 		USER=$(whoami)
 	fi
@@ -517,7 +517,7 @@ function setupAdmin {
 			git clone https://github.com/os2display/admin ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version
@@ -570,7 +570,7 @@ server {
   }
 
   location ~ ^/(app|app_dev|config)\.php(/|\$) {
-    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
     fastcgi_split_path_info ^(.+\.php)(/.*)\$;
     include fastcgi_params;
     fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
@@ -595,6 +595,17 @@ server {
     proxy_buffering off;
 
     proxy_pass http://nodejs_search/;
+    proxy_redirect off;
+  }
+
+  location /middleware/ {
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header Host \$http_host;
+
+    proxy_buffering off;
+
+    proxy_pass http://nodejs_middleware/;
     proxy_redirect off;
   }
 
@@ -744,10 +755,10 @@ DELIM
   composer install --no-dev -o > /dev/null || exit 1
 
   echo "${GREEN}Setup database...${RESET}"
-  php app/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
+  php bin/console doctrine:migrations:migrate --no-interaction > /dev/null || exit 1
 
   echo "${GREEN}Installing templates...${RESET}"
-  php app/console os2display:core:templates:load --env=prod > /dev/null || exit 1
+  php bin/console os2display:core:templates:load --env=prod > /dev/null || exit 1
 
   # Setup super-user.
   read -p "Super user name (admin): " SU_USER
@@ -767,10 +778,10 @@ DELIM
 
   cd $INSTALL_PATH
   echo "Setting up super-user: admin/admin"
-  php app/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
+  php bin/console fos:user:create --super-admin ${SU_USER} ${SU_MAIL} $SU_PASSWORD > /dev/null || exit 1
 
   # Cron job.
-  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/app/console os2display:core:cron") | crontab
+  (crontab -l && echo "*/1 * * * * /usr/bin/php ${INSTALL_PATH}/bin/console os2display:core:cron") | crontab
 
   echo "Look into https://symfony.com/doc/2.8/setup/file_permissions.html for methods for setting file permission."
   # Change owner.
@@ -802,7 +813,7 @@ function setupScreen {
 			git clone https://github.com/os2display/screen.git ${INSTALL_PATH}/.
 			break
 		fi
-		echo "${RED}Please use another path, that don't exists allready!${RESET}"
+		echo "${RED}Please use another path, that does not exist already!${RESET}"
 	done
 
 	# Checkout version.
@@ -931,25 +942,24 @@ function restartServices {
 getSSLCertificate;
 
 while (true); do
-  echo "##########################################"
-  echo "##            ${YELLOW}Installation${RESET}              ##"
-  echo "##########################################"
-  echo "##                                      ##"
-  echo "##  1 - Complete system                 ##"
-  echo "##  2 - Search node (if not installed)  ##"
-  echo "##  3 - Middleware (if not installed)   ##"
-  echo "##  4 - Admin                           ##"
-  echo "##  5 - Screen                          ##"
-  echo "##  6 - Exit                            ##"
-  echo "##                                      ##"
-  echo "##########################################"
+  echo "#################################################"
+  echo "##  ${YELLOW}Installation${RESET}                               ##"
+  echo "#################################################"
+  echo "##                                             ##"
+  echo "##  1 - Complete system                        ##"
+  echo "##  2 - Search node (if not installed)         ##"
+  echo "##  3 - Middleware (if not installed)          ##"
+  echo "##  4 - Admin                                  ##"
+  echo "##  5 - Screen (optional, not in complete)     ##"
+  echo "##  6 - Exit                                   ##"
+  echo "##                                             ##"
+  echo "#################################################"
   read -p "What should we install (1-6)? " SELECTED
   case $SELECTED in
     1)
       setupSearchNode;
       setupMiddleWare;
       setupAdmin;
-      setupScreen;
       restartServices;
       ;;
 
