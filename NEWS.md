@@ -6,7 +6,7 @@
 * Released admin 6.1.1: https://github.com/os2display/admin/releases/tag/6.1.1
 * Released screen-bundle 1.1.0: https://github.com/os2display/screen-bundle/releases/tag/1.1.0
 * Released default-template-bundle 1.2.0: https://github.com/os2display/default-template-bundle/releases/tag/1.2.0
-* Marked https://github.com/os2display/screen as deprecated, since it has been added the the admin as a bundle in 6.1.0.
+* Marked https://github.com/os2display/screen as deprecated, since it has been added to the admin as a bundle in 6.1.0.
 
 ## 23. August 2019
 
