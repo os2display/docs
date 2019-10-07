@@ -2,6 +2,7 @@
 
 ## 7. October 2019
 
+* Released middleware 6.0.0: https://github.com/os2display/middleware/releases/tag/6.0.0
 * Released admin 6.1.1: https://github.com/os2display/admin/releases/tag/6.1.1
 * Released screen-bundle 1.1.0: https://github.com/os2display/screen-bundle/releases/tag/1.1.0
 * Released default-template-bundle 1.2.0: https://github.com/os2display/default-template-bundle/releases/tag/1.2.0
