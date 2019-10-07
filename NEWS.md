@@ -1,5 +1,9 @@
 # OS2display News
 
+## 7. October 2019
+
+* Marked https://github.com/os2display/screen as deprecated, since it has been added the the admin as a bundle in 6.1.0.
+
 ## 23. August 2019
 
 * Released core-bundle 2.1.1: https://github.com/os2display/core-bundle/releases/tag/2.1.1
