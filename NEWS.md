@@ -2,6 +2,7 @@
 
 ## 7. October 2019
 
+* Released default-template-bundle 1.2.0: https://github.com/os2display/default-template-bundle/releases/tag/1.2.0
 * Marked https://github.com/os2display/screen as deprecated, since it has been added the the admin as a bundle in 6.1.0.
 
 ## 23. August 2019
