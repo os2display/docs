@@ -2,6 +2,7 @@
 
 ## 24. October 2019
 
+* Released core-bundle 2.1.2: https://github.com/os2display/core-bundle/releases/tag/2.1.2
 * Released screen-bundle 1.1.1: https://github.com/os2display/screen-bundle/releases/tag/1.1.1
 
 ## 7. October 2019
