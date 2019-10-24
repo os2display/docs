@@ -1,5 +1,9 @@
 # OS2display News
 
+## 24. October 2019
+
+* Released screen-bundle 1.1.1: https://github.com/os2display/screen-bundle/releases/tag/1.1.1
+
 ## 7. October 2019
 
 * Released middleware 6.0.0: https://github.com/os2display/middleware/releases/tag/6.0.0
