@@ -1,7 +1,12 @@
 # OS2display News
 
+## 25. October 2019
+
+* Released admin 6.1.3: https://github.com/os2display/admin/releases/tag/6.1.3
+
 ## 24. October 2019
 
+* Released screen-bundle 1.1.3: https://github.com/os2display/screen-bundle/releases/tag/1.1.3
 * Released default-template-bundle 2.0.0: https://github.com/os2display/default-template-bundle/releases/tag/2.0.0
 * Released screen-bundle 1.1.2: https://github.com/os2display/screen-bundle/releases/tag/1.1.2
 * Released admin 6.1.2: https://github.com/os2display/admin/releases/tag/6.1.2
