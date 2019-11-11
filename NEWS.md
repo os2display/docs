@@ -1,5 +1,9 @@
 # OS2display News
 
+## 11. November 2019
+
+* Release screen-bundle: https://github.com/os2display/screen-bundle/releases/tag/1.1.4
+
 ## 25. October 2019
 
 * Released admin 6.1.3: https://github.com/os2display/admin/releases/tag/6.1.3
