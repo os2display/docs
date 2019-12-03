@@ -1,5 +1,10 @@
 # OS2display News
 
+## 15. November 2019
+
+* Released core-bundle 2.1.3: https://github.com/os2display/core-bundle/releases/tag/2.1.3
+* Released admin-bundle 2.1.2: https://github.com/os2display/admin-bundle/releases/tag/2.1.2
+
 ## 11. November 2019
 
 * Released admin-bundle 2.1.1: https://github.com/os2display/admin-bundle/releases/tag/2.1.1 
