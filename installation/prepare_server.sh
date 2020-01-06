@@ -30,7 +30,7 @@ function updateSystem {
 ##
 # Install MySQL server
 ##
-function intallMySQL {
+function installMySQL {
 	echo "${GREEN}Configuring MySQL...${RESET}"
 	echo -n "MySQL root password: "
 	read -s PASSWORD
@@ -164,7 +164,7 @@ function installUtils {
 }
 
 updateSystem;
-intallMySQL;
+installMySQL;
 installPHP;
 installCaches;
 installNginx;
