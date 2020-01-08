@@ -33,13 +33,13 @@ __TODO:__ There must be som AngularJS and Symfony links needed here to?
 
 ### PHP
 
-__TODO:__ Should we go for PHP7 compatability, so we can slowly get there?
+__TODO:__ Should we go for PHP7 compatibility, so we can slowly get there?
 
-Code must be compatible with PHP 5.6. Compatability can be checked using PHP_Codesniffer.
+Code must be compatible with PHP 5.6. Compatibility can be checked using PHP_Codesniffer.
 
 Code must conform to the [Drupal Coding Standards](https://drupal.org/coding-standards). We know that this is not the standard for Symfony projects. 
 
-See the [codesniffer](codesniffer.md) documenet for information about setting up code sniffer.
+See the [codesniffer](codesniffer.md) document for information about setting up code sniffer.
 
 ### JavaScript
 
@@ -70,7 +70,7 @@ Guidelines for writing AngularJS code: [https://github.com/johnpapa/angular-styl
 
 The js for the administration is located in web/.
 
-The legacy app is located in web/app/. New additions to the administration frontend should define seperate apps (located in web/apps/) instead of extending the legacy app. The goal is to move all functionality into seperate apps and modules in apps/ and completely remove the legacy app in app/.
+The legacy app is located in web/app/. New additions to the administration frontend should define separate apps (located in web/apps/) instead of extending the legacy app. The goal is to move all functionality into separate apps and modules in apps/ and completely remove the legacy app in app/.
 
 The legacy js is compiled with gulp
 
@@ -135,7 +135,7 @@ __[@TODO: Include gulp-help gulp file]__
 * Other requirements and how to obtain these such as API urls, versions, keys, library system and trimmings
 * Any code which does not comply with these guidelines and a brief argument why
 
-**LICENSE.txt:** All repositories must contain a LICENSE.txt file containing the licens for the project: [license.txt](license.txt).
+**LICENSE.txt:** All repositories must contain a LICENSE.txt file containing the license for the project: [license.txt](license.txt).
 
 ### Templates
 
