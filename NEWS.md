@@ -3,6 +3,7 @@
 ## 27. January 2020
 
 * Released exchange-bundle 2.1.0: https://github.com/os2display/exchange-bundle/releases/tag/2.1.0
+* Released horizon-template-bundle 2.1.0: https://github.com/os2display/horizon-template-bundle/releases/tag/2.1.0
 
 ## 4. December 2019
 
