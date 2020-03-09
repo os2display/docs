@@ -1,5 +1,9 @@
 # OS2display News
 
+## 9. March 2020
+
+* Released admin-bundle 2.1.4: https://github.com/os2display/admin-bundle/releases/tag/2.1.4
+
 ## 27. January 2020
 
 * Released exchange-bundle 2.1.0: https://github.com/os2display/exchange-bundle/releases/tag/2.1.0
