@@ -1,5 +1,9 @@
 # OS2display News
 
+## 22. March 2020
+
+* Release admin-bundle 2.2.0: https://github.com/os2display/admin-bundle/releases/tag/2.2.0
+
 ## 9. March 2020
 
 * Released admin-bundle 2.1.4: https://github.com/os2display/admin-bundle/releases/tag/2.1.4
