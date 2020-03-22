@@ -5,6 +5,7 @@
 * Released admin-bundle 2.2.0: https://github.com/os2display/admin-bundle/releases/tag/2.2.0
 * Released default-template-bundle 2.1.0: https://github.com/os2display/default-template-bundle/releases/tag/2.1.0
 * Released core-bundle 2.2.0: https://github.com/os2display/core-bundle/releases/tag/2.2.0
+* Released admin 6.2.0: https://github.com/os2display/admin/releases/tag/6.2.0
 
 These changes make video encoding formats configurable through changes to app/config/config.yml:
 ```
