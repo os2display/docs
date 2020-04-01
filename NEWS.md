@@ -2,6 +2,7 @@
 
 ## 1. April 2020
 
+* Released core-bundle: 2.2.2: https://github.com/os2display/core-bundle/releases/tag/2.2.2
 * Released core-bundle 2.2.1: https://github.com/os2display/core-bundle/releases/tag/2.2.1
 * Released screen-bundle 1.1.5: https://github.com/os2display/screen-bundle/releases/tag/1.1.5
 
