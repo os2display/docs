@@ -1,8 +1,13 @@
 # OS2display News
 
+## 19. June 2020
+
+* Released default-template-bundle 2.2.0: https://github.com/os2display/default-template-bundle/releases/tag/2.2.0
+* Released template-extension-bundle 2.1.0: https://github.com/os2display/template-extension-bundle/releases/tag/2.1.0
+
 ## 1. April 2020
 
-* Released core-bundle: 2.2.2: https://github.com/os2display/core-bundle/releases/tag/2.2.2
+* Released core-bundle 2.2.2: https://github.com/os2display/core-bundle/releases/tag/2.2.2
 * Released core-bundle 2.2.1: https://github.com/os2display/core-bundle/releases/tag/2.2.1
 * Released screen-bundle 1.1.5: https://github.com/os2display/screen-bundle/releases/tag/1.1.5
 
