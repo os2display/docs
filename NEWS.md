@@ -1,5 +1,9 @@
 # OS2display News
 
+## 29. June 2020
+
+* Released admin-bundle 2.2.1: https://github.com/os2display/admin-bundle/releases/tag/2.2.1
+
 ## 19. June 2020
 
 * Released default-template-bundle 2.2.0: https://github.com/os2display/default-template-bundle/releases/tag/2.2.0
