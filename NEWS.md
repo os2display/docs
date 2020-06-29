@@ -4,6 +4,7 @@
 
 * Released admin-bundle 2.2.1: https://github.com/os2display/admin-bundle/releases/tag/2.2.1
 * Released core-bundle 2.2.3: https://github.com/os2display/core-bundle/releases/tag/2.2.3
+* Released screen-bundle 1.1.6: https://github.com/os2display/screen-bundle/releases/tag/1.1.6
 
 ## 19. June 2020
 
