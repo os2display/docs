@@ -1,5 +1,9 @@
 # OS2display News
 
+## 25. May 2021
+
+* Released screen-bundle 1.1.7: https://github.com/os2display/screen-bundle/releases/tag/1.1.7
+
 ## 29. June 2020
 
 * Released admin-bundle 2.2.1: https://github.com/os2display/admin-bundle/releases/tag/2.2.1
